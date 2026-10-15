@@ -551,7 +551,15 @@ function banner(text,color,ms=900){
 function flash(color){const f=$("#flash");f.style.background=color;f.style.opacity=.35;setTimeout(()=>f.style.opacity=0,180)}
 function confetti(){const em=["🏈","🎉","✨","🟨","🟩"];for(let i=0;i<40;i++){const s=document.createElement("div");s.className="conf";s.textContent=em[i%em.length];
   s.style.left=Math.random()*100+"vw";s.style.animationDuration=(1.6+Math.random()*1.6)+"s";s.style.animationDelay=Math.random()*.4+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),3800)}}
-const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const NATIVE=!!(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.native);
+const SITE=location.protocol.startsWith("http")?location.href.split("#")[0].split("?")[0]:"https://afract8618.github.io/Clutch-call/";
+const buzz=style=>{try{if(NATIVE)return window.webkit.messageHandlers.native.postMessage({type:"haptic",style});
+  navigator.vibrate&&navigator.vibrate({success:[60,40,120],error:200,light:30}[style]||30)}catch(e){}};
+async function shareOut(t,okMsg){
+  if(NATIVE){window.webkit.messageHandlers.native.postMessage({type:"share",text:t});return}
+  try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==="AbortError")return}
+  try{await navigator.clipboard.writeText(t);toast(okMsg||"Copied to clipboard")}catch(e){prompt("Copy your result:",t)}
+}
 
 function doAct(a){
   if(!game||busy||game.over)return;
@@ -563,10 +571,10 @@ function doAct(a){
     busy=true; const r=game.result;
     const big={td:["TOUCHDOWN!","#3ddc84"],fg:["IT'S GOOD!","#3ddc84"],int:["PICKED OFF","#ff4d4d"],fum:["FUMBLE","#ff4d4d"],downs:["TURNOVER","#ff4d4d"],clock:["TIME'S UP","#ff4d4d"],fgmiss:["NO GOOD","#ff4d4d"],safety:["SAFETY","#ff4d4d"]}[ev.reason];
     banner(big[0],big[1],1300); flash(big[1]);
-    if(ev.reason==="td"||ev.reason==="fg"){confetti();buzz([60,40,120])}else buzz(200);
+    if(ev.reason==="td"||ev.reason==="fg"){confetti();buzz("success")}else buzz("error");
     setTimeout(()=>{busy=false;endGame(r)},1500); return;
   }
-  if(ev.banner){banner(ev.banner[0],ev.banner[1]); if(ev.first)buzz(30)}
+  if(ev.banner){banner(ev.banner[0],ev.banner[1]); if(ev.first)buzz("light")}
   else if(ev.yards>=15)banner(`+${ev.yards}`,"#3ddc84",700);
 }
 
@@ -614,12 +622,11 @@ function showResult(rec,revisit){
 }
 function shareText(rec){
   const [v]=verdict(rec);
-  return `Clutch Call #${rec.n} 🏈\n${rec.sc.line}\n${rec.trail.join("")}\n${v==="OVERTIME"?"Forced OT":v==="YOU WIN"?"Won it":"Came up short"}: ${rec.why}${rec.cmp>0&&rec.res!=="loss"?" · beat the AI coach 🏆":""}\n${location.href.split("#")[0].split("?")[0]}`;
+  return `Clutch Call #${rec.n} 🏈\n${rec.sc.line}\n${rec.trail.join("")}\n${v==="OVERTIME"?"Forced OT":v==="YOU WIN"?"Won it":"Came up short"}: ${rec.why}${rec.cmp>0&&rec.res!=="loss"?" · beat the AI coach 🏆":""}\n${SITE}`;
 }
 async function share(rec){
   const t=shareText(rec);
-  try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==="AbortError")return}
-  try{await navigator.clipboard.writeText(t);toast("Copied to clipboard")}catch(e){prompt("Copy your result:",t)}
+  await shareOut(t);
 }
 function statsHTML(){
   const s=store.get("stats",{played:0,wins:0,streak:0,best:0,beat:0});
@@ -649,8 +656,7 @@ function showSurvivor(r){
       <div class="facts"><div><b>${lvl}</b><span>DRIVES WON</span></div><div><b>${best}</b><span>BEST</span></div><div><b>${r.plays}</b><span>PLAYS</span></div><div><b>${r.yards}</b><span>YARDS</span></div></div>
       <button class="big" id="again">NEW RUN</button><button class="ghost" id="shs">Share run</button></div>`);
     $("#again").onclick=()=>{closeModal(true);start(survivorScenario(0),{surv:true,level:0,seed:(Math.random()*4e9)>>>0})};
-    $("#shs").onclick=async()=>{const t=`Clutch Call Survivor 🏈\nWon ${lvl} drive${lvl===1?"":"s"} in a row${lvl>=best&&lvl>0?" (new best!)":""}\n${location.href.split("#")[0].split("?")[0]}`;
-      try{if(navigator.share)return await navigator.share({text:t})}catch(e){return}try{await navigator.clipboard.writeText(t);toast("Copied")}catch(e){prompt("Copy:",t)}};
+    $("#shs").onclick=async()=>{const t=`Clutch Call Survivor 🏈\nWon ${lvl} drive${lvl===1?"":"s"} in a row${lvl>=best&&lvl>0?" (new best!)":""}\n${SITE}`;await shareOut(t,"Copied")};
   }
 }
 

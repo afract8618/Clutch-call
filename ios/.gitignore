@@ -1,0 +1,6 @@
+web/
+Assets.xcassets/
+build/
+Payload/
+*.xcodeproj/
+*.ipa

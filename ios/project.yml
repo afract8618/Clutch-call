@@ -1,0 +1,36 @@
+name: ClutchCall
+options:
+  bundleIdPrefix: com.clutchcall
+  preGenCommand: sh prepare.sh
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    TARGETED_DEVICE_FAMILY: "1"
+    SWIFT_VERSION: "5.0"
+    CODE_SIGNING_ALLOWED: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+targets:
+  ClutchCall:
+    type: application
+    platform: iOS
+    sources:
+      - path: ClutchCallApp.swift
+      - path: Assets.xcassets
+      - path: web
+        type: folder
+        buildPhase: resources
+    scheme: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clutchcall.app
+        PRODUCT_NAME: ClutchCall
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Clutch Call
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
