@@ -36,3 +36,11 @@ Everything is plain HTML, no build step.
 ## Customizing
 
 Situations live in the `SCEN` list in `index.html`. Each one sets the scores, seconds left, field position (`yl` = yards from your own goal line), timeouts, weather and how often the defense shows each look. Add your own and they'll rotate into the daily schedule.
+
+## New in this version
+
+- **Overtime**: tie it at the end of regulation and you play OT (both teams get the ball, then sudden death; regular-season games can end tied).
+- **Tempo and clock tricks**: huddle, no-huddle or hurry-up, throw it away, fake spike, and audibles when the defense shifts late.
+- **Team colors, crowd noise and spoken commentary** (toggle them in Settings).
+- **Levels and badges**: earn XP every drive, unlock badges and two extra themes.
+- **Drives that update themselves**: `.github/workflows/drives.yml` runs `tools/update_drives.py` every night. It pulls the current season from nflverse, picks the most dramatic late drives, and writes `drives_auto.json`, which the website and the app load on launch.

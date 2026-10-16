@@ -52,6 +52,22 @@
   --off:#ffb627; --offs:#1d1100; --def:#0b1510; --defs:#eef5ef; --los:#5aa9ff; --fd:#ffe04a; --ball:#8a3f15;
   --shadow:0 10px 30px #0008; --radius:14px; --page:radial-gradient(120% 60% at 50% -10%,#1d3a2a 0%,#07100c 60%);
 }
+[data-theme="gold"]{
+  --bg:#0d0b06; --surface:#1a160c; --surface2:#221c0f; --line:#3a2f17; --text:#fbf3dc; --muted:#b5a57c;
+  --accent:#e8b923; --accent2:#c4921a; --onaccent:#1a1200; --good:#5fd38a; --bad:#ff5a4a; --warn:#e8b923; --info:#7fb2ff;
+  --sb:#000000; --sb2:#14110a; --sbtext:#fbf3dc; --sbmuted:#b5a57c; --clock:#ffd65a; --score:#e8b923;
+  --grass1:#24522f; --grass2:#204a2a; --fline:#fbf3dcb0; --fline2:#fbf3dc40; --ezown:#3a2f17; --ezopp:#5a1a12;
+  --off:#e8b923; --offs:#1a1200; --def:#fbf3dc; --defs:#3a2f17; --los:#7fb2ff; --fd:#ffd65a; --ball:#8a3f15;
+  --shadow:0 0 24px #e8b92322; --radius:14px; --page:radial-gradient(110% 55% at 50% -10%,#3a2c0c 0%,#0d0b06 65%);
+}
+[data-theme="ice"]{
+  --bg:#eaf4fb; --surface:#ffffff; --surface2:#f0f7fc; --line:#cfe2ef; --text:#0b2233; --muted:#55738a;
+  --accent:#0a84c6; --accent2:#06659a; --onaccent:#ffffff; --good:#0f9d74; --bad:#d63a5a; --warn:#d99a00; --info:#0a84c6;
+  --sb:#0b2233; --sb2:#123247; --sbtext:#ffffff; --sbmuted:#9cc2da; --clock:#7fe3ff; --score:#ffffff;
+  --grass1:#d9ebf5; --grass2:#cfe4f1; --fline:#0b223355; --fline2:#0b223322; --ezown:#0a84c6; --ezopp:#d63a5a;
+  --off:#0a84c6; --offs:#ffffff; --def:#ffffff; --defs:#0b2233; --los:#0a84c6; --fd:#d99a00; --ball:#7a3d17;
+  --shadow:0 6px 18px #0b223318; --radius:16px; --page:linear-gradient(#d6eaf6,#eaf4fb 260px);
+}
 [data-theme="neon"]{
   --bg:#07070d; --surface:#11111c; --surface2:#171726; --line:#26263d; --text:#f2f2ff; --muted:#8d8db0;
   --accent:#00e5ff; --accent2:#7c4dff; --onaccent:#00141a; --good:#2dff9b; --bad:#ff3d71; --warn:#ffd23f; --info:#00e5ff;
@@ -200,6 +216,15 @@ svg.field{display:block;width:100%;height:auto}
 .sticky .stc.run:after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff4d3a;margin-left:5px;vertical-align:middle;animation:pulse .8s infinite}
 .sticky .std{grid-column:1/3;font-size:12px;font-weight:700;color:var(--sbmuted)}.sticky .tos{justify-content:flex-end;margin:0}
 .callname{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.3px;margin-bottom:2px}
+.tempo{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:5px;align-items:center;margin-top:8px}
+.tempo>span{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.tempo button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 2px;line-height:1.1}
+.tempo b{display:block;font-size:12.5px}.tempo small{font-size:10px;color:var(--muted)}
+.tempo button.on{background:var(--text);color:var(--bg);border-color:var(--text)}.tempo button.on small{color:var(--bg);opacity:.8}
+.aud{background:var(--surface);border:2px solid var(--warn);border-radius:14px;padding:12px;box-shadow:var(--shadow)}
+.audh{font-family:Teko,Impact,sans-serif;font-size:26px;line-height:1;color:var(--warn)}
+.audb{display:block;width:100%;text-align:left;margin-top:7px;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:var(--surface2);font-weight:800;font-size:14px}
+.audb.keep{text-align:center;background:var(--text);color:var(--bg)}
 .plays{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .play{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 9px 8px;text-align:left;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow);transition:transform .08s,border-color .15s}
 .play:active{transform:scale(.96)}
@@ -283,6 +308,14 @@ svg.field{display:block;width:100%;height:auto}
 .lbrow.top1 .rk{color:#e3a400}.lbrow.top2 .rk{color:#9aa5b1}.lbrow.top3 .rk{color:#c27a3a}
 input.name{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:17px;font-weight:700;margin:8px 0 10px}
 .muted{color:var(--muted)}
+
+.rewards{position:fixed;left:50%;top:14px;transform:translate(-50%,-140%);z-index:99;background:var(--sb);color:var(--sbtext);padding:12px 18px;border-radius:14px;box-shadow:var(--shadow);font-weight:700;text-align:center;transition:transform .35s;min-width:240px}
+.rewards.show{transform:translate(-50%,0)}.rewards .rb{font-weight:500;margin-top:4px}
+.lvl{background:var(--surface2);border-radius:var(--radius);padding:12px;margin:6px 0 10px}.lvn{font-family:Teko,Impact,sans-serif;font-size:30px;line-height:1}
+.lvbar{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin:6px 0}.lvbar i{display:block;height:100%;background:var(--accent)}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.bdg{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;opacity:.42;filter:grayscale(1)}
+.bdg.on{opacity:1;filter:none;border-color:var(--accent)}.bdg .be{font-size:26px}.bdg b{display:block;font-size:13px}.bdg small{display:block;font-size:11px;color:var(--muted);line-height:1.2}
+.newdr .lbrow{margin-top:6px}.lvdot{position:absolute;right:-5px;bottom:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--accent);color:var(--onaccent);font:700 11px/18px Barlow,sans-serif;text-align:center}.th.lock{opacity:.45}.th.lock .lab::after{content:" 🔒"}
 </style>
 </head>
 <body>
@@ -292,7 +325,7 @@ input.name{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid va
     <div class="brand">CLUTCH CALL<small>Famous final drives</small></div>
     <div class="hbtns">
       <button class="ibtn" id="bLb" aria-label="Leaderboard">🏆</button>
-      <button class="ibtn" id="bStats" aria-label="Stats">📊</button>
+      <button class="ibtn" id="bStats" aria-label="Profile and badges" style="position:relative">🎖️<span class="lvdot" id="lvchip"></span></button>
       <button class="ibtn" id="bTheme" aria-label="Settings">⚙️</button>
       <button class="ibtn" id="bHelp" aria-label="How to play">❔</button>
     </div>
@@ -359,7 +392,7 @@ const RUNS={
   keeper:   {n:"QB keeper",mean:2.6,sd:3.6,min:-3,fum:.012,oob:.12,dur:[3,5],anim:"keeper",vs:{soft:{y:2},two:{y:1.5},box:{y:-1}}},
 };
 const TRICKS={flea:{n:"Flea-Flicker",d:"Hand off, pitch it back, go deep"},end:{n:"End-Around",d:"A receiver sweeps back the other way"},
-  wrpass:{n:"Receiver Pass",d:"Lateral to a receiver, he throws deep"},direct:{n:"Direct Snap",d:"Snap it straight to the back"}};
+  wrpass:{n:"Receiver Pass",d:"Lateral to a receiver, he throws deep"},fakespike:{n:"Fake Spike",d:"Act like you're spiking it, then throw"},direct:{n:"Direct Snap",d:"Snap it straight to the back"}};
 const POSL={QB:"QB",RB:"RB",X:"WR",Z:"WR",SL:"WR",TE:"TE"};
 const SIDE={X:-1,Z:1,SL:1,TE:1,RB:1};
 // What the defense is really in, and the pre-snap clues it gives off
@@ -398,17 +431,17 @@ const DRIVES=[
  {id:"sb34",game:"Super Bowl XXXIV",date:"Jan 30, 2000",team:"Titans",opp:"Rams",my:16,op:23,t:108,yl:12,to:1,w:"dome",lk:LATE,
   real:{res:"loss",short:"Stopped at the 1",text:"Steve McNair drove the Titans to the 10, but on the final play Kevin Dyson was tackled just short of the goal line. Rams 23, Titans 16."}},
  {id:"tuck",game:"AFC Divisional (Tuck Rule Game)",date:"Jan 19, 2002",team:"Patriots",opp:"Raiders",my:10,op:13,t:126,yl:46,to:0,w:"snow",lk:{two:2,blitz:1,box:2,press:1,soft:2},
-  real:{res:"tie",short:"Tying FG, won in OT",text:"In heavy snow, Vinatieri's 45-yard kick tied it 13–13 with 27 seconds left. The Patriots won 16–13 in overtime."}},
+  real:{res:"win",short:"Tying FG, won in OT",text:"In heavy snow, Vinatieri's 45-yard kick tied it 13–13 with 27 seconds left. The Patriots won 16–13 in overtime."}},
  {id:"sb46g",game:"Super Bowl XLVI",date:"Feb 5, 2012",team:"Giants",opp:"Patriots",my:15,op:17,t:226,yl:12,to:1,w:"dome",lk:{two:2,blitz:1,box:1,press:2,soft:2},
   real:{res:"win",short:"TD with 0:57 left",text:"Manning opened with a 38-yard strike to Mario Manningham, and Ahmad Bradshaw scored from 6 yards out with 57 seconds left. Giants 21, Patriots 17."}},
  {id:"sb46p",game:"Super Bowl XLVI",date:"Feb 5, 2012",team:"Patriots",opp:"Giants",my:17,op:21,t:57,yl:20,to:1,w:"dome",lk:LATE,
   real:{res:"loss",short:"Hail Mary incomplete",text:"Brady got to midfield with 9 seconds left, but his final Hail Mary was batted down in the end zone. Giants 21, Patriots 17."}},
  {id:"13s",game:"AFC Divisional (13 Seconds)",date:"Jan 23, 2022",team:"Chiefs",opp:"Bills",my:33,op:36,t:13,yl:25,to:3,w:"cold",lk:{two:3,blitz:0,box:0,press:1,soft:4},
-  real:{res:"tie",short:"Tying FG, won in OT",text:"Two Patrick Mahomes completions covered 44 yards and Harrison Butker hit a 49-yarder to tie it. The Chiefs won 42–36 in overtime."}},
+  real:{res:"win",short:"Tying FG, won in OT",text:"Two Patrick Mahomes completions covered 44 yards and Harrison Butker hit a 49-yarder to tie it. The Chiefs won 42–36 in overtime."}},
  {id:"mpls",game:"NFC Divisional (Minneapolis Miracle)",date:"Jan 14, 2018",team:"Vikings",opp:"Saints",my:23,op:24,t:25,yl:25,to:1,w:"dome",lk:LATE,
   real:{res:"win",short:"61-yd TD at 0:00",text:"On 3rd-and-10 with 10 seconds left, Case Keenum hit Stefon Diggs, who broke free for a 61-yard touchdown as time expired. Vikings 29, Saints 24."}},
  {id:"drive",game:"AFC Championship (The Drive)",date:"Jan 11, 1987",team:"Broncos",opp:"Browns",my:13,op:20,t:332,yl:2,to:3,w:"cold",lk:{two:2,blitz:2,box:2,press:1,soft:1},
-  real:{res:"tie",short:"Tying TD, won in OT",text:"John Elway went 98 yards and hit Mark Jackson for a 5-yard touchdown with 37 seconds left to tie it 20–20. Denver won 23–20 in overtime."}},
+  real:{res:"win",short:"Tying TD, won in OT",text:"John Elway went 98 yards and hit Mark Jackson for a 5-yard touchdown with 37 seconds left to tie it 20–20. Denver won 23–20 in overtime."}},
  {id:"hailmurray",game:"Week 10 (Hail Murray)",date:"Nov 15, 2020",team:"Cardinals",opp:"Bills",my:26,op:30,t:34,yl:25,to:2,w:"dome",lk:LATE,
   real:{res:"win",short:"43-yd Hail Mary TD",text:"Kyler Murray scrambled and heaved a 43-yard Hail Mary that DeAndre Hopkins caught over three defenders with 1 second left. Cardinals 32, Bills 30."}},
  {id:"wc26lar",game:"NFC Wild Card",date:"Jan 10, 2026",team:"Rams",opp:"Panthers",my:27,op:31,t:154,yl:29,to:3,w:"wind",lk:{two:2,blitz:2,box:1,press:1,soft:2},
@@ -416,9 +449,9 @@ const DRIVES=[
  {id:"wc26chi",game:"NFC Wild Card",date:"Jan 10, 2026",team:"Bears",opp:"Packers",my:24,op:27,t:171,yl:34,to:1,w:"cold",lk:{two:2,blitz:2,box:1,press:1,soft:2},
   real:{res:"win",short:"TD with 1:48 left",text:"Caleb Williams found DJ Moore deep for a 25-yard touchdown with 1:48 left. Bears 31, Packers 27."}},
  {id:"dv26buf",game:"AFC Divisional",date:"Jan 17, 2026",team:"Bills",opp:"Broncos",my:27,op:30,t:50,yl:27,to:3,w:"clear",lk:LATE,
-  real:{res:"tie",short:"Tying FG, lost in OT",text:"With 50 seconds left, a Shakir-to-Ray Davis lateral set up Matt Prater's 50-yard tying kick. Denver won 33\u201330 in overtime."}},
+  real:{res:"loss",short:"Tying FG, lost in OT",text:"With 50 seconds left, a Shakir-to-Ray Davis lateral set up Matt Prater's 50-yard tying kick. Denver won 33\u201330 in overtime."}},
  {id:"dv26chi",game:"NFC Divisional",date:"Jan 18, 2026",team:"Bears",opp:"Rams",my:10,op:17,t:110,yl:50,to:1,w:"cold",lk:LATE,
-  real:{res:"tie",short:"Tying TD, lost in OT",text:"On 4th-and-4 with 27 seconds left, Williams backpedaled to the 40 and heaved a touchdown to Cole Kmet. The Rams won 20\u201317 in overtime."}},
+  real:{res:"loss",short:"Tying TD, lost in OT",text:"On 4th-and-4 with 27 seconds left, Williams backpedaled to the 40 and heaved a touchdown to Cole Kmet. The Rams won 20\u201317 in overtime."}},
  {id:"wc26buf",game:"AFC Wild Card",date:"Jan 11, 2026",team:"Bills",opp:"Jaguars",my:20,op:24,t:238,yl:34,to:3,w:"clear",lk:{two:2,blitz:2,box:1,press:1,soft:2},
   real:{res:"win",short:"TD with 1:05 left",text:"Josh Allen hit Brandin Cooks for 36 and finished it himself with a 1-yard push with 1:05 left. Bills 27, Jaguars 24."}},
  {id:"w1buf25",game:"2025 · Week 1",date:"Sep 7, 2025",team:"Bills",opp:"Ravens",my:38,op:40,t:86,yl:20,to:0,w:"clear",lk:LATE,
@@ -428,7 +461,7 @@ const DRIVES=[
  {id:"w7den25",game:"2025 · Week 7",date:"Oct 19, 2025",team:"Broncos",opp:"Giants",my:30,op:32,t:33,yl:23,to:0,w:"clear",lk:LATE,
   real:{res:"win",short:"39-yd FG, 0:02 left",text:"Down 19\u20130 entering the fourth, Denver finished it: Bo Nix hit Courtland Sutton for 22, spiked it, and Wil Lutz won it from 39 with 2 seconds left. Broncos 33, Giants 32."}},
  {id:"w2dal25",game:"2025 · Week 2",date:"Sep 14, 2025",team:"Cowboys",opp:"Giants",my:34,op:37,t:19,yl:33,to:3,w:"dome",lk:LATE,
-  real:{res:"tie",short:"64-yd tying FG, won in OT",text:"With 19 seconds left, Dallas survived a strip-sack and Brandon Aubrey drilled a 64-yarder to tie it. The Cowboys won 40\u201337 in overtime."}},
+  real:{res:"win",short:"64-yd tying FG, won in OT",text:"With 19 seconds left, Dallas survived a strip-sack and Brandon Aubrey drilled a 64-yarder to tie it. The Cowboys won 40\u201337 in overtime."}},
  {id:"w4gb25",game:"2025 · Week 4",date:"Sep 28, 2025",team:"Packers",opp:"Cowboys",my:34,op:37,t:35,yl:26,to:3,w:"dome",lk:LATE,
   real:{res:"tie",short:"Tying FG, game ended tied",text:"Brandon McManus hit a 53-yarder with 4 seconds left to tie it. Nobody won in overtime: the game ended 40\u201340."}},
  {id:"w15sea25",game:"2025 · Week 15",date:"Dec 14, 2025",team:"Seahawks",opp:"Colts",my:15,op:16,t:42,yl:37,to:0,w:"clear",lk:LATE,
@@ -442,7 +475,7 @@ const DRIVES=[
  {id:"w14cle25",game:"2025 · Week 14",date:"Dec 7, 2025",team:"Browns",opp:"Titans",my:23,op:31,t:163,yl:20,to:2,w:"cold",lk:{two:2,blitz:2,box:1,press:1,soft:2},
   real:{res:"loss",short:"TD, failed 2-pt",text:"Shedeur Sanders hit Harold Fannin Jr. for a 7-yard touchdown with 1:09 left, but the two-point try fell incomplete. Titans 31, Browns 29."}},
  {id:"w5bal26",game:"2026 · Week 5",date:"Oct 11, 2026",team:"Ravens",opp:"Falcons",my:15,op:23,t:145,yl:29,to:2,w:"clear",lk:LATE,
-  real:{res:"tie",short:"TD + 2-pt to tie, won in OT",text:"Tyler Huntley hit Devontez Walker for a 7-yard touchdown with 44 seconds left and Derrick Henry ran in the two-point try. Baltimore won 30\u201323 in overtime."}},
+  real:{res:"win",short:"TD + 2-pt to tie, won in OT",text:"Tyler Huntley hit Devontez Walker for a 7-yard touchdown with 44 seconds left and Derrick Henry ran in the two-point try. Baltimore won 30\u201323 in overtime."}},
  {id:"w4lar26",game:"2026 · Week 4",date:"Oct 4, 2026",team:"Rams",opp:"Eagles",my:17,op:20,t:175,yl:21,to:2,w:"clear",lk:{two:2,blitz:2,box:1,press:1,soft:2},
   real:{res:"win",short:"TD with 1:17 left",text:"Kyren Williams hammered it in from 7 yards out with 1:17 left. Rams 24, Eagles 20."}},
  {id:"w4dal26",game:"2026 · Week 4",date:"Oct 4, 2026",team:"Cowboys",opp:"Texans",my:27,op:30,t:135,yl:26,to:2,w:"dome",lk:LATE,
@@ -500,7 +533,7 @@ const teamR=sc=>TEAMR[sc.id]||{ol:76,dr:80};
 const shortName=(sc,k)=>{const r=(ROSTERS[sc.id]||{})[k];if(!r)return ({X:"Left WR",Z:"Right WR",SL:"Slot WR",TE:"Tight end",RB:"Running back",QB:"QB"})[k];const p=r[0].split(" ");return p.length>1?p[0][0]+". "+p.slice(1).join(" "):r[0]};
 function passOdds(g,key,look,mods){
   const sc=g.sc,rt=ROUTES[g.routes[key]],v=rt.vs[look]||{},r=ratingOf(sc,key),q=ratingOf(sc,"QB"),{ol,dr}=teamR(sc),W=g.W;
-  let c=rt.c-.045+(v.c||0)+(r-75)*.004+(q-75)*.003-(dr-80)*.003+(W.pass||0)+(rt.d>=18?(W.deep||0):0);
+  let c=rt.c-.045-(g.tempo==="hurry"?.03:0)+(v.c||0)+(r-75)*.004+(q-75)*.003-(dr-80)*.003+(W.pass||0)+(rt.d>=18?(W.deep||0):0);
   let int=rt.int+(v.int||0)-(q-75)*.0008+(dr-80)*.0007;
   if(mods.pa)c+=look==="box"?.12:look==="two"?.03:look==="blitz"?-.08:.01;
   if(mods.roll){c+=SIDE[key]>0?.03:-.12;int-=.005}
@@ -523,7 +556,7 @@ class Game{
     this.down=sc.dn||1; this.togo=Math.min(sc.tg||10,100-sc.yl);
     this.running=false; this.twoMin=sc.t<=120; this.over=false; this.result=null;
     this.trail=[]; this.log=[]; this.plays=0; this.startYl=sc.yl; this.W=WEATHER[sc.w]||{};
-    this.last=null; this.routes={...DEF_ROUTES}; this.mods={pa:false,roll:false,oob:false}; this.tricksUsed={}; this.newLook();
+    this.last=null; this.routes={...DEF_ROUTES}; this.mods={pa:false,roll:false,oob:false}; this.tricksUsed={}; this.tempo="nohuddle"; this.flags={}; this.newLook();
   }
   get toGoal(){return 100-this.yl}
   get need(){return this.op-this.my}
@@ -531,7 +564,7 @@ class Game{
   get fgP(){return fgProb(this.fgDist+(this.W.fg||0))}
   newLook(){const w=this.sc.lk;let tot=0;for(const k in w)tot+=w[k];let x=this.rng()*tot;this.look="two";for(const k in w){x-=w[k];if(x<0){this.look=k;break}}
     this.shown=this.rng()<DISGUISE_RATE?DISGUISE[this.look][this.rng()<.5?0:1]:this.look;
-    this.motionUsed=false;this.motionRead=null;this.lean=this.rng()<.5?"L":"R";this.leanShown=this.rng()<.25?(this.lean==="L"?"R":"L"):this.lean}
+    this.motionUsed=false;this.motionRead=null;this.lineChecked=false;this.lean=this.rng()<.5?"L":"R";this.leanShown=this.rng()<.25?(this.lean==="L"?"R":"L"):this.lean}
   canTimeout(){return !this.over&&this.running&&this.to>0&&this.phase!=="onside"}
   canSpike(){return !this.over&&this.running&&this.down<4&&this.time>3}
   push(tag,text,cls){this.log.unshift({tag,text,cls})}
@@ -550,19 +583,21 @@ class Game{
       if(id!=="xp"&&id!=="two")return null;
       this.patPending=false;this.last={play:id,kind:"none"};
       if(id==="xp"){this.my+=1;this.push("PAT",this.my===this.op?"Extra point is good. All tied up.":`Extra point is good. Still down ${this.op-this.my}.`,"sys");return this.finish("td")}
-      if(this.rng()<.48){this.my+=2;this.trail.push("✌️");this.push("2PT",this.my>this.op?"Two-point try... GOOD! You go for the win and get it!":"Two-point try... GOOD! Tied up!","good");return this.finish("td")}
+      if(this.rng()<.48){this.my+=2;this.trail.push("✌️");if(this.my>this.op)this.flags.twoWin=1;this.push("2PT",this.my>this.op?"Two-point try... GOOD! You go for the win and get it!":"Two-point try... GOOD! Tied up!","good");return this.finish("td")}
       this.push("2PT","Two-point try... stopped short.","bad");this.twoFail=true;return this.finish("td");
     }
     const r=this.rng, preTag=`${ord(this.down)}&${this.toGoal<=this.togo?"G":this.togo}`;
     this.last={play:id,los:this.yl,toGoal:this.toGoal,look:this.look,shown:this.shown,kind:"none",yards:0,oob:false};
     if(this.running){
-      const ro=id==="spike"?rint(r,3,5):id==="fg"?rint(r,9,13):rint(r,14,20);
+      const ro=id==="spike"?rint(r,3,5):id==="fg"?rint(r,9,13):this.tempo==="huddle"?rint(r,30,38):this.tempo==="hurry"?rint(r,8,12):rint(r,14,20);
       this.tick(ro,true);
       if(this.time<=0){this.push("0:00","The clock hits zero before you can get the snap off.","sys");return this.finish("clock")}
     }
     this.plays++;
     if(id==="spike"){this.tick(1);this.down++;this.running=false;this.last.kind="spike";
       this.trail.push("⏸️");this.push(preTag,`Spike. Clock stopped at ${fmtClock(this.time)}.`);this.newLook();return {kind:"spike"}}
+    if(id==="throwaway"){this.tick(rint(r,3,4));this.running=false;this.last.name="Throw it away";
+      return this.advance(0,preTag,"QB throws it away. Clock stops.","⬜",{kind:"inc",banner:["THROWN AWAY","var(--muted)"]})}
     if(id==="fg")return this.kick(preTag);
     if(id==="hail")return this.hail(preTag);
     const dist=this.toGoal,res=this.resolve(id);
@@ -605,6 +640,7 @@ class Game{
       if(side)mean+=side===this.lean?-1.6:1.4;
       if(a==="keeper"&&this.togo<=2)mean+=1;
       if(mods.oob)mean-=1;
+      if(this.tempo==="hurry")mean-=.3;
       const oobP=R0.oob+(mods.oob?({outside:.45,offtackle:.3,inside:.12,middle:.05,keeper:.35}[a]):0);
       return runOut(R0.n+(side?(side==="L"?" left":" right"):""),mean,R0.sd,R0.min,R0.fum,oobP,rint(r,R0.dur[0],R0.dur[1]),{type:"run",run:R0.anim,mirror:side==="L"});
     }
@@ -640,18 +676,23 @@ class Game{
       if(a==="wrpass"){const c=clamp(.38+({press:.1,blitz:.08,box:.06,two:-.1,soft:-.08}[look]||0),.1,.7);
         return passOut(`${T}, ${shortName(sc,"Z")} throws deep to ${shortName(sc,"X")}`,c,.08,.08,()=>Math.max(15,Math.round(30+gauss(r)*9)),.2,rint(r,6,8),
           {type:"trick",trick:"wrpass",tgt:"X",routes:{...this.routes,X:"go"},depth:30})}
+      if(a==="fakespike"){const c=clamp(.56+(this.running?.08:0)+(look==="blitz"?-.1:0)+(ratingOf(sc,"X")-75)*.003,.2,.8);
+        return passOut(`Fake spike, ${shortName(sc,"X")} on the fade`,c,.03,.02,()=>Math.max(4,Math.round(13+gauss(r)*5)),.3,rint(r,3,4),
+          {type:"pass",qb:"quick",tgt:"X",route:"go",routes:{...this.routes,X:"go"},depth:14})}
       if(a==="end")return runOut(`${T} to ${shortName(sc,"Z")}`,5+({blitz:3,box:2.5,soft:-2,two:-1}[look]||0)-(mods.oob?1:0),9,-6,.02,.3+(mods.oob?.3:0),rint(r,5,7),{type:"trick",trick:"end"});
       return runOut(`${T} to ${shortName(sc,"RB")}`,4.2+({box:-1,two:1,soft:1}[look]||0)+(this.togo<=2?1:0),4,-2,.03,mods.oob?.2:0,rint(r,4,6),{type:"trick",trick:"direct"});
     }
     return null;
   }
   touchdown(){
+    this.flags.scoreClock=this.time;if(this.last&&this.last.spec&&this.last.spec.type==="trick")this.flags.trickBig=1;
     this.trail.push("🏈");this.my+=6;this.yl=100;
     if(this.op-this.my===1){this.patPending=true;this.patMode="win";this.push("PAT","Kick to tie, or go for two to win it?","sys");return {kind:"pat"}}
     if(this.op-this.my===2){this.patPending=true;this.patMode="tie";this.push("PAT","Down 2. Go for two to tie it?","sys");return {kind:"pat"}}
     this.my+=1;return this.finish("td");
   }
   advance(yards,preTag,text,emoji,ev){
+    if(yards>=20&&this.last&&this.last.spec&&this.last.spec.type==="trick")this.flags.trickBig=1;
     this.yl+=yards;
     if(ev.kind!=="inc"&&yards>=this.togo){this.down=1;this.togo=Math.min(10,this.toGoal);text+=" FIRST DOWN!";ev.first=true;emoji="🟩";ev.banner=["FIRST DOWN","var(--fd)"]}
     else{this.down++;this.togo-=yards;if(!emoji)emoji=yards>0?"🟨":"⬜"}
@@ -665,61 +706,122 @@ class Game{
     const d=this.fgDist,p=this.fgP;this.tick(4);this.running=false;
     const good=this.rng()<p, side=this.rng()<.5?-1:1;
     Object.assign(this.last,{kind:good?"fg":"fgmiss",dist:d,side});
-    if(good){this.trail.push("🎯");this.my+=3;this.push(preTag,`${d}-yard field goal is... GOOD!`,"good");return this.finish("fg")}
+    if(good){this.trail.push("🎯");this.my+=3;this.flags.fgLong=Math.max(this.flags.fgLong||0,d);this.flags.scoreClock=this.time;this.push(preTag,`${d}-yard field goal is... GOOD!`,"good");return this.finish("fg")}
     this.trail.push("❌");this.push(preTag,`${d}-yard field goal is... NO GOOD. ${side<0?"Wide left.":"Wide right."}`,"bad");return this.finish("fgmiss");
   }
   hail(preTag){
     const d=this.toGoal;this.tick(rint(this.rng,8,10));
     const p=d<=35?.22:d<=45?.14:d<=55?.08:.04,r=this.rng();
-    if(r<p){Object.assign(this.last,{kind:"td",yards:d});this.push(preTag,"HAIL MARY... CAUGHT! TOUCHDOWN! Unbelievable!","good");return this.touchdown()}
+    if(r<p){Object.assign(this.last,{kind:"td",yards:d});this.flags.hailTD=1;this.push(preTag,"HAIL MARY... CAUGHT! TOUCHDOWN! Unbelievable!","good");return this.touchdown()}
     if(r<p+.28){Object.assign(this.last,{kind:"int",depth:d+3});this.trail.push("🟥");this.push(preTag,"Hail Mary is picked off in the end zone.","bad");return this.finish("int")}
     this.running=false;Object.assign(this.last,{kind:"inc",depth:d+3});
     return this.advance(0,preTag,"Hail Mary is batted down. Incomplete.","⬜",{kind:"inc",banner:["INCOMPLETE","var(--muted)"]});
   }
   finish(reason){
     const scored=reason==="td"||reason==="fg";
-    if(!this.sim&&this.time>0&&(scored||(reason==="fgmiss"&&this.my===this.op))){
+    if(this.sim){
+      if(scored&&this.time>0&&this.my>=this.op){const lead=this.my-this.op,T=this.time,base=lead===0?.5:lead<=3?.42:lead<=6?.18:.08;
+        if(this.rng()<clamp(base*Math.min(1,T/95)+(T>20?.03:0),0,.6))this.op+=lead<=2?3:7}
+      return this._final(reason);
+    }
+    if(this.ot)return this.otMyEnd(reason);
+    const lead=this.my-this.op,opp=this.sc.opp;
+    if(this.time>0&&(scored||reason==="fgmiss")&&(scored||lead>=0)){
       const map={td:"Touchdown",fg:"Field goal",fgmiss:"Missed field goal"};
-      this.scoreWhy=map[reason]+(this.twoFail?", failed 2-pt":"")+` with ${fmtClock(this.time)} left`;this.scoreReason=reason;
-      this.running=false;this.patPending=false;const lead=this.my-this.op,opp=this.sc.opp;
+      if(scored){this.scoreWhy=map[reason]+(this.twoFail?", failed 2-pt":"")+` with ${fmtClock(this.time)} left`;this.scoreReason=reason}
+      this.running=false;this.patPending=false;
       if(reason==="fgmiss"){const s=clamp(100-(this.yl-7),20,80);this.startDefense(s);this.push("OPP",`The ${opp} take over at their ${s}. Time to get a stop.`,"sys");return {kind:"phase",phase:"defense",reason}}
       if(lead>=0){this.startDefense(25);this.push("KO",`Touchback. The ${opp} need ${lead===0?"any score":lead<=2?"a field goal":lead===3?"a field goal to tie":"a touchdown"} with ${fmtClock(this.time)} left. You're on defense.`,"sys");return {kind:"phase",phase:"defense",reason}}
       this.phase="onside";this.push("KO",`Still down ${-lead} with ${fmtClock(this.time)} left. Onside kick or kick it deep?`,"sys");return {kind:"phase",phase:"onside",reason};
     }
-    if(this.sim&&scored&&this.time>0&&this.my>=this.op){
-      const lead=this.my-this.op,T=this.time,base=lead===0?.5:lead<=3?.42:lead<=6?.18:.08;
-      if(this.rng()<clamp(base*Math.min(1,T/95)+(T>20?.03:0),0,.6))this.op+=lead<=2?3:7;
+    if(this.time>0&&["int","fum","downs"].includes(reason)&&lead>=0){
+      const s=this.turnoverSpot(reason);this.running=false;this.startDefense(s);
+      this.push("OPP",`The ${opp} take over at ${s<50?"their "+s:s===50?"midfield":"your "+(100-s)}. Get a stop.`,"sys");return {kind:"phase",phase:"defense",reason};
     }
     return this.finalize(reason);
   }
+  turnoverSpot(reason){const y=clamp(this.yl+(reason==="int"?clamp(this.last&&this.last.depth||10,2,30):0),1,99);return clamp(100-y,1,99)}
   finalize(reason){
+    if(!this.sim&&!this.ot&&this.my===this.op&&this.time<=0)return this.startOT(reason);
+    return this._final(reason);
+  }
+  _final(reason){
     this.over=true;this.running=false;this.phase=null;
     const res=this.my>this.op?"win":this.my===this.op?"tie":"loss",opp=this.sc.opp;
     const map={td:"Touchdown",fg:"Field goal",int:"Interception",fum:"Fumble",downs:"Turnover on downs",clock:"Ran out of time",fgmiss:"Missed field goal",safety:"Safety",
-      held:"Defense held",oppwin:`The ${opp} answered`,opptie:`The ${opp} tied it`,kneel:`The ${opp} ran out the clock`};
+      held:"Defense held",oppwin:`The ${opp} answered`,opptie:`The ${opp} tied it`,kneel:`The ${opp} ran out the clock`,ottie:"Overtime ended in a tie"};
     let why=map[reason]+(this.twoFail&&!this.scoreWhy?", failed 2-pt":"");
     if(this.scoreWhy)why=this.scoreWhy+({held:", then the defense held",oppwin:`, but the ${opp} answered`,opptie:`, but the ${opp} tied it`,kneel:`, but the ${opp} ran out the clock`}[reason]||"");
-    this.result={res,reason,why,oppNote:"",plays:this.plays,yards:Math.max(0,Math.min(100,this.yl)-this.startYl),timeLeft:this.time,my:this.my,op:this.op,trail:this.trail.slice()};
-    if(res==="tie")this.push("OT","Tied at the gun. Headed to overtime.","sys");
+    if(this.ot)why=(res==="win"?"Won in overtime: ":res==="loss"?"Lost in overtime: ":"")+why.replace(/ with \d+:\d+ left/,"");
+    this.result={res,reason,why,ot:!!this.ot,oppNote:"",plays:this.plays,yards:Math.max(0,Math.min(100,this.yl)-this.startYl),timeLeft:this.time,my:this.my,op:this.op,trail:this.trail.slice()};
     return {kind:"over",reason};
+  }
+  /* ---- overtime: both teams get a possession, then sudden death ---- */
+  startOT(reason){
+    const opp=this.sc.opp,playoff=/Wild Card|Divisional|Championship|Super Bowl/i.test(this.sc.game||"");
+    this.ot={playoff,meHad:false,themHad:false,period:1};this.regWhy=this.scoreWhy;this.scoreWhy=null;this.twoFail=false;
+    this.time=playoff?900:600;this.twoMin=true;this.running=false;this.patPending=false;this.to=playoff?3:2;
+    this.trail.push("⏰");
+    const meFirst=this.rng()<.5;
+    this.push("OT",`Tied at the end of regulation. OVERTIME! ${meFirst?"You win the toss and take the ball.":`The ${opp} win the toss and take the ball.`} Both teams get a possession, then next score wins.`,"sys");
+    if(meFirst)this.myBallAt(35);else{this.startDefense(35);this.d.to=playoff?3:2;this.ot.themHad=true}
+    return {kind:"ot",meFirst};
+  }
+  myBallAt(yl){this.phase=null;this.d=null;this.yl=yl;this.down=1;this.togo=10;this.running=false;if(this.ot)this.ot.meHad=true;this.newLook()}
+  otClock(){
+    if(this.ot.playoff){this.ot.period++;this.time=900;this.to=3;this.push("OT",`End of overtime period. Still tied. Overtime period ${this.ot.period}: your ball.`,"sys");this.myBallAt(35);return {kind:"phase",phase:"offense"}}
+    return this._final("ottie");
+  }
+  otMyEnd(reason){
+    const lead=this.my-this.op,scored=reason==="td"||reason==="fg",opp=this.sc.opp;this.running=false;this.patPending=false;
+    if(scored){
+      if(this.ot.themHad||this.time<=0)return this._final(reason);
+      this.scoreWhy=null;this.startDefense(35);this.ot.themHad=true;
+      this.push("OT",`The ${opp} get their possession. They need ${lead>=7?"a touchdown to tie":"a field goal to tie, a touchdown to win"}.`,"sys");
+      return {kind:"phase",phase:"defense",reason};
+    }
+    if(lead<0||this.time<=0)return lead<0?this._final(reason):this.otClock();
+    const s=reason==="fgmiss"?clamp(100-(this.yl-7),20,80):this.turnoverSpot(reason);
+    this.startDefense(s);this.ot.themHad=true;this.push("OT",`The ${opp} take over. Any score wins it for them.`,"sys");
+    return {kind:"phase",phase:"defense",reason};
+  }
+  otTheirEnd(kind){
+    const lead=this.my-this.op;
+    if(kind==="stop"){
+      if(lead>0)return this._final("held");
+      if(this.time<=0)return this.otClock();
+      this.myBallAt(clamp(100-this.d.yl,1,99));this.push("BALL",`Stop! Your ball. ${this.ot.meHad&&this.ot.themHad?"Next score wins.":""}`,"good");return {kind:"phase",phase:"offense"};
+    }
+    if(lead<0){if(this.ot.meHad||this.time<=0)return this._final("oppwin");this.myBallAt(35);this.push("BALL",`You need ${-lead>=7?"a touchdown to tie":"a touchdown to win, a field goal to tie"}.`,"sys");return {kind:"phase",phase:"offense"}}
+    if(this.time<=0)return this.otClock();
+    this.myBallAt(35);this.push("BALL","They tied it. Sudden death: next score wins.","sys");return {kind:"phase",phase:"offense"};
+  }
+  theyScored(r){
+    if(this.ot)return this.otTheirEnd("score");
+    if(r==="opptie"&&this.time>0){this.scoreWhy=null;this.myBallAt(35);this.push("BALL",`Tied up with ${fmtClock(this.time)} left. Your ball at your 35.`,"sys");return {kind:"phase",phase:"offense"}}
+    return this.finalize(r);
+  }
+  defEnd(){
+    if(this.ot)return this.otTheirEnd("stop");
+    return this.finalize("held");
   }
   startDefense(oppYl){this.phase="defense";this.d={yl:oppYl,down:1,togo:10,to:2};this.running=false}
   defAct(call){
     const r=this.rng,D=this.d,opp=this.sc.opp,lead=this.my-this.op,toG=100-D.yl,need=lead+1;
     const tag=`${ord(D.down)}&${toG<=D.togo?"G":D.togo}`;
     this.last={play:"def",kind:"none"};this.plays++;
-    if(this.running){this.tick(rint(r,13,19),true);if(this.time<=0){this.push("0:00",`The clock runs out on the ${opp}.`,"good");return this.finalize("held")}}
+    if(this.running){this.tick(rint(r,13,19),true);if(this.time<=0){this.push("0:00",`The clock runs out on the ${opp}.`,"good");return this.defEnd()}}
     const fgP=fgProb(toG+17);
-    if(need<=3&&fgP>.5&&(this.time<=9||D.down===4)){
+    if(lead<=3&&fgP>.5&&(this.time<=9||D.down===4)&&!(this.ot&&lead===3&&!this.ot.meHad)){
       this.tick(4);this.running=false;
-      if(r()<fgP){this.op+=3;this.push("OPP",`The ${opp} kick a ${toG+17}-yard field goal.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
-      this.push("OPP",`The ${opp} miss a ${toG+17}-yard field goal!`,"good");return this.finalize("held");
+      if(r()<fgP){this.op+=3;this.push("OPP",`The ${opp} kick a ${toG+17}-yard field goal.`,"bad");return this.theyScored(this.op>this.my?"oppwin":"opptie")}
+      this.push("OPP",`The ${opp} miss a ${toG+17}-yard field goal!`,"good");return this.defEnd();
     }
     if(this.time<=7&&toG>22){
       this.tick(rint(r,7,9));
-      if(r()<(toG<=45?.12:.06)){this.op+=7;this.push("OPP",`Hail Mary... CAUGHT. The ${opp} score.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
+      if(r()<(toG<=45?.12:.06)){this.op+=7;this.push("OPP",`Hail Mary... CAUGHT. The ${opp} score.`,"bad");return this.theyScored(this.op>this.my?"oppwin":"opptie")}
       this.push("OPP","Their Hail Mary is knocked down!","good");
-      if(this.time<=0)return this.finalize("held");
+      if(this.time<=0)return this.defEnd();
       D.down++;if(D.down>4){this.push("4TH","Stopped on fourth down! Your ball.","good");return this.takeover()}
       this.newLook();return {kind:"def",o:"inc",yards:0};
     }
@@ -740,31 +842,33 @@ class Game{
     this.tick(rint(r,4,7));
     if(!txt)txt=`${pass?"Completion":"Run"} for ${yards} yard${Math.abs(yards)===1?"":"s"}.${oob?" Out of bounds.":""}`;
     this.last={play:"def",kind:"def",o,yards};
-    if(yards>=toG){this.op+=7;this.push(tag,`${pass?"Pass":"Run"}... TOUCHDOWN ${opp}.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
+    if(yards>=toG){this.op+=7;this.push(tag,`${pass?"Pass":"Run"}... TOUCHDOWN ${opp}.`,"bad");return this.theyScored(this.op>this.my?"oppwin":"opptie")}
     D.yl=Math.max(1,D.yl+yards);
     this.running=!(o==="inc"||oob);
     if(this.running&&D.to>0&&this.time<60&&this.time>3){D.to--;this.running=false;txt+=` The ${opp} call timeout.`}
     if(yards>=D.togo){D.down=1;D.togo=Math.min(10,100-D.yl);txt+=" First down."}else{D.down++;D.togo-=yards}
     this.push(tag,txt,cls||(yards>=10?"bad":""));
     if(D.down>4){this.push("4TH","Stopped on fourth down! Your ball.","good");return this.takeover()}
-    if(this.time<=0){this.push("0:00","Time expires.","sys");return this.finalize("held")}
+    if(this.time<=0){this.push("0:00","Time expires.","sys");return this.defEnd()}
     this.newLook();return {kind:"def",o,yards};
   }
   takeover(){
-    if(this.my>this.op||this.time<=0){this.push("V","Victory formation.","good");return this.finalize("held")}
+    if(this.ot)return this.otTheirEnd("stop");
+    if(this.my>this.op||this.time<=0){if(this.my>this.op)this.push("V","Victory formation.","good");return this.finalize("held")}
     this.phase=null;this.scoreWhy=null;this.yl=clamp(100-this.d.yl,1,99);this.down=1;this.togo=Math.min(10,100-this.yl);this.running=false;
     this.push("BALL",`Your ball at ${spotTxt(this.yl)} with ${fmtClock(this.time)} left. Go win it.`,"sys");
     this.newLook();return {kind:"phase",phase:"offense"};
   }
   kickoff(kind){
     const r=this.rng,opp=this.sc.opp;this.last={play:kind,kind:"none"};this.tick(rint(r,3,5));
-    if(kind==="onside"&&r()<.13){this.phase=null;this.scoreWhy=null;this.yl=rint(r,50,56);this.down=1;this.togo=10;this.running=false;this.push("KO","ONSIDE KICK RECOVERED! Your ball.","good");this.newLook();return {kind:"onside",ok:true}}
+    if(kind==="onside"&&r()<.13){this.flags.onside=1;this.phase=null;this.scoreWhy=null;this.yl=rint(r,50,56);this.down=1;this.togo=10;this.running=false;this.push("KO","ONSIDE KICK RECOVERED! Your ball.","good");this.newLook();return {kind:"onside",ok:true}}
     this.push("KO",kind==="onside"?`Onside kick recovered by the ${opp}.`:"Kicked deep. Touchback.",kind==="onside"?"bad":"sys");
     for(let i=0;i<3&&this.time>0;i++){if(this.to>0){this.to--;this.tick(3);this.push("TO",`They take a knee. You burn a timeout (${this.to} left).`,"sys")}else this.tick(40)}
     if(this.time<=0){this.push("0:00",`The ${opp} kneel it out.`,"bad");return this.finalize("kneel")}
     this.tick(6);this.push("PUNT",`The ${opp} have to punt. One more shot.`,"sys");
     this.phase=null;this.scoreWhy=null;this.yl=rint(r,12,22);this.down=1;this.togo=10;this.running=false;this.newLook();return {kind:"punt"};
   }
+  audible(){if(this.running)this.tick(3,true);this.shown=this.look;this.push("AUD",`Audible at the line${this.running?" (3 seconds)":""}.`,"sys")}
   motion(){
     if(this.motionUsed||this.over||this.phase)return null;this.motionUsed=true;
     if(this.running)this.tick(2,true);
@@ -777,7 +881,7 @@ class Game{
 /* ================= WIN CHANCE ================= */
 function cloneGame(g,seed){
   const c=Object.create(Game.prototype);
-  Object.assign(c,g,{log:[],trail:[],routes:{...g.routes},mods:{...g.mods},tricksUsed:{...g.tricksUsed},d:g.d?{...g.d}:null,rng:mulberry32(seed),sim:true});
+  Object.assign(c,g,{log:[],trail:[],routes:{...g.routes},mods:{...g.mods},tricksUsed:{...g.tricksUsed},d:g.d?{...g.d}:null,flags:{},ot:g.ot?{...g.ot}:null,last:g.last?{...g.last}:g.last,rng:mulberry32(seed),sim:true});
   return c;
 }
 function simPolicy(g){
@@ -867,9 +971,58 @@ const SFX={ctx:null,
   groan(){this.noise(1.1,.1,500,.6,0,.2);this.tone(330,.6,"sine",.05,180)},
   kick(){this.tone(120,.1,"square",.12,60);this.noise(.08,.15,700,1)},
   tick(){this.tone(1200,.025,"square",.03)},
+  amb:null,
+  crowdOn(){if(!this.on||!this.ctx||this.amb)return;try{const c=this.ctx,len=c.sampleRate*3,b=c.createBuffer(1,len,c.sampleRate),ch=b.getChannelData(0);
+    let last=0;for(let i=0;i<len;i++){last=(last+(Math.random()*2-1)*.2)*.98;ch[i]=last*3}
+    const src=c.createBufferSource();src.buffer=b;src.loop=true;const f=c.createBiquadFilter();f.type="bandpass";f.frequency.value=700;f.Q.value=.6;const g=c.createGain();g.gain.value=0;
+    src.connect(f);f.connect(g);g.connect(c.destination);src.start();this.amb={src,g}}catch(e){}},
+  crowdLevel(v){if(this.amb&&this.ctx)this.amb.g.gain.setTargetAtTime(this.on?v:0,this.ctx.currentTime,.6)},
+  crowdOff(){if(this.amb){try{this.amb.g.gain.setTargetAtTime(0,this.ctx.currentTime,.3);const a=this.amb;setTimeout(()=>{try{a.src.stop()}catch(e){}},1500)}catch(e){}this.amb=null}},
 };
+/* spoken play-by-play */
+const VOICE={
+  get on(){return store.get("voice",true)},
+  say(t){if(!this.on||!("speechSynthesis" in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=1.1;u.pitch=1.02;u.volume=1;
+    const v=speechSynthesis.getVoices().find(v=>/en[-_]US/i.test(v.lang)&&/male|daniel|alex|fred|aaron/i.test(v.name))||speechSynthesis.getVoices().find(v=>/en[-_]US/i.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){}},
+};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function callLine(g,L,ev){
+  const R=ROSTERS[g.sc.id]||{},ln=k=>R[k]?lastName(R[k][0]):({QB:"the quarterback",RB:"the back",X:"the receiver",Z:"the receiver",SL:"the slot",TE:"the tight end"})[k]||"he";
+  if(ev.kind==="over"){const r=g.result;return r.res==="win"?pick([`And the ${g.sc.team} win it!`,`Ballgame! The ${g.sc.team} pull it off!`]):r.res==="tie"?"It ends in a tie.":pick(["And that'll do it.","Heartbreak. That's the game."])}
+  if(ev.kind==="ot")return "We are going to overtime!";
+  if(!L)return "";
+  if(L.play==="def"){const o=L.o;return o==="sack"?pick(["Sacked! What a play by the defense!","Got him! Big sack!"]):o==="inc"?"Incomplete. Good coverage.":o==="stuff"?"Stuffed at the line!":L.yards>=15?"They break a big one.":""}
+  const S=L.spec||{},qb=ln("QB"),tg=S.tgt?ln(S.tgt):"",k=L.kind,y=L.yards,first=ev&&ev.first;
+  if(L.play==="fg"||k==="fg"||k==="fgmiss")return k==="fg"?"The kick is up... and it's GOOD!":"The kick is up... no good!";
+  if(L.play==="spike")return "Spiked to stop the clock.";
+  if(L.play==="throwaway")return `${qb} throws it away.`;
+  if(L.play==="hail")return k==="td"?"Hail Mary... CAUGHT! TOUCHDOWN! Unbelievable!":k==="int"?"Hail Mary... intercepted.":"Hail Mary... knocked down.";
+  if(S.type==="run"||(S.type==="trick"&&(S.trick==="end"||S.trick==="direct"))){const who=S.run==="keeper"?qb:S.trick==="end"?ln("Z"):ln("RB");
+    if(k==="td")return `${who}... he's in! TOUCHDOWN!`;if(k==="fum")return `${who}... FUMBLE! They recover!`;
+    return y<=0?`${who} is stopped${y<0?" for a loss":""}.`:`${who} ${y>=10?"breaks free":pick(["picks up","runs for","gets"])} ${y}${first?", and that's a first down":""}.`}
+  if(k==="sack")return `${qb} is SACKED!`;
+  if(k==="int")return `${qb} throws... INTERCEPTED!`;
+  if(k==="inc")return `${qb} looking for ${tg}... incomplete.`;
+  if(k==="td")return `${qb} ${pick(["fires","throws","lets it fly"])}... ${tg}... TOUCHDOWN!`;
+  if(k==="comp")return `${qb} to ${tg}${y>=20?", what a catch":""}... ${y} yards${first?", first down":""}${L.oob?", and he gets out of bounds":""}.`;
+  return "";
+}
 document.addEventListener("pointerdown",()=>SFX.unlock(),{capture:true});
 
+const TEAMC={"49ers":["#AA0000","#B3995D"],Bears:["#0B162A","#C83803"],Bengals:["#FB4F14","#000000"],Bills:["#00338D","#C60C30"],Broncos:["#FB4F14","#002244"],Browns:["#311D00","#FF3C00"],
+ Buccaneers:["#D50A0A","#34302B"],Cardinals:["#97233F","#FFB612"],Chargers:["#0080C6","#FFC20E"],Chiefs:["#E31837","#FFB81C"],Colts:["#002C5F","#A2AAAD"],Commanders:["#5A1414","#FFB612"],
+ Cowboys:["#041E42","#869397"],Dolphins:["#008E97","#FC4C02"],Eagles:["#004C54","#A5ACAF"],Falcons:["#A71930","#000000"],Giants:["#0B2265","#A71930"],Jaguars:["#006778","#D7A22A"],
+ Jets:["#125740","#FFFFFF"],Lions:["#0076B6","#B0B7BC"],Packers:["#203731","#FFB612"],Panthers:["#0085CA","#101820"],Patriots:["#002244","#C60C30"],Raiders:["#000000","#A5ACAF"],
+ Rams:["#003594","#FFA300"],Ravens:["#241773","#9E7C0C"],Saints:["#D3BC8D","#101820"],Seahawks:["#002244","#69BE28"],Steelers:["#101820","#FFB612"],Texans:["#03202F","#A71930"],
+ Titans:["#0C2340","#4B92DB"],Vikings:["#4F2683","#FFC62F"],Browns1986:["#311D00","#FF3C00"]};
+function lum(hex){const n=parseInt(hex.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255;return .2126*r+.7152*g+.0722*b}
+function applyTeamColors(sc){
+  const el=document.getElementById("fsvg");if(!el)return;
+  const set=(team,fill,stroke)=>{const c=TEAMC[team];if(!c)return;let [p1,p2]=c;
+    if(Math.abs(lum(p1)-lum(p2))<.18)p2=lum(p1)<.5?"#ffffff":"#111111";
+    el.style.setProperty(fill,p1);el.style.setProperty(stroke,p2)};
+  if(store.get("teamColors",true)){set(sc.team,"--off","--offs");set(sc.opp,"--def","--defs")}
+}
 /* ================= FIELD + ANIMATION ================= */
 const FW=53.33, VH=40, U=10;          // field width (yd), visible yards, svg units per yard
 const R=1.25;                          // player radius in yards
@@ -1128,6 +1281,40 @@ function animatePlay(L,done){
 const EPOCH=Date.UTC(2026,9,15);
 function today(){const d=new Date();return Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-EPOCH)/864e5)+1}
 function shuffled(arr,seed){const r=mulberry32(seed),a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+/* ================= AUTO-UPDATING DRIVES (drives_auto.json, refreshed nightly) ================= */
+var AUTO=[];
+var ALLD=()=>DRIVES.concat(AUTO);
+function addAuto(list){
+  const seen=new Set(DRIVES.map(d=>d.team+"|"+d.opp+"|"+d.date));
+  AUTO=(list||[]).filter(d=>d&&d.id&&d.real&&!seen.has(d.team+"|"+d.opp+"|"+d.date)).map(d=>{
+    ROSTERS[d.id]=d.roster||{};if(d.tr)TEAMR[d.id]=d.tr;if(d.coach)COACH[d.id]=d.coach;
+    return {id:d.id,game:d.game,date:d.date,team:d.team,opp:d.opp,my:d.my,op:d.op,t:d.t,yl:d.yl,to:d.to,w:WEATHER[d.w]?d.w:"clear",
+      lk:d.late?LATE:{two:2,blitz:2,box:1,press:1,soft:2},real:d.real,auto:true,week:d.week}});
+}
+async function loadAuto(){
+  try{addAuto(store.get("auto",[]))}catch(e){}
+  const web=location.protocol.startsWith("http");
+  const urls=web?["drives_auto.json?v="+Date.now()]:["https://afract8618.github.io/Clutch-call/drives_auto.json?v="+Date.now(),"drives_auto.json"];
+  for(const u of urls){
+    try{const r=await fetch(u,{cache:"no-store"});if(!r.ok)continue;const j=await r.json();if(!j||!Array.isArray(j.drives))continue;
+      store.set("auto",j.drives);const before=AUTO.map(d=>d.id).join();addAuto(j.drives);
+      if(AUTO.map(d=>d.id).join()!==before)refreshAutoCard();return}catch(e){}
+  }
+}
+function autoCard(){
+  if(!AUTO.length)return "";
+  return `<div class="card newdr"><div class="kick">🆕 New this season</div><div class="muted small" style="margin-bottom:6px">Real drives from the last few weeks. Updated every night.</div>
+  ${AUTO.slice(0,6).map(d=>`<button class="lbrow pick" data-auto="${d.id}" style="width:100%;text-align:left"><div class="rk" style="font-size:15px">${d.op===d.my?"TIE":"-"+(d.op-d.my)}</div><div class="who">${esc(d.team)} vs ${esc(d.opp)}<small>${esc(d.game)} · ${esc(d.date)}</small></div><div class="pts" style="font-size:18px">${fmtClock(d.t)}</div></button>`).join("")}</div>`;
+}
+function refreshAutoCard(){
+  if(game||mode!=="daily"||!$("#main"))return;const old=document.querySelector(".newdr");if(old)old.remove();
+  $("#main").insertAdjacentHTML("beforeend",autoCard());document.querySelectorAll("[data-auto]").forEach(b=>b.onclick=()=>playAuto(b.dataset.auto));
+}
+function playAuto(id){
+  const sc=AUTO.find(d=>d.id===id);if(!sc)return;
+  $("#main").innerHTML=introCard(sc,`🆕 ${esc(sc.game)} · ${WEATHER[sc.w].label}`,`<button class="big" id="go">TAKE THE FIELD</button><button class="ghost" id="bk">Back</button>`);
+  $("#go").onclick=()=>start(sc,{practice:true,seed:(Math.random()*4e9)>>>0});$("#bk").onclick=renderHome;window.scrollTo(0,0);
+}
 function dailyDrive(n){const L=DRIVES.length,cyc=Math.floor((n-1)/L);return shuffled(DRIVES,hashStr("cyc"+cyc))[((n-1)%L+L)%L]}
 function survivorDrive(level,order){
   if(level<order.length)return order[level];
@@ -1144,7 +1331,7 @@ applyTheme(store.get("theme","broadcast"));
 
 function setTab(m){if(busy)return;mode=m;$("#tDaily").classList.toggle("on",m==="daily");$("#tSurv").classList.toggle("on",m==="surv");renderHome()}
 $("#tDaily").onclick=()=>setTab("daily");$("#tSurv").onclick=()=>setTab("surv");
-$("#bHelp").onclick=showHelp;$("#bStats").onclick=()=>showStats();$("#bTheme").onclick=showSettings;$("#bLb").onclick=()=>showLeaderboard(mode==="surv"?"survivor":"daily");
+updLvChip();loadAuto();$("#bHelp").onclick=showHelp;$("#bStats").onclick=()=>showStats();$("#bTheme").onclick=showSettings;$("#bLb").onclick=()=>showLeaderboard(mode==="surv"?"survivor":"daily");
 
 function needText(sc){const d=sc.op-sc.my;if(d===0)return "A field goal wins it.";if(d<=2)return "A field goal wins it.";if(d===3)return "A field goal ties it, a touchdown wins it.";return d===7?"You need a touchdown just to tie.":"You need a touchdown."}
 function sitLine(sc){return `${sc.op===sc.my?"Tied":"Down "+(sc.op-sc.my)} · ${fmtClock(sc.t)} · ${spot(sc.yl)} · ${sc.to} TO`}
@@ -1169,6 +1356,7 @@ function survIntro(level,order,hist){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function renderHome(){
+  SFX.crowdOff();try{speechSynthesis.cancel()}catch(e){}
   game=null;const m=$("#main");
   if(mode==="daily"){
     const sc=dailyDrive(N),done=store.get("d"+N,null);
@@ -1178,18 +1366,20 @@ function renderHome(){
     if(done)$("#prac").onclick=()=>start(sc,{practice:true,seed:(Math.random()*4e9)>>>0});
     m.insertAdjacentHTML("beforeend",`<div class="card chcard"><div><b>⚔️ 1v1 a friend</b><span class="muted">Play any drive, send the link, same luck for both of you.</span></div><button class="big" id="chb">CHALLENGE</button></div>`);
     $("#chb").onclick=showChallengePicker;
+    refreshAutoCard();
   }else{
     const best=store.get("survBest",0);
     m.innerHTML=`<div class="card intro"><div class="kick">Survivor mode</div><h2>How many in a row?</h2>
       <p>Every famous final drive, back to back in random order. Win to move on. One loss and the run is over. Clear them all and bonus drives keep getting nastier.</p>
-      <div class="facts"><div><b>${best}</b><span>YOUR BEST</span></div><div><b>${DRIVES.length}</b><span>REAL DRIVES</span></div><div><b>1</b><span>LIFE</span></div><div><b>🏆</b><span>RANKED</span></div></div>
+      <div class="facts"><div><b>${best}</b><span>YOUR BEST</span></div><div><b>${ALLD().length}</b><span>REAL DRIVES</span></div><div><b>1</b><span>LIFE</span></div><div><b>🏆</b><span>RANKED</span></div></div>
       <button class="big" id="go">START A RUN</button><button class="ghost" id="lbs">See the leaderboard</button></div>`;
-    $("#go").onclick=()=>{const order=shuffled(DRIVES.filter(d=>d.op-d.my<=7),(Math.random()*4e9)>>>0);survIntro(0,order,[])};
+    $("#go").onclick=()=>{const order=shuffled(ALLD().filter(d=>d.op-d.my<=7),(Math.random()*4e9)>>>0);survIntro(0,order,[])};
     $("#lbs").onclick=()=>showLeaderboard("survivor");
   }
 }
 
 function start(sc,opts){
+  SFX.unlock();SFX.crowdOn();
   ctx={sc,...opts};game=new Game(sc,opts.seed);menu=null;feedback=null;coordRunning=false;
   const hist=opts.hist||[];
   $("#main").innerHTML=`
@@ -1214,7 +1404,7 @@ function start(sc,opts){
   try{const io=new IntersectionObserver(es=>{const s=$("#sticky");if(s)s.classList.toggle("show",!es[0].isIntersecting)},{threshold:0});io.observe(document.querySelector(".board"))}catch(e){}
   $("#ratb").onclick=showRatings;
   game.push("KICK",`${scLabel(sc)}. ${needText(sc)}`,"sys");
-  buildPlayers(ROSTERS[sc.id]);setCam(camFor(sc.yl));setFormation(sc.yl,game.shown);setLines(sc.yl,sc.yl+game.togo);
+  applyTeamColors(sc);buildPlayers(ROSTERS[sc.id]);setCam(camFor(sc.yl));setFormation(sc.yl,game.shown);setLines(sc.yl,sc.yl+game.togo);
   $("#players").onclick=e=>{const p=e.target.closest("[data-k]");if(!p||busy||!game||game.over)return;const k=p.dataset.k;
     if(menu==="pass"&&RECEIVERS.includes(k)&&!game.phase){cycleRoute(k);return}
     const r=(ROSTERS[game.sc.id]||{})[k];toast(r?`${r[1]!=null?"#"+r[1]+" ":""}${r[0]} · ${POSLBL[k]}`:POSLBL[k])};
@@ -1225,6 +1415,8 @@ function onMainClick(e){
   if(!game)return;
   const cd=e.target.closest("[data-coord]");if(cd){if(busy||coordRunning)return;coordRunning=true;drawCalls();coordStep();return}
   const m=e.target.closest("[data-menu]");if(m){if(busy)return;menu=m.dataset.menu||null;drawCalls();drawRoutes();return}
+  const tp=e.target.closest("[data-tempo]");if(tp){if(busy)return;game.tempo=tp.dataset.tempo;drawCalls();return}
+  const au=e.target.closest("[data-aud]");if(au){if(busy)return;const act=au.dataset.aud;if(au.dataset.orig!=="1")game.audible();else game.shown=game.look;doAct(act);return}
   const md=e.target.closest("[data-mod]");if(md){const k=md.dataset.mod;game.mods[k]=!game.mods[k];drawCalls();return}
   const rt=e.target.closest("[data-route]");if(rt){e.stopPropagation();cycleRoute(rt.dataset.route);return}
   const b=e.target.closest("[data-a]");if(b&&!b.classList.contains("disabled"))doAct(b.dataset.a);
@@ -1256,7 +1448,8 @@ function drawCalls(){
   if(g.patPending){el.innerHTML=`<div class="callhead"><b>Extra point</b></div><div class="utils"><button class="util u-fg" data-a="two">✌️ Go for two<small>${g.patMode==="tie"?"tie it up":"win it now"}</small></button><button class="util u-to" data-a="xp">🦶 Extra point<small>${g.patMode==="tie"?"still down 1":"tie, go to OT"}</small></button></div>`;return}
   const titles={run:"Run",pass:"Pass",rpo:"RPO",trick:"Trick"};
   h+=`<div class="callhead"><b>${menu?titles[menu]:"Your call"}</b>${menu?`<button class="back" data-menu="">◀ Back</button>`:`<span class="muted">${ord(g.down)} & ${g.toGoal<=g.togo?"Goal":g.togo} · ${spot(g.yl)}</span>`}</div>`;
-  if(!menu)h+=`<div class="bigcalls">${["run","pass","rpo","trick"].map(k=>`<button data-menu="${k}">${k==="rpo"?"RPO":k.toUpperCase()}</button>`).join("")}</div>`;
+  if(!menu)h+=`<div class="bigcalls">${["run","pass","rpo","trick"].map(k=>`<button data-menu="${k}">${k==="rpo"?"RPO":k.toUpperCase()}</button>`).join("")}</div>
+    <div class="tempo"><span class="muted">Tempo</span>${[["huddle","Huddle","~35 sec"],["nohuddle","No-huddle","~17 sec"],["hurry","Hurry-up","~10 sec, sloppier"]].map(([k,n,d])=>`<button class="${g.tempo===k?"on":""}" data-tempo="${k}"><b>${n}</b><small>${d}</small></button>`).join("")}</div>`;
   else if(menu==="run"){
     const sides=k=>`<div class="sb"><button data-a="run:${k}:L">← LEFT</button><button data-a="run:${k}:R">RIGHT →</button></div>`;
     h+=`<div class="rows">${["outside","offtackle","inside"].map(k=>`<div class="row"><span>${RUNS[k].n}</span>${sides(k)}</div>`).join("")}
@@ -1273,22 +1466,24 @@ function drawCalls(){
     h+=`<div class="muted small">Your QB reads it after the snap: hands off against a light box, pulls it and throws against a loaded box or blitz.</div>
       <div class="rows"><div class="row"><span>Run-pass option</span><div class="sb"><button data-a="rpo:L">← LEFT</button><button data-a="rpo:R">RIGHT →</button></div></div></div>`;
   }else if(menu==="trick"){
-    h+=`<div class="muted small">Each trick play only works once per drive.</div><div class="tricks">${Object.entries(TRICKS).map(([k,t])=>`<button class="${g.tricksUsed[k]?"disabled":""}" data-a="trick:${k}"><b>${t.n}</b><small>${g.tricksUsed[k]?"Already used":t.d}</small></button>`).join("")}</div>
+    h+=`<div class="muted small">Each trick play only works once per drive.</div><div class="tricks">${Object.entries(TRICKS).map(([k,t])=>(()=>{const off=g.tricksUsed[k]||(k==="fakespike"&&!g.running);return `<button class="${off?"disabled":""}" data-a="trick:${k}"><b>${t.n}</b><small>${g.tricksUsed[k]?"Already used":off?"Only with the clock running":t.d}</small></button>`})()).join("")}</div>
       ${tog("oob","Get out of bounds","The ball carrier tries to stop the clock.")}`;
   }
   let u="";
   if(g.canTimeout())u+=`<button class="util u-to" data-a="timeout">⏱ Timeout<small>${g.to} left · stops clock</small></button>`;
   if(g.canSpike())u+=`<button class="util u-spike" data-a="spike">⏸️ Spike<small>costs a down · ~4 sec</small></button>`;
   if(g.fgDist<=67){const p=Math.round(g.fgP*100);u+=`<button class="util u-fg" data-a="fg">🦶 Field Goal<small>${g.fgDist} yds · ${p}%${g.need>3?" · not enough":""}</small></button>`}
+  if(!menu||menu==="pass")u+=`<button class="util u-spike" data-a="throwaway">🗑 Throw it away<small>stops clock · costs a down</small></button>`;
   if(g.time<=30&&g.toGoal>=20&&g.toGoal<=65)u+=`<button class="util u-hail" data-a="hail">🙏 Hail Mary<small>low odds · ends it</small></button>`;
   if(u)h+=`<div class="utils">${u}</div>`;
   el.innerHTML=h;
 }
 function render(){
   const g=game;
+  try{const close=Math.abs(g.my-g.op)<=8?1:.4;SFX.crowdLevel(g.over?0:(.015+.07*clamp(1-g.time/240,0,1))*close)}catch(e){}
   $("#sMy").textContent=g.my;$("#sOp").textContent=g.op;
   const c=$("#clk");c.textContent=fmtClock(g.time);c.classList.toggle("low",g.time<=15&&!g.over);
-  const cs=$("#cst");cs.classList.toggle("run",g.running);cs.lastChild.textContent=g.over?"FINAL":g.running?"CLOCK RUNNING":"CLOCK STOPPED";
+  const cs=$("#cst");cs.classList.toggle("run",g.running);cs.lastChild.textContent=(g.ot&&!g.over?"OT · ":"")+(g.over?(g.result&&g.result.ot?"FINAL/OT":"FINAL"):g.running?"CLOCK RUNNING":"CLOCK STOPPED");
   if(g.phase==="defense"){const D=g.d,Y=100-D.yl;$("#dd").textContent=`${ord(Math.min(D.down,4))} & ${100-D.yl<=D.togo?"Goal":D.togo}`;$("#bo").textContent=`THEM · ${Y<50?"YOUR "+Y:Y===50?"50":"THEIR "+(100-Y)}`}
   else{$("#dd").textContent=g.over||g.phase?"--":`${ord(Math.min(g.down,4))} & ${g.toGoal<=g.togo?"Goal":g.togo}`;
   $("#bo").textContent=g.yl>=100?"END ZONE":spot(clamp(g.yl,1,99)).toUpperCase()}
@@ -1331,7 +1526,7 @@ async function shareOut(t,okMsg){
 
 function lock(on){busy=on;$("#callz")&&$("#callz").classList.toggle("locked",on)}
 let feedback=null,coordRunning=false;
-const isOffensePlay=a=>/^(run|pass|rpo|trick):/.test(a)||a==="fg"||a==="hail"||a==="spike";
+const isOffensePlay=a=>/^(run|pass|rpo|trick):/.test(a)||a==="fg"||a==="hail"||a==="spike"||a==="throwaway";
 function defCam(){const Y=100-game.d.yl;return clamp(Y-(VH-11),-10,110-VH)}
 function setDefenseField(){
   const Y=100-game.d.yl;$("#players").style.opacity=0;$("#trails").innerHTML="";
@@ -1343,6 +1538,8 @@ function doAct(a){
   if(!game||busy||game.over)return;
   SFX.tick();
   const offense=!game.phase&&!game.patPending&&isOffensePlay(a);
+  if(offense&&/^(run|pass|rpo):/.test(a)&&!game.lineChecked&&game.shown!==game.look&&Math.random()<.6){game.lineChecked=true;showAudible(a);return}
+  if(offense)game.lineChecked=true;
   const snap=offense&&store.get("grading",true)?cloneGame(game,1):null;
   const ev=game.act(a);if(!ev)return;
   if(offense)menu=null;
@@ -1350,7 +1547,8 @@ function doAct(a){
   if(ev.kind==="motion"){SFX.tick();render();return}
   const L=game.last;
   const after=()=>{
-    if(offense){let v=null,before=null,grade=null;if(snap){try{before=stateValue(snap);grade=gradeCall(snap,a);v=stateValue(game)}catch(e){}}feedback={L,before,after:v,grade,ev}}
+    try{VOICE.say(callLine(game,L&&L.play==="def"?{...L,...game.last}:L,ev))}catch(e){}
+    if(offense){let v=null,before=null,grade=null;if(snap){try{before=stateValue(snap);grade=gradeCall(snap,a);v=stateValue(game)}catch(e){}}feedback={L,before,after:v,grade,ev};if(grade&&grade.best)game.bestCalls=(game.bestCalls||0)+1}
     else if(a.startsWith("d:"))feedback=null;
     render();
     if(game.phase==="defense")setDefenseField();
@@ -1365,6 +1563,10 @@ function doAct(a){
       banner(big[0],big[1],1300);
       if(game.result.res==="win"){confetti();buzz("success");SFX.roar()}else if(game.result.res==="loss"){buzz("error");SFX.groan()}else SFX.crowd(1.2,.12);
       setTimeout(()=>{lock(false);endGame(game.result)},1500);return;
+    }
+    if(ev.kind==="ot"){
+      lock(true);banner("OVERTIME","var(--warn)",1500);SFX.horn();SFX.crowd(1.5,.18);
+      setTimeout(()=>{lock(false);if(game.phase==="defense")setDefenseField();else{setFormation(game.yl,game.shown);setLines(game.yl,game.yl+game.togo);setCam(camFor(game.yl))}render()},1600);return;
     }
     if(ev.kind==="phase"){
       lock(true);
@@ -1392,6 +1594,21 @@ function doAct(a){
   if(L.play==="fg")SFX.kick();else SFX.hike();
   try{const fw=$(".fieldwrap").getBoundingClientRect();if(fw.top<60||fw.bottom>innerHeight)window.scrollBy({top:fw.top-70,behavior:"smooth"})}catch(e){}
   animatePlay(L,after);
+}
+function audibleOptions(g,orig){
+  const look=g.look,opts=[];
+  for(const k of RECEIVERS){const o=passOdds(g,k,look,{});opts.push({a:`pass:${k}`,n:`${ROUTES[g.routes[k]].n} to ${shortName(g.sc,k)}`,v:o.caught*o.yds-o.picked*25})}
+  for(const k of ["outside","offtackle","inside"]){const side=g.lean==="L"?"R":"L",v=(RUNS[k].vs[look]||{}).y||0;opts.push({a:`run:${k}:${side}`,n:`${RUNS[k].n}, ${side==="L"?"left":"right"}`,v:RUNS[k].mean+v+1.4})}
+  opts.push({a:"rpo:R",n:"RPO, right",v:5.2});
+  return opts.filter(o=>o.a!==orig).sort((x,y)=>y.v-x.v).slice(0,3);
+}
+function showAudible(a){
+  const g=game,L=LOOKS[g.look],el=$("#callz");
+  el.innerHTML=`<div class="aud"><div class="audh">🔎 Late shift at the line!</div><div>They're rotating into <b>${L.name}</b> (${L.cues.join(", ").toLowerCase()}).</div>
+    <div class="muted small">${g.running?"An audible costs about 3 seconds.":"Clock's stopped, so an audible is free."}</div>
+    ${audibleOptions(g,a).map(o=>`<button class="audb" data-aud="${o.a}">🔁 Audible: ${esc(o.n)}</button>`).join("")}
+    <button class="audb keep" data-aud="${a}" data-orig="1">▶ Snap it anyway</button></div>`;
+  try{el.scrollIntoView({behavior:"smooth",block:"center"})}catch(e){}SFX.whistle();
 }
 function feedbackHTML(){
   const g=game,f=feedback;
@@ -1422,6 +1639,12 @@ const tier=r=>r==="win"?2:r==="tie"?1:0;
 const verdict=r=>r.res==="win"?["YOU WIN","var(--good)"]:r.res==="tie"?["OVERTIME","var(--warn)"]:["YOU LOSE","var(--bad)"];
 function points(r){return r.res==="win"?1000+Math.max(0,15-r.plays)*20+(r.reason==="td"?100:0):r.res==="tie"?500+r.yards:Math.min(400,r.yards*4)}
 function endGame(r){
+  try{const g=game,ex={};
+    if(ctx.surv&&r.res==="win")ex.surv=(ctx.level||0)+1;
+    if(ctx.daily&&r.res==="win"){const st=store.get("stats",{streak:0,last:0});ex.streak=st.last===N-1?st.streak+1:1}
+    if(ctx.challenge&&!ctx.challenge.mine&&cmpRes(resLite(r),ctx.challenge.from.r)>0)ex.duel=1;
+    if(ctx.daily&&ctx.sc.real&&Math.sign(tier(r.res)-tier(ctx.sc.real.res))>0)ex.beat=1;
+    setTimeout(()=>{awardEnd(r,g,ex);updLvChip()},50)}catch(e){console.error(e)}
   if(ctx.challenge){showChallengeResult(r);return}
   if(ctx.daily){
     const sc=ctx.sc,cmp=sc.real?Math.sign(tier(r.res)-tier(sc.real.res)):0;
@@ -1463,7 +1686,7 @@ function shareText(rec){
 function statsHTML(){const s=store.get("stats",{played:0,wins:0,streak:0,best:0,beat:0});
   return `<div class="stats"><div><b>${s.played}</b><span>Played</span></div><div><b>${s.played?Math.round(s.wins/s.played*100):0}%</b><span>Win rate</span></div><div><b>${s.streak}</b><span>Win streak</span></div><div><b>${s.beat}</b><span>Beat history</span></div></div>`}
 function showStats(){
-  openModal(`<button class="x" onclick="closeModal()">✕</button><h3>Your stats</h3>${statsHTML()}
+  openModal(`<button class="x" onclick="closeModal()">✕</button><h3>Your profile</h3>${profileHTML()}<h3 style="font-size:26px;margin-top:14px">Stats</h3>${statsHTML()}
   <div class="stats"><div><b>${store.get("stats",{best:0}).best||0}</b><span>Best streak</span></div><div><b>${store.get("survBest",0)}</b><span>Survivor best</span></div><div></div><div></div></div>
   <div class="next">Next daily drive in <b id="cd"></b></div>`);tickCountdown();
 }
@@ -1486,7 +1709,7 @@ function showSurvivor(r){
     openModal(`<div class="res"><div class="kick">${esc(sc.game)}</div><div class="verdict" style="color:${col}">RUN OVER</div><div class="sub">${esc(r.why)}${r.res==="tie"?" (overtime counts as a loss here)":""}</div>
       <div class="facts"><div><b>${lvl}</b><span>DRIVES WON</span></div><div><b>${best}</b><span>BEST</span></div><div><b>${r.plays}</b><span>PLAYS</span></div><div><b>${r.yards}</b><span>YARDS</span></div></div>
       ${realLine}<button class="big" id="again">NEW RUN</button><button class="ghost" id="lbv">Leaderboard</button><button class="ghost" id="shs">Share run</button></div>`);
-    $("#again").onclick=()=>{closeModal(true);const order=shuffled(DRIVES.filter(d=>d.op-d.my<=7),(Math.random()*4e9)>>>0);survIntro(0,order,[])};
+    $("#again").onclick=()=>{closeModal(true);const order=shuffled(ALLD().filter(d=>d.op-d.my<=7),(Math.random()*4e9)>>>0);survIntro(0,order,[])};
     $("#lbv").onclick=()=>showLeaderboard("survivor");
     $("#shs").onclick=()=>shareOut(`Clutch Call Survivor 🏈\nWon ${lvl} famous final drive${lvl===1?"":"s"} in a row${lvl>=best&&lvl>0?" (new best!)":""}\n${SITE}`,"Copied");
   }
@@ -1545,6 +1768,59 @@ async function showLeaderboard(kind){
   }catch(e){const body=$("#lbbody");if(body)body.innerHTML=`Couldn't load the leaderboard.<br><small>${esc(e.message||e)}</small>`}
 }
 
+/* ================= LEVELS & BADGES ================= */
+var BADGES=[
+ ["first_win","🏁","First Win","Win any drive."],
+ ["ice","🧊","Ice Water","Win on a score with 5 seconds or less left."],
+ ["history","📜","Rewrote History","Win a real drive the real team didn't."],
+ ["comeback","🔥","Comeback Kid","Win a drive that started down 7 or more."],
+ ["hail","🙏","Hail Yes","Score on a Hail Mary."],
+ ["trick","🎩","Trickster","Gain 20+ yards or score on a trick play."],
+ ["leg","🦵","Big Leg","Make a 55+ yard field goal."],
+ ["stand","🛡️","Defensive Stand","Win by getting a stop on defense."],
+ ["ot","⏰","Overtime Hero","Win in overtime."],
+ ["film","🎬","Film Study","Make the best call 5 times in one drive."],
+ ["onside","🎯","Onside Magic","Recover an onside kick."],
+ ["two","✌️","Go For Two","Win it on a two-point conversion."],
+ ["surv5","💪","Survivor","Win 5 drives in a row in Survivor."],
+ ["surv10","🏆","Iron Man","Win 10 drives in a row in Survivor."],
+ ["streak3","📅","Hot Streak","Win the daily drive 3 days in a row."],
+ ["streak7","🗓️","Lock of the Week","Win the daily drive 7 days in a row."],
+ ["duel","⚔️","Duelist","Beat a friend in a 1v1."],
+ ["closer","💎","Closer","Win 10 drives total."],
+];
+var THEME_LOCK={gold:5,ice:10};
+function xpForLevel(L){return 50*L*(L-1)}
+function levelOf(xp){let L=1;while(xp>=xpForLevel(L+1))L++;return L}
+function awardEnd(r,g,extra={}){
+  const got=store.get("badges",{}),earned=[],give=k=>{if(!got[k]){got[k]=Date.now();earned.push(k)}};
+  const wins=store.get("wins",0)+(r.res==="win"?1:0);store.set("wins",wins);
+  const f=g.flags||{},sc=g.sc;
+  if(r.res==="win"){give("first_win");if(f.scoreClock!=null&&f.scoreClock<=5&&!g.ot)give("ice");if(sc.op-sc.my>=7)give("comeback");if(g.ot)give("ot");
+    if(sc.real&&sc.real.res!=="win")give("history");if(r.reason==="held")give("stand");if(f.twoWin)give("two")}
+  if(f.hailTD)give("hail");if(f.trickBig)give("trick");if((f.fgLong||0)>=55)give("leg");if(f.onside)give("onside");if((g.bestCalls||0)>=5)give("film");
+  if(wins>=10)give("closer");
+  if(extra.surv>=5)give("surv5");if(extra.surv>=10)give("surv10");if(extra.streak>=3)give("streak3");if(extra.streak>=7)give("streak7");if(extra.duel)give("duel");
+  store.set("badges",got);
+  const firsts=(r.trail||[]).filter(x=>x==="🟩").length;
+  const gain=(r.res==="win"?150:r.res==="tie"?60:30)+firsts*10+(extra.beat?25:0)+earned.length*100;
+  const before=store.get("xp",0),after=before+gain;store.set("xp",after);
+  const L0=levelOf(before),L1=levelOf(after);
+  setTimeout(()=>showRewards(gain,earned,L0,L1),700);
+}
+function showRewards(gain,earned,L0,L1){
+  const box=document.createElement("div");box.className="rewards";
+  box.innerHTML=`<div>+${gain} XP${L1>L0?` · <b>LEVEL UP! Level ${L1}</b>`:""}</div>`+earned.map(k=>{const b=BADGES.find(x=>x[0]===k);return `<div class="rb">${b[1]} New badge: <b>${b[2]}</b></div>`}).join("")+
+    (L1>L0?Object.entries(THEME_LOCK).filter(([,l])=>l>L0&&l<=L1).map(([t])=>`<div class="rb">🎨 Unlocked the ${THEMES.find(x=>x[0]===t)[1]} theme</div>`).join(""):"");
+  document.body.appendChild(box);if(earned.length||L1>L0){SFX.horn();buzz("success")}
+  setTimeout(()=>box.classList.add("show"),30);setTimeout(()=>{box.classList.remove("show");setTimeout(()=>box.remove(),400)},3600+earned.length*900);
+}
+function profileHTML(){
+  const xp=store.get("xp",0),L=levelOf(xp),a=xpForLevel(L),b=xpForLevel(L+1),got=store.get("badges",{});
+  return `<div class="lvl"><div class="lvn">LEVEL ${L}</div><div class="lvbar"><i style="width:${Math.round((xp-a)/(b-a)*100)}%"></i></div><div class="muted small">${xp-a} / ${b-a} XP to level ${L+1}</div></div>
+  <div class="bgrid">${BADGES.map(([k,e,n,d])=>`<div class="bdg ${got[k]?"on":""}"><div class="be">${e}</div><b>${n}</b><small>${d}</small></div>`).join("")}</div>`;
+}
+
 /* ================= 1v1 CHALLENGES ================= */
 const b64e=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
 const b64d=s=>{try{s=s.replace(/-/g,"+").replace(/_/g,"/");return JSON.parse(decodeURIComponent(escape(atob(s))))}catch(e){return null}};
@@ -1554,11 +1830,11 @@ function cmpRes(a,b){const t=tier(a.res)-tier(b.res);return t?Math.sign(t):Math.
 function showChallengePicker(){
   openModal(`<button class="x" onclick="closeModal(true)">✕</button><h3>1v1 a friend</h3>
     <div class="muted" style="margin-bottom:10px">Pick a drive and play it. Then send the link: your friend gets the exact same drive and the same starting luck. Best result wins.</div>
-    ${DRIVES.map((d,i)=>`<button class="lbrow pick" data-pick="${i}" style="width:100%;text-align:left"><div class="rk" style="font-size:15px">${d.op===d.my?"TIE":"-"+(d.op-d.my)}</div><div class="who">${esc(d.team)} vs ${esc(d.opp)}<small>${esc(d.game)} · ${esc(d.date)}</small></div><div class="pts" style="font-size:18px">${fmtClock(d.t)}</div></button>`).join("")}`);
-  document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{closeModal(true);const sc=DRIVES[+b.dataset.pick];start(sc,{challenge:{mine:true},seed:(Math.random()*4e9)>>>0})});
+    ${ALLD().map((d,i)=>`<button class="lbrow pick" data-pick="${i}" style="width:100%;text-align:left"><div class="rk" style="font-size:15px">${d.op===d.my?"TIE":"-"+(d.op-d.my)}</div><div class="who">${esc(d.team)} vs ${esc(d.opp)}<small>${esc(d.game)} · ${esc(d.date)}</small></div><div class="pts" style="font-size:18px">${fmtClock(d.t)}</div></button>`).join("")}`);
+  document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{closeModal(true);const sc=ALLD()[+b.dataset.pick];start(sc,{challenge:{mine:true},seed:(Math.random()*4e9)>>>0})});
 }
 function openChallenge(c){
-  const sc=DRIVES.find(d=>d.id===c.d);if(!sc){toast("That challenge drive isn't available");return}
+  const sc=ALLD().find(d=>d.id===c.d);if(!sc){toast("That challenge drive isn't available");return}
   if(c.vs){ // a friend sent their result back
     const me=c.r,them=c.vs.r,w=cmpRes(me,them);
     openModal(`<button class="x" onclick="closeModal(true)">✕</button><div class="res"><div class="kick">1v1 · ${esc(sc.game)}</div>
@@ -1597,22 +1873,28 @@ function showSettings(){
   const cur=store.get("theme","broadcast"),snd=store.get("sound",true),gr=store.get("grading",true);
   openModal(`<button class="x" onclick="closeModal(true)">✕</button><h3>Settings</h3>
   <button class="tog ${snd?"on":""}" id="tsnd"><span><b>Sound</b><small>Crowd, whistles and the snap</small></span><i></i></button>
+  <button class="tog ${store.get("voice",true)?"on":""}" id="tvo"><span><b>Commentary voice</b><small>Spoken play-by-play with the real names</small></span><i></i></button>
+  <button class="tog ${store.get("teamColors",true)?"on":""}" id="ttc"><span><b>Team colors</b><small>Color the players in their real team colors</small></span><i></i></button>
   <button class="tog ${gr?"on":""}" id="tgr"><span><b>Grade my calls</b><small>Win chance and how every option scored after each play</small></span><i></i></button>
   <h3 style="font-size:26px;margin-top:14px">Theme</h3>
-  <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""}" data-th="${k}"><div class="sw" data-theme="${k}" style="background:var(--bg)">
+  <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""} ${themeLocked(k)?"lock":""}" data-th="${k}" ${themeLocked(k)?"disabled":""}><div class="sw" data-theme="${k}" style="background:var(--bg)">
     <div style="background:var(--grass1)"><svg width="74" height="34"><circle cx="16" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="37" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="58" cy="10" r="8" style="fill:var(--def);stroke:var(--defs)" stroke-width="2"/></svg></div>
     <div style="background:var(--sb);color:var(--clock);font-family:Teko,Impact,sans-serif;font-size:26px">2:00</div></div><div class="lab">${n}<small>${d}</small></div></button>`).join("")}</div>`);
   $("#tsnd").onclick=()=>{store.set("sound",!snd);if(!snd){SFX.unlock();SFX.whistle()}showSettings()};
   $("#tgr").onclick=()=>{store.set("grading",!gr);showSettings()};
+  $("#tvo").onclick=()=>{const v=!store.get("voice",true);store.set("voice",v);if(v)VOICE.say("Commentary is on.");else try{speechSynthesis.cancel()}catch(e){}showSettings()};
+  $("#ttc").onclick=()=>{store.set("teamColors",!store.get("teamColors",true));showSettings()};
   document.querySelectorAll("[data-th]").forEach(b=>b.onclick=()=>{store.set("theme",b.dataset.th);applyTheme(b.dataset.th);showSettings()});
 }
 
 /* ================= THEMES / HELP ================= */
-const THEMES=[["broadcast","Broadcast","TV-style navy, red & white"],["clean","Clean","Bright, minimal, black & green"],["retro","Retro","70s cream & burnt orange"],["midnight","Midnight","The original dark stadium look"],["neon","Neon","Arcade black with cyan & pink"]];
+var THEMES=[["broadcast","Broadcast","TV-style navy, red & white"],["clean","Clean","Bright, minimal, black & green"],["retro","Retro","70s cream & burnt orange"],["midnight","Midnight","The original dark stadium look"],["neon","Neon","Arcade black with cyan & pink"],["gold","Gold Jacket","Hall of Fame black & gold · unlocks at level 5"],["ice","Ice Bowl","Frozen tundra white & blue · unlocks at level 10"]];
+var themeLocked=k=>THEME_LOCK[k]&&levelOf(store.get("xp",0))<THEME_LOCK[k];
+function updLvChip(){const e=document.getElementById("lvchip");if(e)e.textContent=levelOf(store.get("xp",0))}
 function showThemes(){
   const cur=store.get("theme","broadcast");
   openModal(`<button class="x" onclick="closeModal()">✕</button><h3>Theme</h3><div class="muted">Tap to try one. It's saved on this device.</div>
-  <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""}" data-th="${k}"><div class="sw" data-theme="${k}" style="background:var(--bg)">
+  <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""} ${themeLocked(k)?"lock":""}" data-th="${k}" ${themeLocked(k)?"disabled":""}><div class="sw" data-theme="${k}" style="background:var(--bg)">
     <div style="background:var(--grass1)"><svg width="74" height="34"><circle cx="16" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="37" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="58" cy="10" r="8" style="fill:var(--def);stroke:var(--defs)" stroke-width="2"/></svg></div>
     <div style="background:var(--sb);color:var(--clock);font-family:Teko,Impact,sans-serif;font-size:26px">2:00</div></div>
     <div class="lab">${n}<small>${d}</small></div></button>`).join("")}</div>`);

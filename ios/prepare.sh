@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 rm -rf web && mkdir -p web
-cp ../index.html ../icon-192.png ../icon-512.png ../apple-touch-icon.png ../favicon-32.png ../manifest.webmanifest web/
+cp ../index.html ../drives_auto.json ../icon-192.png ../icon-512.png ../apple-touch-icon.png ../favicon-32.png ../manifest.webmanifest web/
 mkdir -p Assets.xcassets/AppIcon.appiconset
 cp ../icon-1024.png Assets.xcassets/AppIcon.appiconset/AppIcon.png
 cat > Assets.xcassets/Contents.json <<'JSON'
