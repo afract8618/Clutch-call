@@ -192,6 +192,14 @@ svg.field{display:block;width:100%;height:auto}
 .coord{display:block;width:100%;margin-top:8px;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:800}
 .chcard{margin-top:10px;display:flex;gap:10px;align-items:center}.chcard>div{flex:1}.chcard b{display:block;font-size:16px}.chcard span{font-size:12.5px}.chcard .big{width:auto;padding:12px 16px;font-size:14px}
 .pick{margin-bottom:6px}
+.sticky{position:fixed;left:50%;top:0;transform:translate(-50%,-110%);width:100%;max-width:520px;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:4px 8px;
+  padding:calc(6px + env(safe-area-inset-top)) 14px 7px;background:linear-gradient(var(--sb),var(--sb2));color:var(--sbtext);box-shadow:0 4px 14px #0005;transition:transform .2s;border-radius:0 0 14px 14px}
+.sticky.show{transform:translate(-50%,0)}
+.sticky b{font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sticky b:last-of-type{text-align:right}
+.sticky .stc{font-family:Teko,Impact,sans-serif;font-size:32px;line-height:.9;color:var(--clock);text-align:center;font-variant-numeric:tabular-nums}
+.sticky .stc.run:after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff4d3a;margin-left:5px;vertical-align:middle;animation:pulse .8s infinite}
+.sticky .std{grid-column:1/3;font-size:12px;font-weight:700;color:var(--sbmuted)}.sticky .tos{justify-content:flex-end;margin:0}
+.callname{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.3px;margin-bottom:2px}
 .plays{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .play{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 9px 8px;text-align:left;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow);transition:transform .08s,border-color .15s}
 .play:active{transform:scale(.96)}
@@ -337,7 +345,7 @@ const ROUTES={
   corner:  {n:"Corner",d:20,c:.46,yac:1.5,int:.04,oob:.45,tt:"d",vs:{box:{c:.1},press:{c:.08},soft:{c:-.08},two:{c:-.04}}},
   post:    {n:"Post",d:24,c:.41,yac:3,int:.05,oob:.05,tt:"d",vs:{two:{c:.1},blitz:{c:.08},box:{c:.04},press:{c:-.06},soft:{c:-.08}}},
   wheel:   {n:"Wheel",d:18,c:.38,yac:4,int:.03,oob:.4,tt:"d",vs:{blitz:{c:.12},box:{c:.08},soft:{c:-.08},two:{c:-.04}}},
-  go:      {n:"Go",d:34,c:.33,yac:2,int:.06,oob:.3,tt:"d",vs:{press:{c:.1},blitz:{c:.13},two:{c:-.16,int:.04},soft:{c:-.12}}},
+  go:      {n:"Go",d:34,c:.41,yac:2,int:.05,oob:.3,tt:"d",vs:{press:{c:.1},blitz:{c:.12},two:{c:-.1,int:.03},soft:{c:-.08}}},
 };
 const ROUTE_SETS={X:["go","slant","out","curl","dig","comeback","post","corner"],Z:["curl","slant","out","dig","comeback","post","corner","go"],
   SL:["slant","out","curl","drag","dig","seam","corner","post","go"],TE:["seam","drag","flat","curl","dig","corner"],RB:["flat","angle","wheel"]};
@@ -564,7 +572,7 @@ class Game{
     this.mods={pa:false,roll:false,oob:false};
     this.tick(res.dur);
     Object.assign(this.last,{kind,yards,oob,spec:res.spec,depth:clamp(res.depth,2,dist+4)});
-    const nm=res.name.charAt(0).toUpperCase()+res.name.slice(1);
+    const nm=res.name.charAt(0).toUpperCase()+res.name.slice(1);this.last.name=nm;
     if(kind==="int"){this.trail.push("🟥");this.push(preTag,`${nm}... INTERCEPTED. ${this.sc.opp} ball.`,"bad");return this.finish("int")}
     if(kind==="fum"){this.last.yards=Math.min(yards,dist-1);this.trail.push("🟥");this.push(preTag,`${nm} for ${yards}... FUMBLE! ${this.sc.opp} recover.`,"bad");return this.finish("fum")}
     if(kind==="inc"){this.running=false;return this.advance(0,preTag,`${nm} falls incomplete. Clock stops.`,"⬜",{kind:"inc",banner:["INCOMPLETE","var(--muted)"]})}
@@ -935,7 +943,8 @@ function setFormation(los,look){
   for(const k of DEF)placeP(k,d[k][0],los+d[k][1]);
   placeBall(26.65,los-0.2,0);$("#hl").setAttribute("opacity",0);
 }
-function kfPos(kf,t){if(t<=kf[0][0])return [kf[0][1],kf[0][2]];for(let i=1;i<kf.length;i++){const a=kf[i-1],b=kf[i];if(t<=b[0]){const k=(t-a[0])/(b[0]-a[0]||1),e=k*k*(3-2*k)*.35+k*.65;return [lerp(a[1],b[1],e),lerp(a[2],b[2],e)]}}const z=kf[kf.length-1];return [z[1],z[2]]}
+// constant-speed movement between waypoints, with a short acceleration off the snap (no stopping at each cut)
+function kfPos(kf,t){if(t<=kf[0][0])return [kf[0][1],kf[0][2]];for(let i=1;i<kf.length;i++){const a=kf[i-1],b=kf[i];if(t<=b[0]){const k=(t-a[0])/(b[0]-a[0]||1),e=i===1?k*(.55+.45*k):k;return [lerp(a[1],b[1],e),lerp(a[2],b[2],e)]}}const z=kf[kf.length-1];return [z[1],z[2]]}
 
 function routePts(name,k,d,ct){
   const x0=offSet()[k][0],s=SIDE[k],c=v=>clamp(v,1.5,FW-1.5);
@@ -1054,6 +1063,7 @@ function passFinish({K,kind,play,dur,endY,tgt,cp,throwT,ct,arc,qb,L,thrower="QB"
     const fx=L.oob?(cp[0]>FW/2?FW+.6:-.6):clamp(cp[0]+(Math.random()-.5)*6,3,FW-3);
     if(endY>last[2]+.3||L.oob)k.push([1,fx,Math.max(endY,last[2])]);else k.push([1,last[1],last[2]]);
     return {K,ball:[...base,{t0:throwT,t1:ct,fly:[qAt,cp],h:arc},{t0:ct,t1:1,hold:tgt}],carrier:tgt,catchT:ct,throwT,landing:cp,dur,kind,play,endY,target:tgt,pa}}
+  {const k=K[tgt];if(k&&k.length>1){const a=k[k.length-2],b=k[k.length-1],dx=b[1]-a[1],dy=b[2]-a[2],dl=Math.hypot(dx,dy)||1;k.push([Math.min(1,ct+.25),clamp(b[1]+dx/dl*3,1,FW-1),b[2]+dy/dl*3])}}
   const miss=kind==="int"?[cp[0]+.6,cp[1]+.8]:[cp[0]+(Math.random()-.5)*3,cp[1]+2.5];
   const ball=[...base,{t0:throwT,t1:ct,fly:[qAt,miss],h:arc}];
   if(kind==="int")ball.push({t0:ct,t1:1,hold:"_picker"});else ball.push({t0:ct,t1:1,fly:[miss,[miss[0]+.8,miss[1]+1.2]],h:0});
@@ -1068,7 +1078,7 @@ function animatePlay(L,done){
   const spd={dl:7,lb:9.5,db:10.5};
   const man=L.look==="blitz"||L.look==="press";
   const cover={CB1:"X",CB2:"Z",S2:man?"SL":null,LB3:man?"TE":null};
-  let pickerK=null,last=t0;
+  let pickerK=null,last=t0;const won=plan.kind==="comp"||plan.kind==="td";
   const offPos=(k,t)=>plan.K[k]?kfPos(plan.K[k],t):offSet()[k];
   function ballAt(t){
     for(const s of plan.ball){if(t<s.t0||t>s.t1)continue;const k=(t-s.t0)/((s.t1-s.t0)||1);
@@ -1096,10 +1106,11 @@ function animatePlay(L,done){
       else if(phase==="ball"&&(r!=="dl"||Math.hypot(target.x-p.x,target.y-p.y)<12)){tx=target.x;ty=target.y;stop=plan.picker?0:R*1.6}
       else if(plan.pa&&r==="lb"&&t<.38){tx=p.x;ty=.8}                      // linebackers bite on the fake
       else if(r==="dl"||(L.look==="blitz"&&r==="lb")){const q=offPos("QB",t),thru=plan.sack&&(k==="DE1"||k==="DT2"||k==="LB2");tx=thru?q[0]:lerp(p.x,q[0],.3);ty=thru?q[1]+.3:Math.max(q[1]+.3,-.2);stop=thru?R*1.2:0}
-      else if(cover[k]&&plan.K[cover[k]]){const q=offPos(cover[k],t),soft=!man;tx=q[0]+(q[0]<FW/2?.9:-.9);ty=q[1]+(soft?3:1.3)}
+      else if(cover[k]&&plan.K[cover[k]]){const q=offPos(cover[k],t),soft=!man,beat=won&&cover[k]===plan.target&&t>.25;tx=q[0]+(q[0]<FW/2?.9:-.9)*(beat?1.6:1);ty=beat?q[1]-1.6:q[1]+(soft?Math.min(3,Math.max(1,9-q[1])):1.3)}
       else if(r==="db"){tx=dz[k][0]+(dz[k][0]<FW/2?-1:1);ty=dz[k][1]+(L.look==="soft"||L.look==="two"?4:2.5)}
       else{tx=dz[k][0];ty=dz[k][1]+(plan.run?-1.5:2.5)}
-      const s=spd[r]*dt*(phase==="cover"?.85:1.25),dx=tx-p.x,dy=ty-p.y,dd=Math.hypot(dx,dy);
+      const lag=won&&cover[k]===plan.target?.8:1;
+      const s=spd[r]*dt*(phase==="cover"?.85:1.25)*lag,dx=tx-p.x,dy=ty-p.y,dd=Math.hypot(dx,dy);
       if(dd>stop+.05){const m=Math.min(s,dd-stop);p.x+=dx/dd*m;p.y+=dy/dd*m}
       placeP(k,p.x,los+p.y);
     }
@@ -1183,6 +1194,7 @@ function start(sc,opts){
   const hist=opts.hist||[];
   $("#main").innerHTML=`
     ${opts.surv?`<div class="streakbar"><div class="wbox">${hist.map(()=>`<i class="w">W</i>`).join("")}<i class="cur">${hist.length+1}</i></div><span>Best ${store.get("survBest",0)}</span></div>`:""}
+    <div class="sticky" id="sticky"><b id="stMy"></b><span class="stc" id="stClk"></span><b id="stOp"></b><span class="std" id="stDn"></span><span class="tos" id="stTo"></span></div>
     <div class="board">
       <div class="teams">
         <div class="team"><div class="nm">${esc(sc.team)} · YOU</div><div class="sc" id="sMy"></div></div>
@@ -1199,6 +1211,7 @@ function start(sc,opts){
     <div id="callz"></div>
     <details class="pbp" id="pbp"><summary>PLAY-BY-PLAY · ${WEATHER[sc.w].label}</summary><div class="log" id="log"></div></details>`;
   $("#main").onclick=onMainClick;
+  try{const io=new IntersectionObserver(es=>{const s=$("#sticky");if(s)s.classList.toggle("show",!es[0].isIntersecting)},{threshold:0});io.observe(document.querySelector(".board"))}catch(e){}
   $("#ratb").onclick=showRatings;
   game.push("KICK",`${scLabel(sc)}. ${needText(sc)}`,"sys");
   buildPlayers(ROSTERS[sc.id]);setCam(camFor(sc.yl));setFormation(sc.yl,game.shown);setLines(sc.yl,sc.yl+game.togo);
@@ -1280,6 +1293,9 @@ function render(){
   else{$("#dd").textContent=g.over||g.phase?"--":`${ord(Math.min(g.down,4))} & ${g.toGoal<=g.togo?"Goal":g.togo}`;
   $("#bo").textContent=g.yl>=100?"END ZONE":spot(clamp(g.yl,1,99)).toUpperCase()}
   $("#tos").innerHTML=[0,1,2].map(i=>`<i class="${i<g.to?"on":""}"></i>`).join("");
+  $("#stMy").textContent=`${g.sc.team} ${g.my}`;$("#stOp").textContent=`${g.op} ${g.sc.opp}`;$("#stClk").textContent=fmtClock(g.time);$("#stClk").classList.toggle("run",g.running);
+  $("#stDn").textContent=g.over?"FINAL":g.phase==="defense"?`D · ${ord(Math.min(g.d.down,4))}&${g.d.togo}`:g.phase?"":`${ord(Math.min(g.down,4))} & ${g.toGoal<=g.togo?"G":g.togo} · ${spot(clamp(g.yl,1,99))}`;
+  $("#stTo").innerHTML=[0,1,2].map(i=>`<i class="${i<g.to?"on":""}"></i>`).join("");
   const pct=y=>(8.33+clamp(y,0,100)*.8334)+"%";
   $("#dbb").style.left=pct(g.yl);$("#dbf").style.left=pct(Math.min(100,g.yl+g.togo));$("#dbf").style.opacity=g.over?0:1;
   $("#dbd").style.left=pct(g.startYl);$("#dbd").style.width=(Math.max(0,clamp(g.yl,0,100)-g.startYl)*.8334)+"%";
@@ -1329,6 +1345,7 @@ function doAct(a){
   const offense=!game.phase&&!game.patPending&&isOffensePlay(a);
   const snap=offense&&store.get("grading",true)?cloneGame(game,1):null;
   const ev=game.act(a);if(!ev)return;
+  if(offense)menu=null;
   if(ev.kind==="timeout"){SFX.whistle();render();banner("TIMEOUT","var(--warn)",700);return}
   if(ev.kind==="motion"){SFX.tick();render();return}
   const L=game.last;
@@ -1373,6 +1390,7 @@ function doAct(a){
   if(!L||L.kind==="none"||L.play==="def"){after();return}
   lock(true);$("#fdl").style.opacity=0;$("#trails").innerHTML="";$("#players").style.opacity=1;
   if(L.play==="fg")SFX.kick();else SFX.hike();
+  try{const fw=$(".fieldwrap").getBoundingClientRect();if(fw.top<60||fw.bottom>innerHeight)window.scrollBy({top:fw.top-70,behavior:"smooth"})}catch(e){}
   animatePlay(L,after);
 }
 function feedbackHTML(){
@@ -1387,7 +1405,8 @@ function feedbackHTML(){
   const G=f.grade;
   const rankTxt=G?(G.best?`<div class="verdictline ok">✓ Your call: <b>the best one.</b></div>`:`<div class="verdictline">Your call: <b>#${G.rank} of ${G.total}</b> options.</div>`):"";
   const table=G?`<details class="opts"><summary>How every option scored</summary><div class="otab">${G.opts.map(o=>`<div class="${o.mine?"me":""}"><span>${o.mine?"★ ":""}${esc(o.n)}${o.mine?" (you)":""}</span><b>${(o.v*100).toFixed(1)}%</b></div>`).join("")}</div><div class="muted small">Win chance from simulating the rest of the drive many times after each call.</div></details>`:"";
-  return `<div class="fb"><div class="fbh">${head}</div><div class="fbt">${lp?esc(lp.text):""}</div>
+  const callName=L.name||({fg:"Field goal",hail:"Hail Mary",spike:"Spike"})[L.play]||"";
+  return `<div class="fb">${callName?`<div class="callname">📣 ${esc(callName)}</div>`:""}<div class="fbh">${head}</div><div class="fbt">${lp?esc(lp.text):""}</div>
     ${f.before!=null?`<div class="muted">Win chance ${pc(f.before)} → ${pc(f.after)}</div>`:""}${readNote(L)}${rankTxt}${table}</div>`;
 }
 
