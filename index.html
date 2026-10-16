@@ -177,6 +177,21 @@ svg.field{display:block;width:100%;height:auto}
 .tricks small{color:var(--muted);font-size:12px}
 .pbp{margin-top:14px}.pbp summary{font-size:11px;letter-spacing:1.8px;color:var(--muted);font-weight:800;cursor:pointer;padding:6px 0}
 .pbp .log{margin-top:6px}
+.fb{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow)}
+.fbh{font-family:Teko,Impact,sans-serif;font-size:26px;line-height:1;font-weight:600;letter-spacing:.4px}
+.fbt{font-size:14px;margin:3px 0 4px}
+.read{border-left:3px solid;padding:4px 8px;margin:6px 0;font-weight:700;font-size:13.5px}.read.good{border-color:var(--good)}.read.bad{border-color:var(--bad)}
+.verdictline{font-size:14px;margin-top:4px}.verdictline.ok{color:var(--good)}
+.opts{margin-top:6px}.opts summary{font-weight:800;font-size:13.5px;cursor:pointer;padding:6px 0}
+.otab div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13.5px}.otab div.me{font-weight:800;color:var(--accent)}
+.motionb{margin-top:7px;border:1px dashed var(--info);color:var(--info);background:none;border-radius:20px;padding:6px 11px;font-weight:800;font-size:12.5px}
+.mread{margin-top:6px;font-weight:700;font-size:13px;color:var(--info)}
+.dcalls{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.dcalls.two{grid-template-columns:1fr 1fr}
+.dcalls button{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 4px;box-shadow:var(--shadow)}
+.dcalls b{display:block;font-family:Teko,Impact,sans-serif;font-size:22px;line-height:1;font-weight:600}.dcalls small{color:var(--muted);font-size:11.5px}
+.coord{display:block;width:100%;margin-top:8px;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:800}
+.chcard{margin-top:10px;display:flex;gap:10px;align-items:center}.chcard>div{flex:1}.chcard b{display:block;font-size:16px}.chcard span{font-size:12.5px}.chcard .big{width:auto;padding:12px 16px;font-size:14px}
+.pick{margin-bottom:6px}
 .plays{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .play{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 9px 8px;text-align:left;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow);transition:transform .08s,border-color .15s}
 .play:active{transform:scale(.96)}
@@ -270,7 +285,7 @@ input.name{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid va
     <div class="hbtns">
       <button class="ibtn" id="bLb" aria-label="Leaderboard">🏆</button>
       <button class="ibtn" id="bStats" aria-label="Stats">📊</button>
-      <button class="ibtn" id="bTheme" aria-label="Theme">🎨</button>
+      <button class="ibtn" id="bTheme" aria-label="Settings">⚙️</button>
       <button class="ibtn" id="bHelp" aria-label="How to play">❔</button>
     </div>
   </header>
@@ -448,8 +463,8 @@ class Game{
   get fgP(){return fgProb(this.fgDist+(this.W.fg||0))}
   newLook(){const w=this.sc.lk;let tot=0;for(const k in w)tot+=w[k];let x=this.rng()*tot;this.look="two";for(const k in w){x-=w[k];if(x<0){this.look=k;break}}
     this.shown=this.rng()<DISGUISE_RATE?DISGUISE[this.look][this.rng()<.5?0:1]:this.look;
-    this.lean=this.rng()<.5?"L":"R";this.leanShown=this.rng()<.25?(this.lean==="L"?"R":"L"):this.lean}
-  canTimeout(){return !this.over&&this.running&&this.to>0}
+    this.motionUsed=false;this.motionRead=null;this.lean=this.rng()<.5?"L":"R";this.leanShown=this.rng()<.25?(this.lean==="L"?"R":"L"):this.lean}
+  canTimeout(){return !this.over&&this.running&&this.to>0&&this.phase!=="onside"}
   canSpike(){return !this.over&&this.running&&this.down<4&&this.time>3}
   push(tag,text,cls){this.log.unshift({tag,text,cls})}
   tick(sec,beforeSnap){
@@ -460,6 +475,9 @@ class Game{
   act(id){
     if(this.over)return null;
     if(id==="timeout")return this.timeout();
+    if(id==="motion")return this.motion();
+    if(this.phase==="defense")return id.startsWith("d:")?this.defAct(id.slice(2)):null;
+    if(this.phase==="onside")return id==="onside"||id==="deep"?this.kickoff(id):null;
     if(this.patPending){
       if(id!=="xp"&&id!=="two")return null;
       this.patPending=false;this.last={play:id,kind:"none"};
@@ -590,27 +608,198 @@ class Game{
     return this.advance(0,preTag,"Hail Mary is batted down. Incomplete.","⬜",{kind:"inc",banner:["INCOMPLETE","var(--muted)"]});
   }
   finish(reason){
-    this.over=true;this.running=false;let oppNote="";
     const scored=reason==="td"||reason==="fg";
-    if(scored&&this.time>0&&this.my>=this.op){
-      const lead=this.my-this.op,T=this.time,base=lead===0?.5:lead<=3?.42:lead<=6?.18:.08;
-      const p=clamp(base*Math.min(1,T/95)+(T>20?.03:0),0,.6);
-      if(this.rng()<p){const pts=lead<=2?3:lead===3?(this.rng()<.6?3:7):7;this.op+=pts;oppNote=`The ${this.sc.opp} get the ball back with ${fmtClock(T)} and answer with a ${pts===3?"field goal":"touchdown"}.`}
-      else oppNote=`The ${this.sc.opp} get it back with ${fmtClock(T)} but can't do anything with it.`;
-      this.push("OPP",oppNote,"sys");
-    }else if(reason==="fgmiss"&&this.my===this.op&&this.time>0){
-      const T=this.time,p=clamp(.4*Math.min(1,T/90),0,.45);
-      if(this.rng()<p){this.op+=3;oppNote=`The ${this.sc.opp} take over with ${fmtClock(T)} and kick the winner.`}else oppNote=`The ${this.sc.opp} take over with ${fmtClock(T)} but run out of time.`;
-      this.push("OPP",oppNote,"sys");
+    if(!this.sim&&this.time>0&&(scored||(reason==="fgmiss"&&this.my===this.op))){
+      const map={td:"Touchdown",fg:"Field goal",fgmiss:"Missed field goal"};
+      this.scoreWhy=map[reason]+(this.twoFail?", failed 2-pt":"")+` with ${fmtClock(this.time)} left`;this.scoreReason=reason;
+      this.running=false;this.patPending=false;const lead=this.my-this.op,opp=this.sc.opp;
+      if(reason==="fgmiss"){const s=clamp(100-(this.yl-7),20,80);this.startDefense(s);this.push("OPP",`The ${opp} take over at their ${s}. Time to get a stop.`,"sys");return {kind:"phase",phase:"defense",reason}}
+      if(lead>=0){this.startDefense(25);this.push("KO",`Touchback. The ${opp} need ${lead===0?"any score":lead<=2?"a field goal":lead===3?"a field goal to tie":"a touchdown"} with ${fmtClock(this.time)} left. You're on defense.`,"sys");return {kind:"phase",phase:"defense",reason}}
+      this.phase="onside";this.push("KO",`Still down ${-lead} with ${fmtClock(this.time)} left. Onside kick or kick it deep?`,"sys");return {kind:"phase",phase:"onside",reason};
     }
-    const res=this.my>this.op?"win":this.my===this.op?"tie":"loss";
-    const map={td:"Touchdown",fg:"Field goal",int:"Interception",fum:"Fumble",downs:"Turnover on downs",clock:"Ran out of time",fgmiss:"Missed field goal",safety:"Safety"};
-    const why=map[reason]+(this.twoFail?", failed 2-pt":"")+(scored&&this.time>0?` with ${fmtClock(this.time)} left`:"");
-    this.result={res,reason,why,oppNote,plays:this.plays,yards:Math.max(0,Math.min(100,this.yl)-this.startYl),timeLeft:this.time,my:this.my,op:this.op,trail:this.trail.slice()};
+    if(this.sim&&scored&&this.time>0&&this.my>=this.op){
+      const lead=this.my-this.op,T=this.time,base=lead===0?.5:lead<=3?.42:lead<=6?.18:.08;
+      if(this.rng()<clamp(base*Math.min(1,T/95)+(T>20?.03:0),0,.6))this.op+=lead<=2?3:7;
+    }
+    return this.finalize(reason);
+  }
+  finalize(reason){
+    this.over=true;this.running=false;this.phase=null;
+    const res=this.my>this.op?"win":this.my===this.op?"tie":"loss",opp=this.sc.opp;
+    const map={td:"Touchdown",fg:"Field goal",int:"Interception",fum:"Fumble",downs:"Turnover on downs",clock:"Ran out of time",fgmiss:"Missed field goal",safety:"Safety",
+      held:"Defense held",oppwin:`The ${opp} answered`,opptie:`The ${opp} tied it`,kneel:`The ${opp} ran out the clock`};
+    let why=map[reason]+(this.twoFail&&!this.scoreWhy?", failed 2-pt":"");
+    if(this.scoreWhy)why=this.scoreWhy+({held:", then the defense held",oppwin:`, but the ${opp} answered`,opptie:`, but the ${opp} tied it`,kneel:`, but the ${opp} ran out the clock`}[reason]||"");
+    this.result={res,reason,why,oppNote:"",plays:this.plays,yards:Math.max(0,Math.min(100,this.yl)-this.startYl),timeLeft:this.time,my:this.my,op:this.op,trail:this.trail.slice()};
     if(res==="tie")this.push("OT","Tied at the gun. Headed to overtime.","sys");
     return {kind:"over",reason};
   }
+  startDefense(oppYl){this.phase="defense";this.d={yl:oppYl,down:1,togo:10,to:2};this.running=false}
+  defAct(call){
+    const r=this.rng,D=this.d,opp=this.sc.opp,lead=this.my-this.op,toG=100-D.yl,need=lead+1;
+    const tag=`${ord(D.down)}&${toG<=D.togo?"G":D.togo}`;
+    this.last={play:"def",kind:"none"};this.plays++;
+    if(this.running){this.tick(rint(r,13,19),true);if(this.time<=0){this.push("0:00",`The clock runs out on the ${opp}.`,"good");return this.finalize("held")}}
+    const fgP=fgProb(toG+17);
+    if(need<=3&&fgP>.5&&(this.time<=9||D.down===4)){
+      this.tick(4);this.running=false;
+      if(r()<fgP){this.op+=3;this.push("OPP",`The ${opp} kick a ${toG+17}-yard field goal.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
+      this.push("OPP",`The ${opp} miss a ${toG+17}-yard field goal!`,"good");return this.finalize("held");
+    }
+    if(this.time<=7&&toG>22){
+      this.tick(rint(r,7,9));
+      if(r()<(toG<=45?.12:.06)){this.op+=7;this.push("OPP",`Hail Mary... CAUGHT. The ${opp} score.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
+      this.push("OPP","Their Hail Mary is knocked down!","good");
+      if(this.time<=0)return this.finalize("held");
+      D.down++;if(D.down>4){this.push("4TH","Stopped on fourth down! Your ball.","good");return this.takeover()}
+      this.newLook();return {kind:"def",o:"inc",yards:0};
+    }
+    const pass=r()<(this.time<120?.8:.62);
+    const T={blitz:{pass:[["sack",.17],["int",.045],["inc",.32],["short",.22],["big",.245]],run:[["stuff",.42],["gain",.58]]},
+             box:{pass:[["sack",.07],["int",.03],["inc",.3],["short",.33],["big",.27]],run:[["stuff",.55],["gain",.45]]},
+             soft:{pass:[["sack",.04],["int",.035],["inc",.3],["short",.545],["big",.08]],run:[["stuff",.15],["gain",.85]]}}[call][pass?"pass":"run"];
+    let x=r(),o="gain";for(const [k,p] of T){x-=p;if(x<0){o=k;break}}
+    let yards=0,txt="",cls="";
+    if(o==="int"){this.tick(rint(r,4,6));this.push(tag,"INTERCEPTED! Your defense picks it off.","good");this.last={play:"def",kind:"def",o,yards:0};return this.takeover()}
+    if(o==="sack"){yards=-rint(r,5,9);txt=`SACKED! They lose ${-yards}.`;cls="good"}
+    else if(o==="inc"){txt="Incomplete. Clock stops.";cls="good"}
+    else if(o==="short")yards=rint(r,5,11);
+    else if(o==="big")yards=rint(r,15,38);
+    else if(o==="stuff"){yards=rint(r,-2,1);cls="good"}
+    else yards=call==="soft"?rint(r,4,9):rint(r,3,12);
+    const oob=["short","big","gain"].includes(o)&&r()<(this.time<70?.38:.15);
+    this.tick(rint(r,4,7));
+    if(!txt)txt=`${pass?"Completion":"Run"} for ${yards} yard${Math.abs(yards)===1?"":"s"}.${oob?" Out of bounds.":""}`;
+    this.last={play:"def",kind:"def",o,yards};
+    if(yards>=toG){this.op+=7;this.push(tag,`${pass?"Pass":"Run"}... TOUCHDOWN ${opp}.`,"bad");return this.finalize(this.op>this.my?"oppwin":"opptie")}
+    D.yl=Math.max(1,D.yl+yards);
+    this.running=!(o==="inc"||oob);
+    if(this.running&&D.to>0&&this.time<60&&this.time>3){D.to--;this.running=false;txt+=` The ${opp} call timeout.`}
+    if(yards>=D.togo){D.down=1;D.togo=Math.min(10,100-D.yl);txt+=" First down."}else{D.down++;D.togo-=yards}
+    this.push(tag,txt,cls||(yards>=10?"bad":""));
+    if(D.down>4){this.push("4TH","Stopped on fourth down! Your ball.","good");return this.takeover()}
+    if(this.time<=0){this.push("0:00","Time expires.","sys");return this.finalize("held")}
+    this.newLook();return {kind:"def",o,yards};
+  }
+  takeover(){
+    if(this.my>this.op||this.time<=0){this.push("V","Victory formation.","good");return this.finalize("held")}
+    this.phase=null;this.scoreWhy=null;this.yl=clamp(100-this.d.yl,1,99);this.down=1;this.togo=Math.min(10,100-this.yl);this.running=false;
+    this.push("BALL",`Your ball at ${spotTxt(this.yl)} with ${fmtClock(this.time)} left. Go win it.`,"sys");
+    this.newLook();return {kind:"phase",phase:"offense"};
+  }
+  kickoff(kind){
+    const r=this.rng,opp=this.sc.opp;this.last={play:kind,kind:"none"};this.tick(rint(r,3,5));
+    if(kind==="onside"&&r()<.13){this.phase=null;this.scoreWhy=null;this.yl=rint(r,50,56);this.down=1;this.togo=10;this.running=false;this.push("KO","ONSIDE KICK RECOVERED! Your ball.","good");this.newLook();return {kind:"onside",ok:true}}
+    this.push("KO",kind==="onside"?`Onside kick recovered by the ${opp}.`:"Kicked deep. Touchback.",kind==="onside"?"bad":"sys");
+    for(let i=0;i<3&&this.time>0;i++){if(this.to>0){this.to--;this.tick(3);this.push("TO",`They take a knee. You burn a timeout (${this.to} left).`,"sys")}else this.tick(40)}
+    if(this.time<=0){this.push("0:00",`The ${opp} kneel it out.`,"bad");return this.finalize("kneel")}
+    this.tick(6);this.push("PUNT",`The ${opp} have to punt. One more shot.`,"sys");
+    this.phase=null;this.scoreWhy=null;this.yl=rint(r,12,22);this.down=1;this.togo=10;this.running=false;this.newLook();return {kind:"punt"};
+  }
+  motion(){
+    if(this.motionUsed||this.over||this.phase)return null;this.motionUsed=true;
+    if(this.running)this.tick(2,true);
+    const man=this.look==="blitz"||this.look==="press";
+    this.motionRead=man?"A defender followed him across the formation. It's man coverage.":"Nobody followed him. They're playing zone.";
+    return {kind:"motion",man};
+  }
 }
+
+/* ================= WIN CHANCE ================= */
+function cloneGame(g,seed){
+  const c=Object.create(Game.prototype);
+  Object.assign(c,g,{log:[],trail:[],routes:{...g.routes},mods:{...g.mods},tricksUsed:{...g.tricksUsed},d:g.d?{...g.d}:null,rng:mulberry32(seed),sim:true});
+  return c;
+}
+function simPolicy(g){
+  if(g.patPending)return g.time>60?"xp":"two";
+  const t=g.time,need=g.need,fgOK=need<=3,p=g.fgP;
+  if(g.running&&g.to>0&&t<=50)return "timeout";
+  if(g.running&&g.to===0&&t<=25&&t>5&&g.down<4)return "spike";
+  if(fgOK&&p>=.7&&(t<=8||g.down===4))return "fg";
+  if(t<=7&&g.toGoal>22&&g.toGoal<=62)return "hail";
+  if(g.down===4&&fgOK&&p>=.35)return "fg";
+  if(g.togo<=2&&g.down>=3)return "run:keeper";
+  if(t>90&&g.rng()<.25)return "run:inside:"+(g.leanShown==="L"?"R":"L");
+  let best="X",bv=-1;
+  for(const k of RECEIVERS){const o=passOdds(g,k,g.shown,g.mods),v=o.caught*o.yds-o.picked*25+(t<60&&ROUTES[g.routes[k]].oob>.4?1.5:0);if(v>bv){bv=v;best=k}}
+  return "pass:"+best;
+}
+function simValue(g,first,n,seed){
+  let w=0;
+  for(let i=0;i<n;i++){
+    const c=cloneGame(g,seed+i*7919);
+    if(first){if(!c.act(first)){return null}}
+    let k=0;while(!c.over&&k++<60){if(!c.act(simPolicy(c)))c.act("run:inside:R")}
+    if(c.result)w+=c.result.res==="win"?1:c.result.res==="tie"?.5:0;
+  }
+  return w/n;
+}
+function stateValue(g){
+  if(g.over)return g.result.res==="win"?1:g.result.res==="tie"?.5:0;
+  if(g.phase==="defense"){const lead=g.my-g.op,T=g.time,toG=100-g.d.yl,base=lead===0?.5:lead<=3?.42:lead<=6?.18:.08;
+    const p=clamp(base*Math.min(1,T/95)*(1.3-toG/100)+(T>20?.03:0),0,.7);return lead===0?(1-p)*.5:1-p}
+  if(g.phase==="onside")return .02;
+  return simValue(g,null,300,12345);
+}
+function optionList(g){
+  const o=[],add=(a,n)=>o.push({a,n});
+  for(const k of ["outside","offtackle","inside"])for(const s of ["L","R"])add(`run:${k}:${s}`,`${RUNS[k].n}, ${s==="L"?"left":"right"}`);
+  add("run:middle",RUNS.middle.n);add("run:keeper",RUNS.keeper.n);
+  add("rpo:L","RPO, left");add("rpo:R","RPO, right");
+  for(const k of RECEIVERS)add(`pass:${k}`,`${ROUTES[g.routes[k]].n} to ${shortName(g.sc,k)}`);
+  add("pass:screen","RB screen");
+  for(const k in TRICKS)if(!g.tricksUsed[k])add(`trick:${k}`,TRICKS[k].n);
+  if(g.fgDist<=67)add("fg",`Field goal (${g.fgDist} yds)`);
+  if(g.canSpike())add("spike","Spike it");
+  if(g.time<=30&&g.toGoal>=20&&g.toGoal<=65)add("hail","Hail Mary");
+  return o;
+}
+function gradeCall(g,action){
+  const seed=(Math.random()*1e9)>>>0,N=90,saveMods={...g.mods};
+  const plain={...g,mods:{pa:false,roll:false,oob:false}};
+  const opts=optionList(g).map(x=>{const v=simValue(Object.assign(Object.create(Game.prototype),plain),x.a,N,seed);return {...x,v}}).filter(x=>x.v!=null);
+  const modsOn=saveMods.pa||saveMods.roll||saveMods.oob;
+  let mine=opts.find(x=>x.a===action&&!modsOn);
+  if(!mine){const v=simValue(g,action,N,seed);const base=opts.find(x=>x.a===action);
+    const tag=[saveMods.pa&&"play action",saveMods.roll&&"rollout",saveMods.oob&&"get out of bounds"].filter(Boolean).join(", ");
+    mine={a:action,n:(base?base.n:action)+(tag?` (${tag})`:""),v:v==null?0:v};opts.push(mine)}
+  mine.mine=true;opts.sort((a,b)=>b.v-a.v);
+  const rank=opts.indexOf(mine)+1,best=opts[0].v;
+  return {opts,rank,total:opts.length,best:mine.v>=best-.006};
+}
+function readNote(L){
+  if(!L||!L.spec)return "";
+  const look=LOOKS[L.look].name,S=L.spec;let good=null,why="";
+  if(S.type==="run"&&L.play.startsWith("run:")){const [,k,side]=L.play.split(":"),v=(RUNS[k].vs[L.look]||{}).y||0;
+    if(side){const away=side!==L.lean;good=v+(away?1.4:-1.6)>0;why=`${RUNS[k].n.toLowerCase()} ${away?"away from":"into"} the extra defender against ${look}`}
+    else{good=v>=0;why=`${RUNS[k].n.toLowerCase()} against ${look}`}}
+  else if(S.type==="pass"&&L.play.startsWith("pass:")&&S.route&&ROUTES[S.route]){const v=(ROUTES[S.route].vs[L.look]||{}).c||0;good=v>0;why=`${ROUTES[S.route].n.toLowerCase()} against ${look}`;if(v===0)return ""}
+  else if(L.play.startsWith("rpo")){good=true;why=`the RPO read ${L.look==="box"||L.look==="blitz"?"a loaded box and pulled it":"a light box and handed off"}`}
+  else return "";
+  return good?`<div class="read good">Good read: ${why}.</div>`:`<div class="read bad">Tough look: ${why}.</div>`;
+}
+
+/* ================= SOUND ================= */
+const SFX={ctx:null,
+  get on(){return store.get("sound",true)},
+  unlock(){if(!this.on)return;try{if(!this.ctx)this.ctx=new (window.AudioContext||window.webkitAudioContext)();if(this.ctx.state==="suspended")this.ctx.resume()}catch(e){}},
+  env(node,t,a,d,v){const g=this.ctx.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.exponentialRampToValueAtTime(.0008,t+a+d);node.connect(g);g.connect(this.ctx.destination);return g},
+  tone(f,d,type="sine",v=.15,f2,delay=0){if(!this.on||!this.ctx)return;const t=this.ctx.currentTime+delay,o=this.ctx.createOscillator();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);this.env(o,t,.01,d,v);o.start(t);o.stop(t+d+.05)},
+  noise(d,v=.15,freq=900,q=.7,delay=0,attack=.02){if(!this.on||!this.ctx)return;const t=this.ctx.currentTime+delay,len=Math.floor(this.ctx.sampleRate*(d+attack+.1)),b=this.ctx.createBuffer(1,len,this.ctx.sampleRate),ch=b.getChannelData(0);
+    for(let i=0;i<len;i++)ch[i]=Math.random()*2-1;const s=this.ctx.createBufferSource();s.buffer=b;const f=this.ctx.createBiquadFilter();f.type="bandpass";f.frequency.value=freq;f.Q.value=q;s.connect(f);this.env(f,t,attack,d,v);s.start(t);s.stop(t+d+attack+.1)},
+  whistle(){for(let i=0;i<3;i++)this.tone(2900+(i%2)*90,.07,"sine",.07,null,i*.07)},
+  hike(){this.tone(180,.08,"triangle",.18,90);this.noise(.06,.12,400,1)},
+  thud(){this.tone(90,.16,"sine",.35,45);this.noise(.12,.18,300,1.2)},
+  catch(){this.tone(500,.05,"triangle",.08,300)},
+  crowd(d=1,v=.12){this.noise(d,v,1100,.5,0,.25)},
+  roar(){this.noise(2.4,.32,1000,.4,0,.15);this.horn()},
+  horn(){this.tone(233,.6,"sawtooth",.06,null,.1);this.tone(294,.6,"sawtooth",.05,null,.1)},
+  groan(){this.noise(1.1,.1,500,.6,0,.2);this.tone(330,.6,"sine",.05,180)},
+  kick(){this.tone(120,.1,"square",.12,60);this.noise(.08,.15,700,1)},
+  tick(){this.tone(1200,.025,"square",.03)},
+};
+document.addEventListener("pointerdown",()=>SFX.unlock(),{capture:true});
 
 /* ================= FIELD + ANIMATION ================= */
 const FW=53.33, VH=40, U=10;          // field width (yd), visible yards, svg units per yard
@@ -670,7 +859,7 @@ function placeP(k,x,Y){const p=PL[k];if(!p||!p.el)return;p.x=x;p.y=Y;const [sx,s
 function placeBall(x,Y,h=0){const [sx,sy]=W2S(x,Y);const b=$("#ball"),s=$("#bshadow");if(!b)return;
   b.setAttribute("cx",sx);b.setAttribute("cy",sy-h*U*.55);s.setAttribute("cx",sx);s.setAttribute("cy",sy+3);s.setAttribute("opacity",h>0?.6:0);
   b.setAttribute("transform",`rotate(${h>0?-35:0} ${sx} ${sy-h*U*.55})`)}
-function setLines(los,fd){const [,ly]=W2S(0,los),[,fy]=W2S(0,fd);$("#losl").setAttribute("y",ly-2);const f=$("#fdl");f.setAttribute("y",fy-2);f.style.opacity=fd>=100||fd<=los?0:1}
+function setLines(los,fd){const [,ly]=W2S(0,los),[,fy]=W2S(0,fd);$("#losl").setAttribute("y",ly-2);const f=$("#fdl");f.setAttribute("y",fy-2);f.style.opacity=(fd>=100||fd<=0||fd===los)?0:1}
 function camFor(los){return clamp(los-11,-10,110-VH)}
 function setCam(c){cam=c;const w=$("#world");if(w)w.setAttribute("transform",`translate(0 ${-(110-(c+VH))*U})`)}
 function panCam(to,ms=550){const from=cam,t0=performance.now();camAnim=t=>{const k=clamp((t-t0)/ms,0,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;setCam(lerp(from,to,e));return k<1};kick()}
@@ -679,7 +868,7 @@ let playAnim=null;
 function loop(t){raf=null;let more=false;if(camAnim&&!camAnim(t))camAnim=null;else if(camAnim)more=true;if(playAnim){if(playAnim(t))more=true;else playAnim=null}if(more)kick()}
 
 function setFormation(los,look){
-  const o=offSet(),d=defSet(look);
+  const o=offSet(),d=defSet(look);$("#players").style.opacity=1;
   for(const k of OFF)placeP(k,o[k][0],los+o[k][1]);
   for(const k of DEF)placeP(k,d[k][0],los+d[k][1]);
   placeBall(26.65,los-0.2,0);$("#hl").setAttribute("opacity",0);
@@ -882,7 +1071,7 @@ applyTheme(store.get("theme","broadcast"));
 
 function setTab(m){if(busy)return;mode=m;$("#tDaily").classList.toggle("on",m==="daily");$("#tSurv").classList.toggle("on",m==="surv");renderHome()}
 $("#tDaily").onclick=()=>setTab("daily");$("#tSurv").onclick=()=>setTab("surv");
-$("#bHelp").onclick=showHelp;$("#bStats").onclick=()=>showStats();$("#bTheme").onclick=showThemes;$("#bLb").onclick=()=>showLeaderboard(mode==="surv"?"survivor":"daily");
+$("#bHelp").onclick=showHelp;$("#bStats").onclick=()=>showStats();$("#bTheme").onclick=showSettings;$("#bLb").onclick=()=>showLeaderboard(mode==="surv"?"survivor":"daily");
 
 function needText(sc){const d=sc.op-sc.my;if(d===0)return "A field goal wins it.";if(d<=2)return "A field goal wins it.";if(d===3)return "A field goal ties it, a touchdown wins it.";return d===7?"You need a touchdown just to tie.":"You need a touchdown."}
 function sitLine(sc){return `${sc.op===sc.my?"Tied":"Down "+(sc.op-sc.my)} · ${fmtClock(sc.t)} · ${spot(sc.yl)} · ${sc.to} TO`}
@@ -914,6 +1103,8 @@ function renderHome(){
       done?`<button class="big" id="go">SEE TODAY'S RESULT</button><button class="ghost" id="prac">Replay for practice (won't count)</button>`:`<button class="big" id="go">TAKE THE FIELD</button>`);
     $("#go").onclick=()=>done?showResult(done):start(sc,{daily:true,seed:hashStr("day"+N)});
     if(done)$("#prac").onclick=()=>start(sc,{practice:true,seed:(Math.random()*4e9)>>>0});
+    m.insertAdjacentHTML("beforeend",`<div class="card chcard"><div><b>⚔️ 1v1 a friend</b><span class="muted">Play any drive, send the link, same luck for both of you.</span></div><button class="big" id="chb">CHALLENGE</button></div>`);
+    $("#chb").onclick=showChallengePicker;
   }else{
     const best=store.get("survBest",0);
     m.innerHTML=`<div class="card intro"><div class="kick">Survivor mode</div><h2>How many in a row?</h2>
@@ -926,7 +1117,7 @@ function renderHome(){
 }
 
 function start(sc,opts){
-  ctx={sc,...opts};game=new Game(sc,opts.seed);menu=null;
+  ctx={sc,...opts};game=new Game(sc,opts.seed);menu=null;feedback=null;coordRunning=false;
   const hist=opts.hist||[];
   $("#main").innerHTML=`
     ${opts.surv?`<div class="streakbar"><div class="wbox">${hist.map(()=>`<i class="w">W</i>`).join("")}<i class="cur">${hist.length+1}</i></div><span>Best ${store.get("survBest",0)}</span></div>`:""}
@@ -955,6 +1146,7 @@ function start(sc,opts){
 let menu=null;
 function onMainClick(e){
   if(!game)return;
+  const cd=e.target.closest("[data-coord]");if(cd){if(busy||coordRunning)return;coordRunning=true;drawCalls();coordStep();return}
   const m=e.target.closest("[data-menu]");if(m){if(busy)return;menu=m.dataset.menu||null;drawCalls();drawRoutes();return}
   const md=e.target.closest("[data-mod]");if(md){const k=md.dataset.mod;game.mods[k]=!game.mods[k];drawCalls();return}
   const rt=e.target.closest("[data-route]");if(rt){e.stopPropagation();cycleRoute(rt.dataset.route);return}
@@ -977,6 +1169,13 @@ function drawCalls(){
   const chip=(k,l)=>`<button class="chip ${g.mods[k]?"on":""}" data-mod="${k}">${l}</button>`;
   const tog=(k,l,d)=>`<button class="tog ${g.mods[k]?"on":""}" data-mod="${k}"><span><b>${l}</b><small>${d}</small></span><i></i></button>`;
   let h="";
+  if(g.phase==="defense"){
+    const D=g.d;
+    el.innerHTML=`<div class="callhead"><b>Your defense</b><span class="muted">${esc(g.sc.opp)} ball · ${ord(Math.min(D.down,4))} & ${D.togo}</span></div>
+      <div class="dcalls"><button data-a="d:blitz"><b>BLITZ</b><small>Send extra rushers</small></button><button data-a="d:box"><b>LOAD THE BOX</b><small>Stop the run</small></button><button data-a="d:soft"><b>PLAY IT SOFT</b><small>Keep it in front</small></button></div>
+      <button class="coord" data-coord="1">${coordRunning?"Coordinator is calling it…":"Let the coordinator call this drive"}</button>
+      ${g.canTimeout()?`<div class="utils"><button class="util u-to" data-a="timeout">⏱ Timeout<small>${g.to} left · stops clock</small></button></div>`:""}`;return}
+  if(g.phase==="onside"){el.innerHTML=`<div class="callhead"><b>Kickoff</b></div><div class="dcalls two"><button data-a="onside"><b>ONSIDE KICK</b><small>About 1 in 8 recovered</small></button><button data-a="deep"><b>KICK IT DEEP</b><small>Make them punt it back</small></button></div>`;return}
   if(g.patPending){el.innerHTML=`<div class="callhead"><b>Extra point</b></div><div class="utils"><button class="util u-fg" data-a="two">✌️ Go for two<small>win it now</small></button><button class="util u-to" data-a="xp">🦶 Extra point<small>tie, go to OT</small></button></div>`;return}
   const titles={run:"Run",pass:"Pass",rpo:"RPO",trick:"Trick"};
   h+=`<div class="callhead"><b>${menu?titles[menu]:"Your call"}</b>${menu?`<button class="back" data-menu="">◀ Back</button>`:`<span class="muted">${ord(g.down)} & ${g.toGoal<=g.togo?"Goal":g.togo} · ${spot(g.yl)}</span>`}</div>`;
@@ -987,7 +1186,7 @@ function drawCalls(){
       ${["middle","keeper"].map(k=>`<div class="row"><span>${RUNS[k].n}</span><div class="sb"><button data-a="run:${k}">CALL IT</button></div></div>`).join("")}</div>
       ${tog("oob","Get out of bounds","The ball carrier tries to stop the clock. No guarantee.")}`;
   }else if(menu==="pass"){
-    h+=`<div class="muted small">Tap a route (or the player on the field) to change it. Tap a name to throw to him. Odds are based on what the defense is showing.</div>
+    h+=`<div class="muted small"><b>Hot routes:</b> tap a route (or the player on the field) to change it. Tap a name to throw to him. Odds are based on what the defense is showing.</div>
       <div class="chips2">${chip("pa","Play action")}${chip("roll","Roll out")}${chip("oob","Out of bounds")}</div>`;
     h+=RECEIVERS.map(k=>{const o=passOdds(g,k,g.shown,g.mods),rt=ROUTES[g.routes[k]],rat=ratingOf(g.sc,k);
       return `<div class="rcv" data-a="pass:${k}"><span class="pos">${POSL[k]}</span><span class="who"><b><i style="background:${rcolor(rat)}"></i>${esc(shortName(g.sc,k))}</b><button class="rt" data-route="${k}">${rt.n} ▾</button></span>
@@ -1013,17 +1212,20 @@ function render(){
   $("#sMy").textContent=g.my;$("#sOp").textContent=g.op;
   const c=$("#clk");c.textContent=fmtClock(g.time);c.classList.toggle("low",g.time<=15&&!g.over);
   const cs=$("#cst");cs.classList.toggle("run",g.running);cs.lastChild.textContent=g.over?"FINAL":g.running?"CLOCK RUNNING":"CLOCK STOPPED";
-  $("#dd").textContent=g.over?"--":`${ord(Math.min(g.down,4))} & ${g.toGoal<=g.togo?"Goal":g.togo}`;
-  $("#bo").textContent=g.yl>=100?"END ZONE":spot(clamp(g.yl,1,99)).toUpperCase();
+  if(g.phase==="defense"){const D=g.d,Y=100-D.yl;$("#dd").textContent=`${ord(Math.min(D.down,4))} & ${100-D.yl<=D.togo?"Goal":D.togo}`;$("#bo").textContent=`THEM · ${Y<50?"YOUR "+Y:Y===50?"50":"THEIR "+(100-Y)}`}
+  else{$("#dd").textContent=g.over||g.phase?"--":`${ord(Math.min(g.down,4))} & ${g.toGoal<=g.togo?"Goal":g.togo}`;
+  $("#bo").textContent=g.yl>=100?"END ZONE":spot(clamp(g.yl,1,99)).toUpperCase()}
   $("#tos").innerHTML=[0,1,2].map(i=>`<i class="${i<g.to?"on":""}"></i>`).join("");
   const pct=y=>(8.33+clamp(y,0,100)*.8334)+"%";
   $("#dbb").style.left=pct(g.yl);$("#dbf").style.left=pct(Math.min(100,g.yl+g.togo));$("#dbf").style.opacity=g.over?0:1;
   $("#dbd").style.left=pct(g.startYl);$("#dbd").style.width=(Math.max(0,clamp(g.yl,0,100)-g.startYl)*.8334)+"%";
   const L=LOOKS[g.shown];
-  $("#look").innerHTML=g.over?`<div class="k">FINAL</div><div class="t">${g.result.why}</div>`:
-    `<div class="k">PRE-SNAP READ</div><div class="cues">${L.cues.map(c=>`<span>${c}</span>`).join("")}<span>Extra man shading ${g.leanShown==="L"?"left":"right"}</span></div><div class="d">Looks like <b>${L.name}</b>… but defenses disguise about 1 in 3 snaps.</div>`;
-  const lp=g.log.find(e=>e.cls!=="sys"&&e.tag!=="KICK");
-  $("#lastplay").innerHTML=lp?`<div class="entry ${lp.cls||""}"><span class="tag">${lp.tag}</span><span>${esc(lp.text)}</span></div>`:"";
+  if(g.over)$("#look").innerHTML=`<div class="k">FINAL</div><div class="t">${g.result.why}</div>`;
+  else if(g.phase==="defense"){const lead=g.my-g.op;$("#look").innerHTML=`<div class="k">YOU'RE ON DEFENSE</div><div class="t">${lead===0?"Tied up":"Up by "+lead}. Get a stop.</div><div class="d">The ${esc(g.sc.opp)} need ${lead===0?"any score":lead<=2?"a field goal":lead===3?"a field goal to tie":"a touchdown"}. They have ${g.d.to} timeout${g.d.to===1?"":"s"}.</div>`}
+  else if(g.phase==="onside")$("#look").innerHTML=`<div class="k">KICKOFF</div><div class="t">Still down ${g.op-g.my}. Your call.</div><div class="d">Onside kicks work about 1 in 8 times. Kick it deep and you'll need them to punt it back.</div>`;
+  else $("#look").innerHTML=`<div class="k">PRE-SNAP READ</div><div class="cues">${L.cues.map(c=>`<span>${c}</span>`).join("")}<span>Extra man shading ${g.leanShown==="L"?"left":"right"}</span></div><div class="d">Looks like <b>${L.name}</b>… but defenses disguise about 1 in 3 snaps.</div>`+
+    (g.motionRead?`<div class="mread">🔄 ${g.motionRead}</div>`:g.patPending?"":`<button class="motionb" data-a="motion">🔄 Send a man in motion${g.running?" (costs ~2 sec)":""}</button>`);
+  $("#lastplay").innerHTML=feedbackHTML();
   drawCalls();
   $("#log").innerHTML=g.log.map(e=>`<div class="entry ${e.cls||""}">${e.cls==="sys"?"":`<span class="tag">${e.tag}</span>`}<span>${esc(e.text)}</span></div>`).join("");
 }
@@ -1046,32 +1248,81 @@ async function shareOut(t,okMsg){
 }
 
 function lock(on){busy=on;$("#callz")&&$("#callz").classList.toggle("locked",on)}
+let feedback=null,coordRunning=false;
+const isOffensePlay=a=>/^(run|pass|rpo|trick):/.test(a)||a==="fg"||a==="hail"||a==="spike";
+function defCam(){const Y=100-game.d.yl;return clamp(Y-(VH-11),-10,110-VH)}
+function setDefenseField(){
+  const Y=100-game.d.yl;$("#players").style.opacity=0;$("#trails").innerHTML="";
+  placeBall(26.65,Y,0);setLines(Y,Math.max(0,Y-game.d.togo));panCam(defCam());
+}
+function coordCall(g){const D=g.d,toG=100-D.yl;if(g.time<30&&toG>40)return "soft";if(D.down>=3&&D.togo>=8)return g.rng()<.5?"blitz":"soft";if(toG<20)return "box";return g.rng()<.35?"blitz":"soft"}
+function coordStep(){if(!coordRunning)return;if(!game||game.over||game.phase!=="defense"){coordRunning=false;if(game&&!game.over)render();return}doAct("d:"+coordCall(game))}
 function doAct(a){
   if(!game||busy||game.over)return;
+  SFX.tick();
+  const offense=!game.phase&&!game.patPending&&isOffensePlay(a);
+  const snap=offense&&store.get("grading",true)?cloneGame(game,1):null;
   const ev=game.act(a);if(!ev)return;
-  if(ev.kind==="timeout"){render();banner("TIMEOUT","var(--warn)",700);return}
+  if(ev.kind==="timeout"){SFX.whistle();render();banner("TIMEOUT","var(--warn)",700);return}
+  if(ev.kind==="motion"){SFX.tick();render();return}
   const L=game.last;
   const after=()=>{
+    if(offense){let v=null,before=null,grade=null;if(snap){try{before=stateValue(snap);grade=gradeCall(snap,a);v=stateValue(game)}catch(e){}}feedback={L,before,after:v,grade,ev}}
+    else if(a.startsWith("d:"))feedback=null;
     render();
-    if(!game.over&&!game.patPending){setFormation(game.yl,game.shown);setLines(game.yl,game.yl+game.togo);panCam(camFor(game.yl));drawRoutes()}
+    if(game.phase==="defense")setDefenseField();
+    else if(!game.over&&!game.patPending&&game.phase!=="onside"){$("#players").style.opacity=1;setFormation(game.yl,game.shown);setLines(game.yl,game.yl+game.togo);panCam(camFor(game.yl));drawRoutes()}
+    if(L&&L.play!=="def"&&L.kind!=="none")SFX.whistle();
     if(ev.kind==="over"){
-      lock(true);
-      let big={td:["TOUCHDOWN!","var(--good)"],fg:["IT'S GOOD!","var(--good)"],int:["PICKED OFF","var(--bad)"],fum:["FUMBLE","var(--bad)"],downs:["TURNOVER","var(--bad)"],clock:["TIME'S UP","var(--bad)"],fgmiss:["NO GOOD","var(--bad)"],safety:["SAFETY","var(--bad)"]}[ev.reason];
+      lock(true);coordRunning=false;
+      let big={td:["TOUCHDOWN!","var(--good)"],fg:["IT'S GOOD!","var(--good)"],int:["PICKED OFF","var(--bad)"],fum:["FUMBLE","var(--bad)"],downs:["TURNOVER","var(--bad)"],clock:["TIME'S UP","var(--bad)"],fgmiss:["NO GOOD","var(--bad)"],safety:["SAFETY","var(--bad)"],
+        held:["DEFENSE HOLDS!","var(--good)"],oppwin:["THEY SCORE","var(--bad)"],opptie:["THEY TIE IT","var(--warn)"],kneel:["GAME OVER","var(--bad)"]}[ev.reason]||["FINAL","var(--text)"];
       if(L&&L.play==="two")big=game.twoFail?["STOPPED!","var(--bad)"]:["IT'S GOOD!","var(--good)"];
       if(L&&L.play==="xp")big=["TIED UP","var(--warn)"];
       banner(big[0],big[1],1300);
-      if(game.result.res==="win"){confetti();buzz("success")}else if(game.result.res==="loss")buzz("error");
+      if(game.result.res==="win"){confetti();buzz("success");SFX.roar()}else if(game.result.res==="loss"){buzz("error");SFX.groan()}else SFX.crowd(1.2,.12);
       setTimeout(()=>{lock(false);endGame(game.result)},1500);return;
     }
-    if(ev.kind==="pat"){banner("TOUCHDOWN!","var(--good)",1100);confetti();buzz("success");setTimeout(()=>{lock(false);showPAT()},1200);return}
+    if(ev.kind==="phase"){
+      lock(true);
+      if(ev.reason==="td"||ev.reason==="fg"){banner(ev.reason==="td"?"TOUCHDOWN!":"IT'S GOOD!","var(--good)",1200);confetti();buzz("success");SFX.roar()}
+      else if(ev.reason==="fgmiss"){banner("NO GOOD","var(--bad)",1100);SFX.groan()}
+      else if(ev.phase==="offense"){banner(L&&L.o==="int"?"PICKED OFF!":"YOUR BALL!","var(--good)",1100);SFX.roar()}
+      setTimeout(()=>{lock(false);if(ev.phase==="offense"){$("#players").style.opacity=1;setFormation(game.yl,game.shown);setLines(game.yl,game.yl+game.togo);setCam(camFor(game.yl))}render()},1250);return;
+    }
+    if(ev.kind==="onside"||ev.kind==="punt"){banner(ev.kind==="onside"?"RECOVERED!":"ONE MORE SHOT","var(--good)",1100);SFX.roar();$("#players").style.opacity=1;setFormation(game.yl,game.shown);setLines(game.yl,game.yl+game.togo);setCam(camFor(game.yl));lock(false);render();return}
+    if(ev.kind==="pat"){banner("TOUCHDOWN!","var(--good)",1100);confetti();buzz("success");SFX.roar();setTimeout(()=>{lock(false);showPAT()},1200);return}
+    if(ev.kind==="def"){
+      lock(false);
+      const o=ev.o;if(o==="sack"){banner("SACK!","var(--good)",700);SFX.thud();SFX.crowd(1,.16)}else if(o==="inc"){banner("INCOMPLETE","var(--good)",600);SFX.crowd(.8,.1)}
+      else if(ev.yards>=15){banner(`+${ev.yards} THEM`,"var(--bad)",700);SFX.groan()}else if(o==="stuff"){banner("STUFFED!","var(--good)",600);SFX.thud()}else SFX.thud();
+      if(coordRunning)setTimeout(coordStep,800);return;
+    }
     lock(false);
     if(ev.kind==="spike"){banner("SPIKE","var(--info)",600);return}
-    if(ev.banner){banner(ev.banner[0],ev.banner[1]);if(ev.first)buzz("light")}
-    else if(ev.yards>=15)banner(`+${ev.yards}`,"var(--good)",700);
+    if(L&&(L.kind==="inc"))SFX.crowd(.6,.06);else if(L&&L.kind==="sack"){SFX.thud();SFX.groan()}else SFX.thud();
+    if(ev.banner){banner(ev.banner[0],ev.banner[1]);if(ev.first){buzz("light");SFX.crowd(1.2,.14)}}
+    else if(ev.yards>=15){banner(`+${ev.yards}`,"var(--good)",700);SFX.crowd(1.2,.16)}
   };
-  if(!L||L.kind==="none"){after();return}
-  lock(true);$("#fdl").style.opacity=0;$("#trails").innerHTML="";
+  if(!L||L.kind==="none"||L.play==="def"){after();return}
+  lock(true);$("#fdl").style.opacity=0;$("#trails").innerHTML="";$("#players").style.opacity=1;
+  if(L.play==="fg")SFX.kick();else SFX.hike();
   animatePlay(L,after);
+}
+function feedbackHTML(){
+  const g=game,f=feedback;
+  const lp=g.log.find(e=>e.cls!=="sys"&&e.tag!=="KICK");
+  if(!f||!f.L||g.phase==="defense"){
+    const last=g.log[0];return last&&last.tag!=="KICK"?`<div class="entry ${last.cls||""}">${last.cls==="sys"?"":`<span class="tag">${last.tag}</span>`}<span>${esc(last.text)}</span></div>`:"";
+  }
+  const L=f.L,y=L.yards,k=L.kind;
+  const head={td:"TOUCHDOWN",fg:"FIELD GOAL IS GOOD",fgmiss:"FIELD GOAL MISSED",int:"INTERCEPTED",fum:"FUMBLE",sack:`SACKED, ${y} YARDS`,inc:"INCOMPLETE",spike:"SPIKED",safety:"SAFETY"}[k]||`${y>=0?"+":""}${y} YARD${Math.abs(y)===1?"":"S"}${f.ev&&f.ev.first?", FIRST DOWN":""}`;
+  const pc=v=>v==null?"–":Math.round(v*100)+"%";
+  const G=f.grade;
+  const rankTxt=G?(G.best?`<div class="verdictline ok">✓ Your call: <b>the best one.</b></div>`:`<div class="verdictline">Your call: <b>#${G.rank} of ${G.total}</b> options.</div>`):"";
+  const table=G?`<details class="opts"><summary>How every option scored</summary><div class="otab">${G.opts.map(o=>`<div class="${o.mine?"me":""}"><span>${o.mine?"★ ":""}${esc(o.n)}${o.mine?" (you)":""}</span><b>${(o.v*100).toFixed(1)}%</b></div>`).join("")}</div><div class="muted small">Win chance from simulating the rest of the drive many times after each call.</div></details>`:"";
+  return `<div class="fb"><div class="fbh">${head}</div><div class="fbt">${lp?esc(lp.text):""}</div>
+    ${f.before!=null?`<div class="muted">Win chance ${pc(f.before)} → ${pc(f.after)}</div>`:""}${readNote(L)}${rankTxt}${table}</div>`;
 }
 
 function showPAT(){
@@ -1086,6 +1337,7 @@ const tier=r=>r==="win"?2:r==="tie"?1:0;
 const verdict=r=>r.res==="win"?["YOU WIN","var(--good)"]:r.res==="tie"?["OVERTIME","var(--warn)"]:["YOU LOSE","var(--bad)"];
 function points(r){return r.res==="win"?1000+Math.max(0,15-r.plays)*20+(r.reason==="td"?100:0):r.res==="tie"?500+r.yards:Math.min(400,r.yards*4)}
 function endGame(r){
+  if(ctx.challenge){showChallengeResult(r);return}
   if(ctx.daily){
     const sc=ctx.sc,cmp=sc.real?Math.sign(tier(r.res)-tier(sc.real.res)):0;
     const rec={...r,n:N,id:sc.id,pts:points(r),cmp,sc:{game:sc.game,team:sc.team,opp:sc.opp,date:sc.date,line:sitLine(sc),real:sc.real}};
@@ -1208,6 +1460,68 @@ async function showLeaderboard(kind){
   }catch(e){const body=$("#lbbody");if(body)body.innerHTML=`Couldn't load the leaderboard.<br><small>${esc(e.message||e)}</small>`}
 }
 
+/* ================= 1v1 CHALLENGES ================= */
+const b64e=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const b64d=s=>{try{s=s.replace(/-/g,"+").replace(/_/g,"/");return JSON.parse(decodeURIComponent(escape(atob(s))))}catch(e){return null}};
+const chLink=o=>SITE+"?c="+b64e(o);
+const resLite=r=>({res:r.res,pts:points(r),why:r.why,plays:r.plays,trail:r.trail.join("")});
+function cmpRes(a,b){const t=tier(a.res)-tier(b.res);return t?Math.sign(t):Math.sign(a.pts-b.pts)}
+function showChallengePicker(){
+  openModal(`<button class="x" onclick="closeModal(true)">✕</button><h3>1v1 a friend</h3>
+    <div class="muted" style="margin-bottom:10px">Pick a drive and play it. Then send the link: your friend gets the exact same drive and the same starting luck. Best result wins.</div>
+    ${DRIVES.map((d,i)=>`<button class="lbrow pick" data-pick="${i}" style="width:100%;text-align:left"><div class="rk" style="font-size:15px">${d.op===d.my?"TIE":"-"+(d.op-d.my)}</div><div class="who">${esc(d.team)} vs ${esc(d.opp)}<small>${esc(d.game)} · ${esc(d.date)}</small></div><div class="pts" style="font-size:18px">${fmtClock(d.t)}</div></button>`).join("")}`);
+  document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{closeModal(true);const sc=DRIVES[+b.dataset.pick];start(sc,{challenge:{mine:true},seed:(Math.random()*4e9)>>>0})});
+}
+function openChallenge(c){
+  const sc=DRIVES.find(d=>d.id===c.d);if(!sc){toast("That challenge drive isn't available");return}
+  if(c.vs){ // a friend sent their result back
+    const me=c.r,them=c.vs.r,w=cmpRes(me,them);
+    openModal(`<button class="x" onclick="closeModal(true)">✕</button><div class="res"><div class="kick">1v1 · ${esc(sc.game)}</div>
+      <div class="verdict" style="color:${w>0?"var(--good)":w<0?"var(--bad)":"var(--warn)"}">${w>0?esc(c.n)+" WINS":w<0?esc(c.vs.n)+" WINS":"DEAD EVEN"}</div>
+      ${h2hHTML(c.n,me,c.vs.n,them)}<button class="big" id="rm">REMATCH ON A NEW DRIVE</button></div>`);
+    $("#rm").onclick=()=>{closeModal(true);showChallengePicker()};return;
+  }
+  $("#main").innerHTML=introCard(sc,`⚔️ ${esc(c.n||"A friend")} challenges you`,`<button class="big" id="go">ACCEPT THE CHALLENGE</button><div class="warnline" style="color:var(--muted)">Same drive, same starting luck. Their result stays hidden until you finish.</div>`);
+  $("#go").onclick=()=>start(sc,{challenge:{from:c},seed:c.s});
+}
+function h2hHTML(n1,r1,n2,r2){
+  const col=r=>`<div><div class="who">${esc(n1&&r===r1?n1:n2)}</div><div class="what" style="color:${r.res==="win"?"var(--good)":r.res==="tie"?"var(--warn)":"var(--bad)"}">${r.res==="win"?"WON":r.res==="tie"?"OT":"LOST"} · ${r.pts}</div><div class="how">${esc(r.why)}<br>${r.plays} plays · ${r.trail||""}</div></div>`;
+  return `<div class="vs">${col(r1)}${col(r2)}</div>`;
+}
+function showChallengeResult(r){
+  const sc=ctx.sc,ch=ctx.challenge,me=resLite(r),name=myName()||"Me";
+  if(ch.mine){
+    const link=chLink({v:1,d:sc.id,s:ctx.seed,n:name,r:me});
+    openModal(`<button class="x" onclick="closeModal()">✕</button><div class="res"><div class="kick">1v1 · ${esc(sc.game)}</div>
+      <div class="verdict" style="color:${verdict(r)[1]}">${verdict(r)[0]}</div><div class="sub">${esc(r.why)} · <b>${me.pts}</b> pts</div><div class="grid">${me.trail}</div>
+      <button class="big" id="send">⚔️ SEND THE CHALLENGE</button>${myName()?"":`<button class="ghost" id="nm">Set your name first (shows on the challenge)</button>`}</div>`);
+    $("#send").onclick=()=>shareOut(`⚔️ I just played ${sc.game} (${sc.team} vs ${sc.opp}) in Clutch Call and got ${me.pts} pts. Same drive, same luck. Beat me:\n${link}`,"Challenge link copied");
+    if(!myName())$("#nm").onclick=()=>askName(()=>showChallengeResult(r));
+    return;
+  }
+  const them=ch.from.r,w=cmpRes(me,them);
+  const back=chLink({v:1,d:sc.id,s:ch.from.s,n:ch.from.n,r:them,vs:{n:name,r:me}});
+  openModal(`<button class="x" onclick="closeModal()">✕</button><div class="res"><div class="kick">1v1 vs ${esc(ch.from.n)} · ${esc(sc.game)}</div>
+    <div class="verdict" style="color:${w>0?"var(--good)":w<0?"var(--bad)":"var(--warn)"}">${w>0?"YOU WIN":w<0?"THEY WIN":"DEAD EVEN"}</div>
+    ${h2hHTML(name,me,ch.from.n,them)}
+    <button class="big" id="back">SEND YOUR RESULT BACK</button><button class="ghost" id="newc">Challenge them on another drive</button></div>`);
+  $("#back").onclick=()=>shareOut(`${w>0?"😤 Beat you":w<0?"You got me":"Dead even"} on ${sc.game}: ${me.pts} vs your ${them.pts}.\n${back}`,"Result link copied");
+  $("#newc").onclick=()=>{closeModal(true);showChallengePicker()};
+}
+function showSettings(){
+  const cur=store.get("theme","broadcast"),snd=store.get("sound",true),gr=store.get("grading",true);
+  openModal(`<button class="x" onclick="closeModal(true)">✕</button><h3>Settings</h3>
+  <button class="tog ${snd?"on":""}" id="tsnd"><span><b>Sound</b><small>Crowd, whistles and the snap</small></span><i></i></button>
+  <button class="tog ${gr?"on":""}" id="tgr"><span><b>Grade my calls</b><small>Win chance and how every option scored after each play</small></span><i></i></button>
+  <h3 style="font-size:26px;margin-top:14px">Theme</h3>
+  <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""}" data-th="${k}"><div class="sw" data-theme="${k}" style="background:var(--bg)">
+    <div style="background:var(--grass1)"><svg width="74" height="34"><circle cx="16" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="37" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="58" cy="10" r="8" style="fill:var(--def);stroke:var(--defs)" stroke-width="2"/></svg></div>
+    <div style="background:var(--sb);color:var(--clock);font-family:Teko,Impact,sans-serif;font-size:26px">2:00</div></div><div class="lab">${n}<small>${d}</small></div></button>`).join("")}</div>`);
+  $("#tsnd").onclick=()=>{store.set("sound",!snd);if(!snd){SFX.unlock();SFX.whistle()}showSettings()};
+  $("#tgr").onclick=()=>{store.set("grading",!gr);showSettings()};
+  document.querySelectorAll("[data-th]").forEach(b=>b.onclick=()=>{store.set("theme",b.dataset.th);applyTheme(b.dataset.th);showSettings()});
+}
+
 /* ================= THEMES / HELP ================= */
 const THEMES=[["broadcast","Broadcast","TV-style navy, red & white"],["clean","Clean","Bright, minimal, black & green"],["retro","Retro","70s cream & burnt orange"],["midnight","Midnight","The original dark stadium look"],["neon","Neon","Arcade black with cyan & pink"]];
 function showThemes(){
@@ -1225,6 +1539,10 @@ function showHelp(){
    <li>Every day there's one <b>real final drive</b> from NFL history, the same for everyone. You start with the real score, clock and field position.</li>
    <li><b>Read the defense.</b> Before each snap you get clues: where the safeties are, how tight the corners play, how many are in the box. About 1 in 3 snaps they disguise it and rotate after the snap.</li>
    <li><b>Call the play.</b> RUN lets you pick the type and the side (run away from the extra defender). PASS shows every receiver with his catch odds: tap a route to change it, add play action or a rollout, then tap who gets the ball. RPO lets your QB read it after the snap. TRICK plays each work once per drive.</li>
+   <li><b>Motion:</b> before the snap you can send a man in motion. If a defender follows him it's man coverage; if not, it's zone.</li>
+   <li><b>Score with time left and you're on defense.</b> Blitz, load the box or play it soft, or let your coordinator call it. Still trailing after you score? Try an onside kick.</li>
+   <li><b>After every play</b> you see your win chance and how your call ranked against every other option.</li>
+   <li><b>1v1:</b> play any drive and send the link. Your friend gets the same drive and the same luck.</li>
    <li><b>Ratings matter.</b> Each player's ring color shows how good he is, and it changes the odds.</li>
    <li><b>Manage the clock.</b> When it's running, about 15–20 seconds burn before your next snap. Incompletions and plays out of bounds stop it. Timeouts and spikes save time.</li>
    <li><b>Know what you need.</b> A field goal only helps if you're down 3 or less. Score too early and the other team gets the ball back.</li>
@@ -1242,7 +1560,9 @@ $("#mback").onclick=e=>{if(e.target.id==="mback")closeModal()};
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1600)}
 
 renderHome();
-if(!store.get("seenHelp2",0))showHelp();
+const _c=new URLSearchParams(location.search).get("c");
+if(_c){const c=b64d(_c);try{history.replaceState(null,"",location.pathname)}catch(e){}if(c){store.set("seenHelp2",1);openChallenge(c)}}
+else if(!store.get("seenHelp2",0))showHelp();
 if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 </body>
