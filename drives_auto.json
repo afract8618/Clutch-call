@@ -1,7 +1,128 @@
 {
-"updated": "2026-10-16T02:08Z",
+"updated": "2026-10-16T13:57Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202606seadensea",
+"game": "2026 · Week 6",
+"date": "Oct 15, 2026",
+"team": "Seahawks",
+"opp": "Broncos",
+"my": 11,
+"op": 14,
+"t": 57,
+"yl": 46,
+"to": 1,
+"w": "clear",
+"late": true,
+"week": 6,
+"real": {
+"res": "tie",
+"short": "34-yd FG, 0:07 left, lost in OT",
+"text": "Down 3 with 0:57 left at their own 46, the Seahawks went 8 plays. Jason Myers made a 34-yard field goal with 0:07 left. Final in overtime: Seahawks 14, Broncos 17."
+},
+"roster": {
+"QB": [
+"Sam Darnold",
+14,
+74
+],
+"RB": [
+"Emanuel Wilson",
+23,
+86
+],
+"X": [
+"Jaxon Smith-Njigba",
+11,
+95
+],
+"Z": [
+"Rashid Shaheed",
+22,
+82
+],
+"SL": [
+"Cooper Kupp",
+10,
+84
+],
+"TE": [
+"AJ Barner",
+88,
+80
+],
+"LT": [
+"Charles Cross",
+67
+],
+"LG": [
+"Grey Zabel",
+76
+],
+"C": [
+"Jalen Sundell",
+61
+],
+"RG": [
+"Christian Haynes",
+64
+],
+"RT": [
+"Abraham Lucas",
+72
+],
+"DE1": [
+"Zach Allen",
+99
+],
+"DT1": [
+"D.J. Jones",
+93
+],
+"DT2": [
+"Nik Bonitto",
+15
+],
+"DE2": [
+"Eyioma Uwazurike",
+96
+],
+"LB1": [
+"Jonah Elliss",
+52
+],
+"LB2": [
+"Alex Singleton",
+49
+],
+"LB3": [
+"Justin Strnad",
+40
+],
+"CB1": [
+"Pat Surtain II",
+2
+],
+"CB2": [
+"Riley Moss",
+21
+],
+"S1": [
+"Talanoa Hufanga",
+9
+],
+"S2": [
+"Brandon Jones",
+22
+]
+},
+"coach": "Mike Macdonald",
+"tr": {
+"ol": 74,
+"dr": 84
+}
+},
 {
 "id": "a202605balatlbal",
 "game": "2026 · Week 5",
@@ -50,7 +171,7 @@
 "TE": [
 "Mark Andrews",
 89,
-84
+83
 ],
 "LT": [
 "Ronnie Stanley",
@@ -119,8 +240,8 @@
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 82,
-"dr": 84
+"ol": 83,
+"dr": 83
 }
 },
 {
@@ -267,7 +388,7 @@
 "QB": [
 "Jalen Hurts",
 1,
-78
+79
 ],
 "RB": [
 "Saquon Barkley",
@@ -287,7 +408,7 @@
 "SL": [
 "Makai Lemon",
 9,
-77
+76
 ],
 "TE": [
 "Dallas Goedert",
@@ -361,7 +482,7 @@
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 74,
+"ol": 75,
 "dr": 89
 }
 },
@@ -388,7 +509,7 @@
 "QB": [
 "Aaron Rodgers",
 8,
-77
+78
 ],
 "RB": [
 "Jaylen Warren",
@@ -398,7 +519,7 @@
 "X": [
 "DK Metcalf",
 4,
-88
+87
 ],
 "Z": [
 "Michael Pittman",
@@ -413,7 +534,7 @@
 "TE": [
 "Darnell Washington",
 80,
-80
+79
 ],
 "LT": [
 "Troy Fautanu",
@@ -482,7 +603,7 @@
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 82,
+"ol": 83,
 "dr": 82
 }
 },
@@ -868,22 +989,22 @@
 "QB": [
 "Bo Nix",
 10,
-79
+77
 ],
 "RB": [
 "J.K. Dobbins",
 27,
-81
+84
 ],
 "X": [
 "Jaylen Waddle",
 17,
-86
+88
 ],
 "Z": [
 "Courtland Sutton",
 14,
-76
+78
 ],
 "SL": [
 "Marvin Mims Jr.",
@@ -893,7 +1014,7 @@
 "TE": [
 "Evan Engram",
 1,
-78
+79
 ],
 "LT": [
 "Garett Bolles",
@@ -1004,7 +1125,7 @@
 "Z": [
 "Keenan Allen",
 10,
-81
+80
 ],
 "SL": [
 "Darius Slayton",
@@ -1110,7 +1231,7 @@
 "QB": [
 "Jalen Hurts",
 1,
-78
+79
 ],
 "RB": [
 "Saquon Barkley",
@@ -1130,7 +1251,7 @@
 "SL": [
 "Makai Lemon",
 9,
-77
+76
 ],
 "TE": [
 "Dallas Goedert",
@@ -1204,7 +1325,7 @@
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 74,
+"ol": 75,
 "dr": 76
 }
 },
