@@ -1,11 +1,18 @@
 import SwiftUI
 import WebKit
 import UIKit
+import AVFoundation
 
 private let bgColor = UIColor(red: 7/255, green: 16/255, blue: 12/255, alpha: 1)
 
 @main
 struct ClutchCallApp: App {
+    init() {
+        // Play game sounds and commentary even with the silent switch on, mixed with any music.
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+
     var body: some Scene {
         WindowGroup {
             GameView()
@@ -54,6 +61,8 @@ struct GameView: UIViewRepresentable {
         let config = WKWebViewConfiguration()
         config.setURLSchemeHandler(BundleSchemeHandler(), forURLScheme: "clutchcall")
         config.websiteDataStore = .default()
+        config.allowsInlineMediaPlayback = true
+        config.mediaTypesRequiringUserActionForPlayback = []
         config.userContentController.add(context.coordinator, name: "native")
 
         let web = WKWebView(frame: .zero, configuration: config)
