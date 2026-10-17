@@ -1990,6 +1990,15 @@ function showChallengeResult(r){
   $("#back").onclick=()=>shareOut(`${w>0?"😤 Beat you":w<0?"You got me":"Dead even"} on ${sc.game}: ${me.pts} vs your ${them.pts}.\n${back}`,"Result link copied");
   $("#newc").onclick=()=>{closeModal(true);showChallengePicker()};
 }
+/* progress backup: every saved key except the downloaded drive cache */
+function backupCode(){
+  const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith("cc_")&&k!=="cc_auto")o[k.slice(3)]=localStorage.getItem(k)}
+  return "CLUTCHCALL-SAVE:"+b64e(o);
+}
+function restoreCode(c){
+  const m=String(c).trim().match(/CLUTCHCALL-SAVE:([A-Za-z0-9_-]+)/);if(!m)return -1;const o=b64d(m[1]);if(!o||typeof o!=="object")return -1;
+  let n=0;for(const [k,v] of Object.entries(o)){try{localStorage.setItem("cc_"+k,v);n++}catch(e){}}return n;
+}
 function showSettings(){
   const cur=store.get("theme","broadcast"),snd=store.get("sound",true),gr=store.get("grading",true);
   openModal(`<button class="x" onclick="closeModal(true)">✕</button><h3>Settings</h3>
@@ -1997,6 +2006,9 @@ function showSettings(){
   <button class="tog ${store.get("voice",true)?"on":""}" id="tvo"><span><b>Commentary voice</b><small>Spoken play-by-play with the real names</small></span><i></i></button>
   <button class="tog ${store.get("teamColors",true)?"on":""}" id="ttc"><span><b>Team colors</b><small>Color the players in their real team colors</small></span><i></i></button>
   <button class="tog ${gr?"on":""}" id="tgr"><span><b>Grade my calls</b><small>Win chance and how every option scored after each play</small></span><i></i></button>
+  <h3 style="font-size:26px;margin-top:14px">Your progress</h3>
+  <div class="muted small">Level, badges, stats and streaks live on this phone. Before you re-sign or reinstall the app, back them up, then restore after.</div>
+  <div style="display:flex;gap:8px;margin-top:8px"><button class="big" id="bkup" style="flex:1;margin:0">💾 BACK UP</button><button class="ghost" id="rstr" style="flex:1;margin:0">Restore</button></div>
   <h3 style="font-size:26px;margin-top:14px">Theme</h3>
   <div class="themes">${THEMES.map(([k,n,d])=>`<button class="th ${k===cur?"on":""} ${themeLocked(k)?"lock":""}" data-th="${k}" ${themeLocked(k)?"disabled":""}><div class="sw" data-theme="${k}" style="background:var(--bg)">
     <div style="background:var(--grass1)"><svg width="74" height="34"><circle cx="16" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="37" cy="17" r="8" style="fill:var(--off);stroke:var(--offs)" stroke-width="2"/><circle cx="58" cy="10" r="8" style="fill:var(--def);stroke:var(--defs)" stroke-width="2"/></svg></div>
@@ -2005,6 +2017,9 @@ function showSettings(){
   $("#tgr").onclick=()=>{store.set("grading",!gr);showSettings()};
   $("#tvo").onclick=()=>{const v=!store.get("voice",true);store.set("voice",v);if(v)VOICE.say("Commentary is on.");else try{speechSynthesis.cancel()}catch(e){}showSettings()};
   $("#ttc").onclick=()=>{store.set("teamColors",!store.get("teamColors",true));showSettings()};
+  $("#bkup").onclick=()=>shareOut(backupCode(),"Backup code copied. Save it in Notes.");
+  $("#rstr").onclick=()=>{const c=prompt("Paste your Clutch Call backup code");if(c==null)return;const n=restoreCode(c);
+    if(n<0)toast("That code didn't work. Copy the whole thing.");else{toast(`Restored ${n} items`);setTimeout(()=>location.reload(),900)}};
   document.querySelectorAll("[data-th]").forEach(b=>b.onclick=()=>{store.set("theme",b.dataset.th);applyTheme(b.dataset.th);showSettings()});
 }
 
