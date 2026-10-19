@@ -1,7 +1,128 @@
 {
-"updated": "2026-10-16T13:57Z",
+"updated": "2026-10-19T16:28Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202606arilala",
+"game": "2026 · Week 6",
+"date": "Oct 18, 2026",
+"team": "Rams",
+"opp": "Cardinals",
+"my": 9,
+"op": 15,
+"t": 168,
+"yl": 14,
+"to": 2,
+"w": "dome",
+"late": false,
+"week": 6,
+"real": {
+"res": "loss",
+"short": "TD with 0:52 left, but lost",
+"text": "Down 6 with 2:48 left at their own 14, the Rams went 9 plays. Matthew Stafford hit Colby Parkinson for a 6-yard touchdown with 0:52 left. Final: Rams 16, Cardinals 18."
+},
+"roster": {
+"QB": [
+"Matthew Stafford",
+9,
+85
+],
+"RB": [
+"Kyren Williams",
+23,
+86
+],
+"X": [
+"Puka Nacua",
+12,
+93
+],
+"Z": [
+"Davante Adams",
+17,
+94
+],
+"SL": [
+"Jordan Whittington",
+88,
+74
+],
+"TE": [
+"Colby Parkinson",
+84,
+72
+],
+"LT": [
+"David Quessenberry",
+68
+],
+"LG": [
+"Steve Avila",
+73
+],
+"C": [
+"Coleman Shelton",
+65
+],
+"RG": [
+"Kevin Dotson",
+69
+],
+"RT": [
+"Warren McClendon Jr.",
+71
+],
+"DE1": [
+"Josh Sweat",
+10
+],
+"DT1": [
+"Roy Lopez",
+51
+],
+"DT2": [
+"Walter Nolen",
+97
+],
+"DE2": [
+"Dante Stills",
+55
+],
+"LB1": [
+"Jack Gibbens",
+50
+],
+"LB2": [
+"Mack Wilson",
+1
+],
+"LB3": [
+"Zaven Collins",
+25
+],
+"CB1": [
+"Garrett Williams",
+21
+],
+"CB2": [
+"Denzel Burke",
+29
+],
+"S1": [
+"Budda Baker",
+3
+],
+"S2": [
+"Andrew Wingard",
+28
+]
+},
+"coach": "Sean McVay",
+"tr": {
+"ol": 86,
+"dr": 75
+}
+},
 {
 "id": "a202606seadensea",
 "game": "2026 · Week 6",
@@ -30,7 +151,7 @@
 "RB": [
 "Emanuel Wilson",
 23,
-86
+85
 ],
 "X": [
 "Jaxon Smith-Njigba",
@@ -40,17 +161,17 @@
 "Z": [
 "Rashid Shaheed",
 22,
-82
+81
 ],
 "SL": [
 "Cooper Kupp",
 10,
-84
+83
 ],
 "TE": [
 "AJ Barner",
 88,
-80
+79
 ],
 "LT": [
 "Charles Cross",
@@ -120,7 +241,128 @@
 "coach": "Mike Macdonald",
 "tr": {
 "ol": 74,
-"dr": 84
+"dr": 86
+}
+},
+{
+"id": "a202606pittbtb",
+"game": "2026 · Week 6",
+"date": "Oct 18, 2026",
+"team": "Buccaneers",
+"opp": "Steelers",
+"my": 16,
+"op": 19,
+"t": 81,
+"yl": 35,
+"to": 1,
+"w": "clear",
+"late": true,
+"week": 6,
+"real": {
+"res": "tie",
+"short": "53-yd FG, 0:13 left, lost in OT",
+"text": "Down 3 with 1:21 left at their own 35, the Buccaneers went 5 plays. Chase McLaughlin made a 53-yard field goal with 0:13 left. Final in overtime: Buccaneers 19, Steelers 26."
+},
+"roster": {
+"QB": [
+"Jalon Daniels",
+10,
+73
+],
+"RB": [
+"Bucky Irving",
+7,
+74
+],
+"X": [
+"Emeka Egbuka",
+2,
+87
+],
+"Z": [
+"Chris Godwin Jr.",
+14,
+85
+],
+"SL": [
+"Ted Hurst III",
+17,
+82
+],
+"TE": [
+"Cade Otton",
+88,
+84
+],
+"LT": [
+"Tristan Wirfs",
+78
+],
+"LG": [
+"Ben Bredeson",
+68
+],
+"C": [
+"Graham Barton",
+62
+],
+"RG": [
+"Cody Mauch",
+69
+],
+"RT": [
+"Luke Goedeke",
+67
+],
+"DE1": [
+"Yahya Black",
+94
+],
+"DT1": [
+"Keeanu Benton",
+95
+],
+"DT2": [
+"Alex Highsmith",
+56
+],
+"DE2": [
+"Cameron Heyward",
+97
+],
+"LB1": [
+"T.J. Watt",
+90
+],
+"LB2": [
+"Payton Wilson",
+41
+],
+"LB3": [
+"Patrick Queen",
+6
+],
+"CB1": [
+"Asante Samuel Jr.",
+22
+],
+"CB2": [
+"Jamel Dean",
+35
+],
+"S1": [
+"Robert Spears-Jennings",
+28
+],
+"S2": [
+"Jaquan Brisker",
+3
+]
+},
+"coach": "Todd Bowles",
+"tr": {
+"ol": 78,
+"dr": 87
 }
 },
 {
@@ -146,12 +388,12 @@
 "QB": [
 "Tyler Huntley",
 5,
-74
+84
 ],
 "RB": [
 "Derrick Henry",
 22,
-90
+91
 ],
 "X": [
 "Zay Flowers",
@@ -161,7 +403,7 @@
 "Z": [
 "Rashod Bateman",
 7,
-88
+87
 ],
 "SL": [
 "Devontez Walker",
@@ -171,7 +413,7 @@
 "TE": [
 "Mark Andrews",
 89,
-83
+84
 ],
 "LT": [
 "Ronnie Stanley",
@@ -240,8 +482,8 @@
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 83,
-"dr": 83
+"ol": 80,
+"dr": 81
 }
 },
 {
@@ -267,12 +509,12 @@
 "QB": [
 "Matthew Stafford",
 9,
-87
+85
 ],
 "RB": [
 "Kyren Williams",
 23,
-85
+86
 ],
 "X": [
 "Puka Nacua",
@@ -292,7 +534,7 @@
 "TE": [
 "Colby Parkinson",
 84,
-74
+72
 ],
 "LT": [
 "Alaric Jackson",
@@ -388,17 +630,17 @@
 "QB": [
 "Jalen Hurts",
 1,
-79
+80
 ],
 "RB": [
 "Saquon Barkley",
 26,
-79
+78
 ],
 "X": [
 "DeVonta Smith",
 6,
-89
+91
 ],
 "Z": [
 "Dontayvion Wicks",
@@ -408,12 +650,12 @@
 "SL": [
 "Makai Lemon",
 9,
-76
+78
 ],
 "TE": [
 "Dallas Goedert",
 88,
-78
+83
 ],
 "LT": [
 "Jordan Mailata",
@@ -482,8 +724,8 @@
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 75,
-"dr": 89
+"ol": 76,
+"dr": 84
 }
 },
 {
@@ -509,7 +751,7 @@
 "QB": [
 "Aaron Rodgers",
 8,
-78
+77
 ],
 "RB": [
 "Jaylen Warren",
@@ -519,7 +761,7 @@
 "X": [
 "DK Metcalf",
 4,
-87
+91
 ],
 "Z": [
 "Michael Pittman",
@@ -529,12 +771,12 @@
 "SL": [
 "Roman Wilson",
 14,
-85
+84
 ],
 "TE": [
 "Darnell Washington",
 80,
-79
+81
 ],
 "LT": [
 "Troy Fautanu",
@@ -603,8 +845,8 @@
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 83,
-"dr": 82
+"ol": 81,
+"dr": 83
 }
 },
 {
@@ -630,12 +872,12 @@
 "QB": [
 "Matthew Stafford",
 9,
-87
+85
 ],
 "RB": [
 "Kyren Williams",
 23,
-85
+86
 ],
 "X": [
 "Puka Nacua",
@@ -655,7 +897,7 @@
 "TE": [
 "Colby Parkinson",
 84,
-74
+72
 ],
 "LT": [
 "Alaric Jackson",
@@ -721,7 +963,7 @@
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 77
+"dr": 75
 }
 },
 {
@@ -747,12 +989,12 @@
 "QB": [
 "Dak Prescott",
 4,
-90
+87
 ],
 "RB": [
 "Javonte Williams",
 33,
-75
+76
 ],
 "X": [
 "CeeDee Lamb",
@@ -762,17 +1004,17 @@
 "Z": [
 "George Pickens",
 3,
-93
+94
 ],
 "SL": [
 "Ryan Flournoy",
 19,
-85
+87
 ],
 "TE": [
 "Jake Ferguson",
 87,
-76
+77
 ],
 "LT": [
 "Tyler Guyton",
@@ -841,8 +1083,8 @@
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 86,
-"dr": 86
+"ol": 87,
+"dr": 79
 }
 },
 {
@@ -868,12 +1110,12 @@
 "QB": [
 "Dak Prescott",
 4,
-90
+87
 ],
 "RB": [
 "Javonte Williams",
 33,
-75
+76
 ],
 "X": [
 "CeeDee Lamb",
@@ -883,17 +1125,17 @@
 "Z": [
 "George Pickens",
 3,
-93
+94
 ],
 "SL": [
 "Ryan Flournoy",
 19,
-85
+87
 ],
 "TE": [
 "Jake Ferguson",
 87,
-76
+77
 ],
 "LT": [
 "Tyler Guyton",
@@ -962,8 +1204,8 @@
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 86,
-"dr": 82
+"ol": 87,
+"dr": 83
 }
 },
 {
@@ -989,7 +1231,7 @@
 "QB": [
 "Bo Nix",
 10,
-77
+79
 ],
 "RB": [
 "J.K. Dobbins",
@@ -999,7 +1241,7 @@
 "X": [
 "Jaylen Waddle",
 17,
-88
+86
 ],
 "Z": [
 "Courtland Sutton",
@@ -1083,7 +1325,7 @@
 },
 "coach": "Sean Payton",
 "tr": {
-"ol": 82,
+"ol": 81,
 "dr": 85
 }
 },
@@ -1115,7 +1357,7 @@
 "RB": [
 "Jonathan Taylor",
 28,
-76
+82
 ],
 "X": [
 "Josh Downs",
@@ -1125,7 +1367,7 @@
 "Z": [
 "Keenan Allen",
 10,
-80
+86
 ],
 "SL": [
 "Darius Slayton",
@@ -1135,7 +1377,7 @@
 "TE": [
 "Tyler Warren",
 84,
-86
+85
 ],
 "LT": [
 "Bernhard Raimann",
@@ -1204,8 +1446,8 @@
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 87,
-"dr": 86
+"ol": 85,
+"dr": 79
 }
 },
 {
@@ -1231,17 +1473,17 @@
 "QB": [
 "Jalen Hurts",
 1,
-79
+80
 ],
 "RB": [
 "Saquon Barkley",
 26,
-79
+78
 ],
 "X": [
 "DeVonta Smith",
 6,
-89
+91
 ],
 "Z": [
 "Dontayvion Wicks",
@@ -1251,12 +1493,12 @@
 "SL": [
 "Makai Lemon",
 9,
-76
+78
 ],
 "TE": [
 "Dallas Goedert",
 88,
-78
+83
 ],
 "LT": [
 "Jordan Mailata",
@@ -1325,8 +1567,8 @@
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 75,
-"dr": 76
+"ol": 76,
+"dr": 77
 }
 },
 {
@@ -1377,7 +1619,7 @@
 "TE": [
 "Juwan Johnson",
 83,
-89
+88
 ],
 "LT": [
 "Kelvin Banks Jr.",
@@ -1446,7 +1688,7 @@
 },
 "coach": "Kellen Moore",
 "tr": {
-"ol": 78,
+"ol": 80,
 "dr": 73
 }
 },
@@ -1473,27 +1715,27 @@
 "QB": [
 "Josh Allen",
 17,
-92
+94
 ],
 "RB": [
 "James Cook",
 4,
-91
+75
 ],
 "X": [
 "DJ Moore",
 2,
-84
+83
 ],
 "Z": [
 "Khalil Shakir",
 10,
-89
+90
 ],
 "SL": [
 "Keon Coleman",
 0,
-87
+90
 ],
 "TE": [
 "Dalton Kincaid",
@@ -1568,7 +1810,7 @@
 "coach": "Sean McDermott",
 "tr": {
 "ol": 86,
-"dr": 86
+"dr": 79
 }
 }
 ]
