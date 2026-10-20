@@ -1,5 +1,5 @@
 {
-"updated": "2026-10-19T16:28Z",
+"updated": "2026-10-20T14:18Z",
 "season": 2026,
 "drives": [
 {
@@ -30,7 +30,7 @@
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
@@ -272,7 +272,7 @@
 "RB": [
 "Bucky Irving",
 7,
-74
+73
 ],
 "X": [
 "Emeka Egbuka",
@@ -362,7 +362,7 @@
 "coach": "Todd Bowles",
 "tr": {
 "ol": 78,
-"dr": 87
+"dr": 88
 }
 },
 {
@@ -413,7 +413,7 @@
 "TE": [
 "Mark Andrews",
 89,
-84
+83
 ],
 "LT": [
 "Ronnie Stanley",
@@ -482,7 +482,7 @@
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 80,
+"ol": 81,
 "dr": 81
 }
 },
@@ -514,7 +514,7 @@
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
@@ -845,7 +845,7 @@
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 81,
+"ol": 82,
 "dr": 83
 }
 },
@@ -877,7 +877,7 @@
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
@@ -1325,7 +1325,7 @@
 },
 "coach": "Sean Payton",
 "tr": {
-"ol": 81,
+"ol": 82,
 "dr": 85
 }
 },
@@ -1357,7 +1357,7 @@
 "RB": [
 "Jonathan Taylor",
 28,
-82
+81
 ],
 "X": [
 "Josh Downs",
@@ -1568,7 +1568,7 @@
 "coach": "Nick Sirianni",
 "tr": {
 "ol": 76,
-"dr": 77
+"dr": 78
 }
 },
 {
@@ -1730,7 +1730,7 @@
 "Z": [
 "Khalil Shakir",
 10,
-90
+89
 ],
 "SL": [
 "Keon Coleman",
