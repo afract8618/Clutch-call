@@ -1,5 +1,5 @@
 {
-"updated": "2026-10-26T16:07Z",
+"updated": "2026-10-27T15:21Z",
 "season": 2026,
 "drives": [
 {
@@ -25,7 +25,7 @@
 "QB": [
 "Deshaun Watson",
 4,
-81
+82
 ],
 "RB": [
 "Quinshon Judkins",
@@ -267,7 +267,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+87
 ],
 "RB": [
 "Kyren Williams",
@@ -361,7 +361,7 @@ null
 },
 "coach": "Sean McVay",
 "tr": {
-"ol": 87,
+"ol": 86,
 "dr": 75
 }
 },
@@ -482,7 +482,7 @@ null
 },
 "coach": "Mike Macdonald",
 "tr": {
-"ol": 75,
+"ol": 74,
 "dr": 87
 }
 },
@@ -630,7 +630,7 @@ null
 "QB": [
 "Tyler Huntley",
 5,
-83
+84
 ],
 "RB": [
 "Derrick Henry",
@@ -640,7 +640,7 @@ null
 "X": [
 "Zay Flowers",
 4,
-95
+94
 ],
 "Z": [
 "Rashod Bateman",
@@ -724,7 +724,7 @@ null
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 77,
+"ol": 78,
 "dr": 83
 }
 },
@@ -751,7 +751,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+87
 ],
 "RB": [
 "Kyren Williams",
@@ -845,7 +845,7 @@ null
 },
 "coach": "Sean McVay",
 "tr": {
-"ol": 87,
+"ol": 86,
 "dr": 74
 }
 },
@@ -872,12 +872,12 @@ null
 "QB": [
 "Jalen Hurts",
 1,
-78
+79
 ],
 "RB": [
 "Saquon Barkley",
 26,
-79
+82
 ],
 "X": [
 "DeVonta Smith",
@@ -892,12 +892,12 @@ null
 "SL": [
 "Makai Lemon",
 9,
-78
+83
 ],
 "TE": [
 "Dallas Goedert",
 88,
-82
+85
 ],
 "LT": [
 "Jordan Mailata",
@@ -966,7 +966,7 @@ null
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 74,
+"ol": 75,
 "dr": 83
 }
 },
@@ -1114,7 +1114,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+87
 ],
 "RB": [
 "Kyren Williams",
@@ -1204,7 +1204,7 @@ null
 },
 "coach": "Sean McVay",
 "tr": {
-"ol": 87,
+"ol": 86,
 "dr": 75
 }
 },
@@ -1231,7 +1231,7 @@ null
 "QB": [
 "Dak Prescott",
 4,
-89
+90
 ],
 "RB": [
 "Javonte Williams",
@@ -1241,7 +1241,7 @@ null
 "X": [
 "CeeDee Lamb",
 88,
-94
+95
 ],
 "Z": [
 "George Pickens",
@@ -1251,7 +1251,7 @@ null
 "SL": [
 "Ryan Flournoy",
 19,
-86
+90
 ],
 "TE": [
 "Jake Ferguson",
@@ -1352,7 +1352,7 @@ null
 "QB": [
 "Dak Prescott",
 4,
-89
+90
 ],
 "RB": [
 "Javonte Williams",
@@ -1362,7 +1362,7 @@ null
 "X": [
 "CeeDee Lamb",
 88,
-94
+95
 ],
 "Z": [
 "George Pickens",
@@ -1372,7 +1372,7 @@ null
 "SL": [
 "Ryan Flournoy",
 19,
-86
+90
 ],
 "TE": [
 "Jake Ferguson",
@@ -1594,12 +1594,12 @@ null
 "QB": [
 "Daniel Jones",
 17,
-73
+74
 ],
 "RB": [
 "Jonathan Taylor",
 28,
-82
+81
 ],
 "X": [
 "Josh Downs",
@@ -1609,7 +1609,7 @@ null
 "Z": [
 "Keenan Allen",
 10,
-88
+87
 ],
 "SL": [
 "Darius Slayton",
@@ -1619,7 +1619,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-85
+84
 ],
 "LT": [
 "Bernhard Raimann",
@@ -1715,12 +1715,12 @@ null
 "QB": [
 "Jalen Hurts",
 1,
-78
+79
 ],
 "RB": [
 "Saquon Barkley",
 26,
-79
+82
 ],
 "X": [
 "DeVonta Smith",
@@ -1735,12 +1735,12 @@ null
 "SL": [
 "Makai Lemon",
 9,
-78
+83
 ],
 "TE": [
 "Dallas Goedert",
 88,
-82
+85
 ],
 "LT": [
 "Jordan Mailata",
@@ -1809,7 +1809,7 @@ null
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 74,
+"ol": 75,
 "dr": 77
 }
 },
@@ -1967,12 +1967,12 @@ null
 "X": [
 "DJ Moore",
 2,
-82
+81
 ],
 "Z": [
 "Khalil Shakir",
 10,
-89
+88
 ],
 "SL": [
 "Keon Coleman",
