@@ -1,5 +1,5 @@
 {
-"updated": "2026-10-29T16:07Z",
+"updated": "2026-10-30T15:55Z",
 "season": 2026,
 "drives": [
 {
@@ -161,7 +161,7 @@
 "Z": [
 "Jameson Williams",
 1,
-91
+92
 ],
 "SL": [
 "Isaac TeSlaa",
@@ -603,7 +603,7 @@ null
 },
 "coach": "Todd Bowles",
 "tr": {
-"ol": 80,
+"ol": 81,
 "dr": 86
 }
 },
@@ -1599,7 +1599,7 @@ null
 "RB": [
 "Jonathan Taylor",
 28,
-81
+82
 ],
 "X": [
 "Josh Downs",
@@ -1609,7 +1609,7 @@ null
 "Z": [
 "Keenan Allen",
 10,
-87
+88
 ],
 "SL": [
 "Darius Slayton",
@@ -1619,7 +1619,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-84
+85
 ],
 "LT": [
 "Bernhard Raimann",
@@ -1688,7 +1688,7 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 83,
+"ol": 84,
 "dr": 79
 }
 },
@@ -1930,7 +1930,7 @@ null
 },
 "coach": "Kellen Moore",
 "tr": {
-"ol": 77,
+"ol": 76,
 "dr": 73
 }
 },
@@ -1967,7 +1967,7 @@ null
 "X": [
 "DJ Moore",
 2,
-81
+82
 ],
 "Z": [
 "Khalil Shakir",
