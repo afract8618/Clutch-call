@@ -1,7 +1,249 @@
 {
-"updated": "2026-10-31T15:19Z",
+"updated": "2026-11-02T19:29Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202608aridalari",
+"game": "2026 · Week 8",
+"date": "Nov 1, 2026",
+"team": "Cardinals",
+"opp": "Cowboys",
+"my": 24,
+"op": 30,
+"t": 65,
+"yl": 20,
+"to": 0,
+"w": "dome",
+"late": true,
+"week": 8,
+"real": {
+"res": "tie",
+"short": "TD with 0:10 left, game ended tied",
+"text": "Down 6 with 1:05 left at their own 20, the Cardinals went 8 plays. Gardner Minshew hit Michael Wilson for a 13-yard touchdown with 0:10 left. Final in overtime: Cardinals 30, Cowboys 30."
+},
+"roster": {
+"QB": [
+"Jacoby Brissett",
+7,
+77
+],
+"RB": [
+"Jeremiyah Love",
+4,
+70
+],
+"X": [
+"Michael Wilson",
+14,
+93
+],
+"Z": [
+"Kendrick Bourne",
+17,
+87
+],
+"SL": [
+"Reggie Virgil",
+82,
+74
+],
+"TE": [
+"Trey McBride",
+85,
+93
+],
+"LT": [
+"Jayden Williams",
+66
+],
+"LG": [
+"Isaac Seumalo",
+73
+],
+"C": [
+"Hjalte Froholdt",
+72
+],
+"RG": [
+"Jon Gaines II",
+71
+],
+"RT": [
+"Elijah Wilkinson",
+65
+],
+"DE1": [
+"Quinnen Williams",
+92
+],
+"DT1": [
+"Otito Ogbonnia",
+91
+],
+"DT2": [
+"Donovan Ezeiruaku",
+6
+],
+"DE2": [
+"Kenny Clark",
+97
+],
+"LB1": [
+"Rashan Gary",
+7
+],
+"LB2": [
+"DeMarvion Overshown",
+0
+],
+"LB3": [
+"Dee Winters",
+53
+],
+"CB1": [
+"Joey Porter Jr.",
+25
+],
+"CB2": [
+"DaRon Bland",
+26
+],
+"S1": [
+"Caleb Downs",
+13
+],
+"S2": [
+"Malik Hooker",
+24
+]
+},
+"coach": "Jonathan Gannon",
+"tr": {
+"ol": 84,
+"dr": 73
+}
+},
+{
+"id": "a202608tencincin",
+"game": "2026 · Week 8",
+"date": "Nov 1, 2026",
+"team": "Bengals",
+"opp": "Titans",
+"my": 29,
+"op": 36,
+"t": 220,
+"yl": 19,
+"to": 3,
+"w": "clear",
+"late": false,
+"week": 8,
+"real": {
+"res": "tie",
+"short": "TD with 1:20 left, won in OT",
+"text": "Down 7 with 3:40 left at their own 19, the Bengals went 7 plays. Joe Burrow hit Tee Higgins for a 18-yard touchdown with 1:20 left. Final in overtime: Bengals 43, Titans 36."
+},
+"roster": {
+"QB": [
+"Joe Burrow",
+9,
+92
+],
+"RB": [
+"Chase Brown",
+30,
+81
+],
+"X": [
+"Ja'Marr Chase",
+1,
+93
+],
+"Z": [
+"Tee Higgins",
+5,
+95
+],
+"SL": [
+"Dohnte Meyers",
+81,
+80
+],
+"TE": [
+"Mike Gesicki",
+88,
+85
+],
+"LT": [
+"Orlando Brown",
+75
+],
+"LG": [
+"Dylan Fairchild",
+63
+],
+"C": [
+"Ted Karras",
+64
+],
+"RG": [
+"Dalton Risner",
+66
+],
+"RT": [
+"Amarius Mims",
+71
+],
+"DE1": [
+"John Franklin-Myers",
+91
+],
+"DT1": [
+"Nazir Stackhouse",
+93
+],
+"DT2": [
+"Solomon Thomas",
+90
+],
+"DE2": [
+"Jermaine Johnson II",
+11
+],
+"LB1": [
+"Cedric Gray",
+33
+],
+"LB2": [
+"Anthony Hill Jr.",
+53
+],
+"LB3": [
+"Cody Barton",
+50
+],
+"CB1": [
+"Joshua Williams",
+25
+],
+"CB2": [
+"Cordale Flott",
+18
+],
+"S1": [
+"Amani Hooker",
+37
+],
+"S2": [
+"Kevin Winston Jr.",
+23
+]
+},
+"coach": "Zac Taylor",
+"tr": {
+"ol": 82,
+"dr": 76
+}
+},
 {
 "id": "a202607cletencle",
 "game": "2026 · Week 7",
@@ -25,12 +267,12 @@
 "QB": [
 "Deshaun Watson",
 4,
-82
+81
 ],
 "RB": [
 "Quinshon Judkins",
 10,
-76
+78
 ],
 "X": [
 "Denzel Boston",
@@ -40,17 +282,17 @@
 "Z": [
 "KC Concepcion",
 1,
-90
+91
 ],
 "SL": [
 "Jerry Jeudy",
 3,
-81
+80
 ],
 "TE": [
 "Harold Fannin Jr.",
 44,
-87
+92
 ],
 "LT": [
 "Spencer Fano",
@@ -119,8 +361,8 @@
 },
 "coach": "Todd Monken",
 "tr": {
-"ol": 74,
-"dr": 77
+"ol": 73,
+"dr": 76
 }
 },
 {
@@ -146,7 +388,7 @@
 "QB": [
 "Jared Goff",
 16,
-95
+92
 ],
 "RB": [
 "Jahmyr Gibbs",
@@ -166,7 +408,7 @@
 "SL": [
 "Isaac TeSlaa",
 18,
-83
+82
 ],
 "TE": [
 "Sam LaPorta",
@@ -240,8 +482,8 @@ null
 },
 "coach": "Dan Campbell",
 "tr": {
-"ol": 79,
-"dr": 88
+"ol": 78,
+"dr": 87
 }
 },
 {
@@ -267,17 +509,17 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+86
 ],
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
 12,
-93
+94
 ],
 "Z": [
 "Davante Adams",
@@ -292,7 +534,7 @@ null
 "TE": [
 "Colby Parkinson",
 84,
-76
+75
 ],
 "LT": [
 "David Quessenberry",
@@ -362,7 +604,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 75
+"dr": 76
 }
 },
 {
@@ -388,7 +630,7 @@ null
 "QB": [
 "Sam Darnold",
 14,
-79
+80
 ],
 "RB": [
 "Emanuel Wilson",
@@ -408,12 +650,12 @@ null
 "SL": [
 "Cooper Kupp",
 10,
-83
+82
 ],
 "TE": [
 "AJ Barner",
 88,
-82
+81
 ],
 "LT": [
 "Charles Cross",
@@ -483,7 +725,7 @@ null
 "coach": "Mike Macdonald",
 "tr": {
 "ol": 74,
-"dr": 87
+"dr": 84
 }
 },
 {
@@ -519,22 +761,22 @@ null
 "X": [
 "Emeka Egbuka",
 2,
-86
+84
 ],
 "Z": [
 "Chris Godwin Jr.",
 14,
-86
+85
 ],
 "SL": [
 "Ted Hurst III",
 17,
-81
+80
 ],
 "TE": [
 "Cade Otton",
 88,
-82
+81
 ],
 "LT": [
 "Tristan Wirfs",
@@ -603,8 +845,8 @@ null
 },
 "coach": "Todd Bowles",
 "tr": {
-"ol": 81,
-"dr": 86
+"ol": 80,
+"dr": 87
 }
 },
 {
@@ -635,7 +877,7 @@ null
 "RB": [
 "Derrick Henry",
 22,
-72
+73
 ],
 "X": [
 "Zay Flowers",
@@ -655,7 +897,7 @@ null
 "TE": [
 "Mark Andrews",
 89,
-84
+83
 ],
 "LT": [
 "Ronnie Stanley",
@@ -724,8 +966,8 @@ null
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 78,
-"dr": 83
+"ol": 76,
+"dr": 85
 }
 },
 {
@@ -751,17 +993,17 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+86
 ],
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
 12,
-93
+94
 ],
 "Z": [
 "Davante Adams",
@@ -776,7 +1018,7 @@ null
 "TE": [
 "Colby Parkinson",
 84,
-76
+75
 ],
 "LT": [
 "Alaric Jackson",
@@ -846,7 +1088,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 74
+"dr": 78
 }
 },
 {
@@ -882,22 +1124,22 @@ null
 "X": [
 "DeVonta Smith",
 6,
-90
+89
 ],
 "Z": [
 "Dontayvion Wicks",
 13,
-89
+88
 ],
 "SL": [
 "Makai Lemon",
 9,
-83
+86
 ],
 "TE": [
 "Dallas Goedert",
 88,
-85
+86
 ],
 "LT": [
 "Jordan Mailata",
@@ -967,7 +1209,7 @@ null
 "coach": "Nick Sirianni",
 "tr": {
 "ol": 75,
-"dr": 83
+"dr": 88
 }
 },
 {
@@ -993,32 +1235,32 @@ null
 "QB": [
 "Aaron Rodgers",
 8,
-76
+75
 ],
 "RB": [
 "Jaylen Warren",
 30,
-89
+88
 ],
 "X": [
 "DK Metcalf",
 4,
-92
+91
 ],
 "Z": [
 "Michael Pittman",
 11,
-75
+74
 ],
 "SL": [
 "Roman Wilson",
 14,
-82
+81
 ],
 "TE": [
 "Darnell Washington",
 80,
-80
+86
 ],
 "LT": [
 "Troy Fautanu",
@@ -1087,8 +1329,8 @@ null
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 83,
-"dr": 84
+"ol": 84,
+"dr": 83
 }
 },
 {
@@ -1114,17 +1356,17 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+86
 ],
 "RB": [
 "Kyren Williams",
 23,
-86
+85
 ],
 "X": [
 "Puka Nacua",
 12,
-93
+94
 ],
 "Z": [
 "Davante Adams",
@@ -1139,7 +1381,7 @@ null
 "TE": [
 "Colby Parkinson",
 84,
-76
+75
 ],
 "LT": [
 "Alaric Jackson",
@@ -1205,7 +1447,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 75
+"dr": 74
 }
 },
 {
@@ -1325,8 +1567,8 @@ null
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 87,
-"dr": 79
+"ol": 86,
+"dr": 78
 }
 },
 {
@@ -1446,8 +1688,8 @@ null
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 87,
-"dr": 81
+"ol": 86,
+"dr": 80
 }
 },
 {
@@ -1473,7 +1715,7 @@ null
 "QB": [
 "Bo Nix",
 10,
-80
+82
 ],
 "RB": [
 "J.K. Dobbins",
@@ -1483,17 +1725,17 @@ null
 "X": [
 "Jaylen Waddle",
 17,
-88
+89
 ],
 "Z": [
 "Courtland Sutton",
 14,
-81
+83
 ],
 "SL": [
 "Marvin Mims Jr.",
 19,
-74
+75
 ],
 "TE": [
 "Evan Engram",
@@ -1604,12 +1846,12 @@ null
 "X": [
 "Josh Downs",
 2,
-90
+89
 ],
 "Z": [
 "Keenan Allen",
 10,
-88
+89
 ],
 "SL": [
 "Darius Slayton",
@@ -1619,7 +1861,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-85
+84
 ],
 "LT": [
 "Bernhard Raimann",
@@ -1688,8 +1930,8 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 84,
-"dr": 79
+"ol": 81,
+"dr": 78
 }
 },
 {
@@ -1725,22 +1967,22 @@ null
 "X": [
 "DeVonta Smith",
 6,
-90
+89
 ],
 "Z": [
 "Dontayvion Wicks",
 13,
-89
+88
 ],
 "SL": [
 "Makai Lemon",
 9,
-83
+86
 ],
 "TE": [
 "Dallas Goedert",
 88,
-85
+86
 ],
 "LT": [
 "Jordan Mailata",
@@ -1810,7 +2052,7 @@ null
 "coach": "Nick Sirianni",
 "tr": {
 "ol": 75,
-"dr": 77
+"dr": 76
 }
 },
 {
@@ -1836,7 +2078,7 @@ null
 "QB": [
 "Tyler Shough",
 6,
-82
+83
 ],
 "RB": [
 "Travis Etienne",
@@ -1851,7 +2093,7 @@ null
 "Z": [
 "Devaughn Vele",
 14,
-91
+90
 ],
 "SL": [
 "Barion Brown",
@@ -1861,7 +2103,7 @@ null
 "TE": [
 "Juwan Johnson",
 83,
-87
+86
 ],
 "LT": [
 "Kelvin Banks Jr.",
@@ -1930,8 +2172,8 @@ null
 },
 "coach": "Kellen Moore",
 "tr": {
-"ol": 76,
-"dr": 73
+"ol": 78,
+"dr": 74
 }
 },
 {
@@ -1962,27 +2204,27 @@ null
 "RB": [
 "James Cook",
 4,
-75
+76
 ],
 "X": [
 "DJ Moore",
 2,
-82
+87
 ],
 "Z": [
 "Khalil Shakir",
 10,
-88
+90
 ],
 "SL": [
 "Keon Coleman",
 0,
-89
+88
 ],
 "TE": [
 "Dalton Kincaid",
 86,
-90
+92
 ],
 "LT": [
 "Dion Dawkins",
@@ -2051,8 +2293,8 @@ null
 },
 "coach": "Sean McDermott",
 "tr": {
-"ol": 86,
-"dr": 79
+"ol": 87,
+"dr": 78
 }
 }
 ]
