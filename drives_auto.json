@@ -1,7 +1,370 @@
 {
-"updated": "2026-11-06T16:45Z",
+"updated": "2026-11-09T19:47Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202609clenocle",
+"game": "2026 · Week 9",
+"date": "Nov 8, 2026",
+"team": "Browns",
+"opp": "Saints",
+"my": 13,
+"op": 16,
+"t": 53,
+"yl": 26,
+"to": 2,
+"w": "dome",
+"late": true,
+"week": 9,
+"real": {
+"res": "tie",
+"short": "51-yd FG, 0:12 left, lost in OT",
+"text": "Down 3 with 0:53 left at their own 26, the Browns went 7 plays. Andre Szmyt made a 51-yard field goal with 0:12 left. Final in overtime: Browns 22, Saints 23."
+},
+"roster": {
+"QB": [
+"Shedeur Sanders",
+2,
+74
+],
+"RB": [
+"Quinshon Judkins",
+10,
+78
+],
+"X": [
+"Denzel Boston",
+12,
+93
+],
+"Z": [
+"KC Concepcion",
+1,
+92
+],
+"SL": [
+"Jerry Jeudy",
+3,
+82
+],
+"TE": [
+"Harold Fannin Jr.",
+44,
+92
+],
+"LT": [
+"Spencer Fano",
+55
+],
+"LG": [
+"Zion Johnson",
+77
+],
+"C": [
+"Elgton Jenkins",
+74
+],
+"RG": [
+"Austin Barber",
+58
+],
+"RT": [
+"Tytus Howard",
+71
+],
+"DE1": [
+"Cameron Jordan",
+94
+],
+"DT1": [
+"Nathan Shepherd",
+93
+],
+"DT2": [
+"Chase Young",
+99
+],
+"DE2": [
+"Vernon Broughton",
+91
+],
+"LB1": [
+"Carl Granderson",
+96
+],
+"LB2": [
+"Kaden Elliss",
+55
+],
+"LB3": [
+"Pete Werner",
+20
+],
+"CB1": [
+"Kool-Aid McKinstry",
+1
+],
+"CB2": [
+"Martin Emerson",
+22
+],
+"S1": [
+"Justin Reid",
+21
+],
+"S2": [
+"Julian Blackmon",
+23
+]
+},
+"coach": "Todd Monken",
+"tr": {
+"ol": 73,
+"dr": 78
+}
+},
+{
+"id": "a202609dalinddal",
+"game": "2026 · Week 9",
+"date": "Nov 8, 2026",
+"team": "Cowboys",
+"opp": "Colts",
+"my": 20,
+"op": 23,
+"t": 97,
+"yl": 35,
+"to": 0,
+"w": "clear",
+"late": true,
+"week": 9,
+"real": {
+"res": "win",
+"short": "TD with 1:10 left",
+"text": "Down 3 with 1:37 left at their own 35, the Cowboys went 5 plays. Javonte Williams ran it in from 1 yard out with 1:10 left. Final: Cowboys 27, Colts 23."
+},
+"roster": {
+"QB": [
+"Dak Prescott",
+4,
+90
+],
+"RB": [
+"Javonte Williams",
+33,
+77
+],
+"X": [
+"CeeDee Lamb",
+88,
+95
+],
+"Z": [
+"George Pickens",
+3,
+93
+],
+"SL": [
+"Ryan Flournoy",
+19,
+91
+],
+"TE": [
+"Jake Ferguson",
+87,
+78
+],
+"LT": [
+"Tyler Guyton",
+60
+],
+"LG": [
+"Tyler Smith",
+73
+],
+"C": [
+"Cooper Beebe",
+56
+],
+"RG": [
+"Tyler Booker",
+52
+],
+"RT": [
+"Terence Steele",
+78
+],
+"DE1": [
+"Jaylahn Tuimoloau",
+91
+],
+"DT1": [
+"Grover Stewart",
+90
+],
+"DT2": [
+"Adetomiwa Adebawore",
+95
+],
+"DE2": [
+"Laiatu Latu",
+97
+],
+"LB1": [
+"Akeem Davis-Gaither",
+51
+],
+"LB2": [
+"CJ Allen",
+53
+],
+"LB3": [
+"Bryce Boettcher",
+50
+],
+"CB1": [
+"Sauce Gardner",
+1
+],
+"CB2": [
+"Charvarius Ward",
+7
+],
+"S1": [
+"A.J. Haulcy",
+25
+],
+"S2": [
+"Camryn Bynum",
+0
+]
+},
+"coach": "Brian Schottenheimer",
+"tr": {
+"ol": 86,
+"dr": 75
+}
+},
+{
+"id": "a202609tbchichi",
+"game": "2026 · Week 9",
+"date": "Nov 8, 2026",
+"team": "Bears",
+"opp": "Buccaneers",
+"my": 24,
+"op": 24,
+"t": 166,
+"yl": 31,
+"to": 3,
+"w": "clear",
+"late": false,
+"week": 9,
+"real": {
+"res": "tie",
+"short": "38-yd FG, 0:03 left",
+"text": "Tied with 2:46 left at their own 31, the Bears went 8 plays. Cairo Santos made a 38-yard field goal with 0:03 left. Final: Bears 24, Buccaneers 24."
+},
+"roster": {
+"QB": [
+"Caleb Williams",
+18,
+91
+],
+"RB": [
+"D'Andre Swift",
+4,
+79
+],
+"X": [
+"Rome Odunze",
+15,
+93
+],
+"Z": [
+"Luther Burden III",
+10,
+94
+],
+"SL": [
+"Kalif Raymond",
+14,
+87
+],
+"TE": [
+"Colston Loveland",
+84,
+90
+],
+"LT": [
+"Theo Benedet",
+79
+],
+"LG": [
+"Joe Thuney",
+62
+],
+"C": [
+"Garrett Bradbury",
+67
+],
+"RG": [
+"Jonah Jackson",
+73
+],
+"RT": [
+"Darnell Wright",
+58
+],
+"DE1": [
+"Calijah Kancey",
+94
+],
+"DT1": [
+"Vita Vea",
+50
+],
+"DT2": [
+"Yaya Diaby",
+0
+],
+"DE2": [
+"A'Shawn Robinson",
+91
+],
+"LB1": [
+"Rueben Bain Jr.",
+3
+],
+"LB2": [
+"Alex Anzalone",
+34
+],
+"LB3": [
+"Josiah Trotter",
+45
+],
+"CB1": [
+"Zyon McCollum",
+27
+],
+"CB2": [
+"Benjamin Morrison",
+21
+],
+"S1": [
+"Tykee Smith",
+23
+],
+"S2": [
+"Antoine Winfield Jr.",
+31
+]
+},
+"coach": "Ben Johnson",
+"tr": {
+"ol": 83,
+"dr": 89
+}
+},
 {
 "id": "a202608aridalari",
 "game": "2026 · Week 8",
@@ -25,7 +388,7 @@
 "QB": [
 "Jacoby Brissett",
 7,
-77
+78
 ],
 "RB": [
 "Jeremiyah Love",
@@ -40,7 +403,7 @@
 "Z": [
 "Kendrick Bourne",
 17,
-87
+85
 ],
 "SL": [
 "Reggie Virgil",
@@ -119,8 +482,8 @@
 },
 "coach": "Jonathan Gannon",
 "tr": {
-"ol": 83,
-"dr": 73
+"ol": 82,
+"dr": 74
 }
 },
 {
@@ -146,17 +509,17 @@
 "QB": [
 "Joe Burrow",
 9,
-92
+93
 ],
 "RB": [
 "Chase Brown",
 30,
-81
+82
 ],
 "X": [
 "Ja'Marr Chase",
 1,
-93
+94
 ],
 "Z": [
 "Tee Higgins",
@@ -166,12 +529,12 @@
 "SL": [
 "Dohnte Meyers",
 81,
-81
+83
 ],
 "TE": [
 "Mike Gesicki",
 88,
-85
+84
 ],
 "LT": [
 "Orlando Brown",
@@ -267,7 +630,7 @@
 "QB": [
 "Deshaun Watson",
 4,
-81
+80
 ],
 "RB": [
 "Quinshon Judkins",
@@ -277,17 +640,17 @@
 "X": [
 "Denzel Boston",
 12,
-92
+93
 ],
 "Z": [
 "KC Concepcion",
 1,
-91
+92
 ],
 "SL": [
 "Jerry Jeudy",
 3,
-80
+82
 ],
 "TE": [
 "Harold Fannin Jr.",
@@ -393,7 +756,7 @@
 "RB": [
 "Jahmyr Gibbs",
 0,
-87
+86
 ],
 "X": [
 "Amon-Ra St. Brown",
@@ -408,7 +771,7 @@
 "SL": [
 "Isaac TeSlaa",
 18,
-82
+81
 ],
 "TE": [
 "Sam LaPorta",
@@ -509,7 +872,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+85
 ],
 "RB": [
 "Kyren Williams",
@@ -524,7 +887,7 @@ null
 "Z": [
 "Davante Adams",
 17,
-93
+92
 ],
 "SL": [
 "Jordan Whittington",
@@ -650,7 +1013,7 @@ null
 "SL": [
 "Cooper Kupp",
 10,
-82
+84
 ],
 "TE": [
 "AJ Barner",
@@ -724,7 +1087,7 @@ null
 },
 "coach": "Mike Macdonald",
 "tr": {
-"ol": 74,
+"ol": 76,
 "dr": 83
 }
 },
@@ -756,12 +1119,12 @@ null
 "RB": [
 "Bucky Irving",
 7,
-73
+75
 ],
 "X": [
 "Emeka Egbuka",
 2,
-85
+86
 ],
 "Z": [
 "Chris Godwin Jr.",
@@ -776,7 +1139,7 @@ null
 "TE": [
 "Cade Otton",
 88,
-81
+82
 ],
 "LT": [
 "Tristan Wirfs",
@@ -882,7 +1245,7 @@ null
 "X": [
 "Zay Flowers",
 4,
-94
+93
 ],
 "Z": [
 "Rashod Bateman",
@@ -967,7 +1330,7 @@ null
 "coach": "Jesse Minter",
 "tr": {
 "ol": 76,
-"dr": 85
+"dr": 83
 }
 },
 {
@@ -993,7 +1356,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+85
 ],
 "RB": [
 "Kyren Williams",
@@ -1008,7 +1371,7 @@ null
 "Z": [
 "Davante Adams",
 17,
-93
+92
 ],
 "SL": [
 "Jordan Whittington",
@@ -1088,7 +1451,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 87,
-"dr": 78
+"dr": 77
 }
 },
 {
@@ -1119,7 +1482,7 @@ null
 "RB": [
 "Saquon Barkley",
 26,
-83
+84
 ],
 "X": [
 "DeVonta Smith",
@@ -1129,17 +1492,17 @@ null
 "Z": [
 "Dontayvion Wicks",
 13,
-88
+87
 ],
 "SL": [
 "Makai Lemon",
 9,
-86
+89
 ],
 "TE": [
 "Dallas Goedert",
 88,
-86
+88
 ],
 "LT": [
 "Jordan Mailata",
@@ -1208,7 +1571,7 @@ null
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 75,
+"ol": 74,
 "dr": 89
 }
 },
@@ -1260,7 +1623,7 @@ null
 "TE": [
 "Darnell Washington",
 80,
-86
+84
 ],
 "LT": [
 "Troy Fautanu",
@@ -1330,7 +1693,7 @@ null
 "coach": "Mike McCarthy",
 "tr": {
 "ol": 84,
-"dr": 83
+"dr": 84
 }
 },
 {
@@ -1356,7 +1719,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-86
+85
 ],
 "RB": [
 "Kyren Williams",
@@ -1371,7 +1734,7 @@ null
 "Z": [
 "Davante Adams",
 17,
-93
+92
 ],
 "SL": [
 "Jordan Whittington",
@@ -1478,7 +1841,7 @@ null
 "RB": [
 "Javonte Williams",
 33,
-76
+77
 ],
 "X": [
 "CeeDee Lamb",
@@ -1493,12 +1856,12 @@ null
 "SL": [
 "Ryan Flournoy",
 19,
-90
+91
 ],
 "TE": [
 "Jake Ferguson",
 87,
-77
+78
 ],
 "LT": [
 "Tyler Guyton",
@@ -1568,7 +1931,7 @@ null
 "coach": "Brian Schottenheimer",
 "tr": {
 "ol": 86,
-"dr": 78
+"dr": 82
 }
 },
 {
@@ -1599,7 +1962,7 @@ null
 "RB": [
 "Javonte Williams",
 33,
-76
+77
 ],
 "X": [
 "CeeDee Lamb",
@@ -1614,12 +1977,12 @@ null
 "SL": [
 "Ryan Flournoy",
 19,
-90
+91
 ],
 "TE": [
 "Jake Ferguson",
 87,
-77
+78
 ],
 "LT": [
 "Tyler Guyton",
@@ -1720,7 +2083,7 @@ null
 "RB": [
 "J.K. Dobbins",
 27,
-84
+85
 ],
 "X": [
 "Jaylen Waddle",
@@ -1730,17 +2093,17 @@ null
 "Z": [
 "Courtland Sutton",
 14,
-83
+86
 ],
 "SL": [
 "Marvin Mims Jr.",
 19,
-75
+74
 ],
 "TE": [
 "Evan Engram",
 1,
-78
+80
 ],
 "LT": [
 "Garett Bolles",
@@ -1836,7 +2199,7 @@ null
 "QB": [
 "Daniel Jones",
 17,
-74
+73
 ],
 "RB": [
 "Jonathan Taylor",
@@ -1846,12 +2209,12 @@ null
 "X": [
 "Josh Downs",
 2,
-89
+90
 ],
 "Z": [
 "Keenan Allen",
 10,
-89
+90
 ],
 "SL": [
 "Darius Slayton",
@@ -1861,7 +2224,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-84
+86
 ],
 "LT": [
 "Bernhard Raimann",
@@ -1930,8 +2293,8 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 82,
-"dr": 78
+"ol": 80,
+"dr": 82
 }
 },
 {
@@ -1962,7 +2325,7 @@ null
 "RB": [
 "Saquon Barkley",
 26,
-83
+84
 ],
 "X": [
 "DeVonta Smith",
@@ -1972,17 +2335,17 @@ null
 "Z": [
 "Dontayvion Wicks",
 13,
-88
+87
 ],
 "SL": [
 "Makai Lemon",
 9,
-86
+89
 ],
 "TE": [
 "Dallas Goedert",
 88,
-86
+88
 ],
 "LT": [
 "Jordan Mailata",
@@ -2051,7 +2414,7 @@ null
 },
 "coach": "Nick Sirianni",
 "tr": {
-"ol": 75,
+"ol": 74,
 "dr": 76
 }
 },
@@ -2078,7 +2441,7 @@ null
 "QB": [
 "Tyler Shough",
 6,
-83
+82
 ],
 "RB": [
 "Travis Etienne",
@@ -2088,7 +2451,7 @@ null
 "X": [
 "Chris Olave",
 12,
-95
+94
 ],
 "Z": [
 "Devaughn Vele",
@@ -2103,7 +2466,7 @@ null
 "TE": [
 "Juwan Johnson",
 83,
-86
+87
 ],
 "LT": [
 "Kelvin Banks Jr.",
@@ -2173,7 +2536,7 @@ null
 "coach": "Kellen Moore",
 "tr": {
 "ol": 78,
-"dr": 74
+"dr": 75
 }
 },
 {
@@ -2209,17 +2572,17 @@ null
 "X": [
 "DJ Moore",
 2,
-87
+85
 ],
 "Z": [
 "Khalil Shakir",
 10,
-90
+89
 ],
 "SL": [
 "Keon Coleman",
 0,
-88
+87
 ],
 "TE": [
 "Dalton Kincaid",
@@ -2294,7 +2657,7 @@ null
 "coach": "Sean McDermott",
 "tr": {
 "ol": 86,
-"dr": 78
+"dr": 82
 }
 }
 ]
