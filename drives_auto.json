@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-10T17:02Z",
+"updated": "2026-11-12T17:35Z",
 "season": 2026,
 "drives": [
 {
@@ -387,7 +387,7 @@
 "roster": {
 "QB": [
 "Jacoby Brissett",
-7,
+11,
 78
 ],
 "RB": [
@@ -2208,7 +2208,7 @@ null
 ],
 "X": [
 "Josh Downs",
-2,
+12,
 90
 ],
 "Z": [
