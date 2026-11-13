@@ -1,7 +1,128 @@
 {
-"updated": "2026-11-12T17:35Z",
+"updated": "2026-11-13T17:12Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202610wasnygwas",
+"game": "2026 · Week 10",
+"date": "Nov 12, 2026",
+"team": "Commanders",
+"opp": "Giants",
+"my": 17,
+"op": 21,
+"t": 106,
+"yl": 29,
+"to": 1,
+"w": "clear",
+"late": true,
+"week": 10,
+"real": {
+"res": "win",
+"short": "TD with 1:05 left",
+"text": "Down 4 with 1:46 left at their own 29, the Commanders went 4 plays. Jayden Daniels hit Stefon Diggs for a 32-yard touchdown with 1:05 left. Final: Commanders 24, Giants 21."
+},
+"roster": {
+"QB": [
+"Jayden Daniels",
+5,
+84
+],
+"RB": [
+"Rachaad White",
+1,
+78
+],
+"X": [
+"Stefon Diggs",
+3,
+91
+],
+"Z": [
+"Antonio Williams",
+14,
+89
+],
+"SL": [
+"Treylon Burks",
+13,
+85
+],
+"TE": [
+"Chig Okonkwo",
+85,
+85
+],
+"LT": [
+"Brandon Coleman",
+74
+],
+"LG": [
+"Chris Paul",
+75
+],
+"C": [
+"Matt Gulbin",
+66
+],
+"RG": [
+"Sam Cosmi",
+76
+],
+"RT": [
+"Josh Conerly Jr.",
+72
+],
+"DE1": [
+"Shelby Harris",
+93
+],
+"DT1": [
+"DJ Reader",
+98
+],
+"DT2": [
+"Abdul Carter",
+3
+],
+"DE2": [
+"Darius Alexander",
+91
+],
+"LB1": [
+"Kayvon Thibodeaux",
+5
+],
+"LB2": [
+"Arvell Reese",
+52
+],
+"LB3": [
+"Micah McFadden",
+41
+],
+"CB1": [
+"Deonte Banks",
+2
+],
+"CB2": [
+"Greg Newsome II",
+20
+],
+"S1": [
+"Ar'Darius Washington",
+24
+],
+"S2": [
+"Jevon Holland",
+8
+]
+},
+"coach": "Dan Quinn",
+"tr": {
+"ol": 82,
+"dr": 84
+}
+},
 {
 "id": "a202609clenocle",
 "game": "2026 · Week 9",
@@ -514,7 +635,7 @@
 "RB": [
 "Chase Brown",
 30,
-81
+82
 ],
 "X": [
 "Ja'Marr Chase",
@@ -594,7 +715,7 @@
 ],
 "S1": [
 "Amani Hooker",
-37
+22
 ],
 "S2": [
 "Kevin Winston Jr.",
@@ -715,7 +836,7 @@
 ],
 "S1": [
 "Amani Hooker",
-37
+22
 ],
 "S2": [
 "Kevin Winston Jr.",
@@ -845,7 +966,7 @@ null
 },
 "coach": "Dan Campbell",
 "tr": {
-"ol": 78,
+"ol": 77,
 "dr": 87
 }
 },
@@ -877,7 +998,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-85
+84
 ],
 "X": [
 "Puka Nacua",
@@ -1087,7 +1208,7 @@ null
 },
 "coach": "Mike Macdonald",
 "tr": {
-"ol": 76,
+"ol": 75,
 "dr": 83
 }
 },
@@ -1119,7 +1240,7 @@ null
 "RB": [
 "Bucky Irving",
 7,
-75
+76
 ],
 "X": [
 "Emeka Egbuka",
@@ -1208,7 +1329,7 @@ null
 },
 "coach": "Todd Bowles",
 "tr": {
-"ol": 80,
+"ol": 79,
 "dr": 87
 }
 },
@@ -1235,12 +1356,12 @@ null
 "QB": [
 "Tyler Huntley",
 5,
-84
+83
 ],
 "RB": [
 "Derrick Henry",
 22,
-72
+73
 ],
 "X": [
 "Zay Flowers",
@@ -1250,7 +1371,7 @@ null
 "Z": [
 "Rashod Bateman",
 7,
-88
+87
 ],
 "SL": [
 "Devontez Walker",
@@ -1361,7 +1482,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-85
+84
 ],
 "X": [
 "Puka Nacua",
@@ -1497,7 +1618,7 @@ null
 "SL": [
 "Makai Lemon",
 9,
-89
+88
 ],
 "TE": [
 "Dallas Goedert",
@@ -1603,7 +1724,7 @@ null
 "RB": [
 "Jaylen Warren",
 30,
-88
+87
 ],
 "X": [
 "DK Metcalf",
@@ -1692,7 +1813,7 @@ null
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 84,
+"ol": 85,
 "dr": 84
 }
 },
@@ -1724,7 +1845,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-85
+84
 ],
 "X": [
 "Puka Nacua",
@@ -2093,7 +2214,7 @@ null
 "Z": [
 "Courtland Sutton",
 14,
-85
+86
 ],
 "SL": [
 "Marvin Mims Jr.",
@@ -2204,12 +2325,12 @@ null
 "RB": [
 "Jonathan Taylor",
 28,
-82
+83
 ],
 "X": [
 "Josh Downs",
 12,
-90
+89
 ],
 "Z": [
 "Keenan Allen",
@@ -2293,7 +2414,7 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 80,
+"ol": 79,
 "dr": 82
 }
 },
@@ -2340,7 +2461,7 @@ null
 "SL": [
 "Makai Lemon",
 9,
-89
+88
 ],
 "TE": [
 "Dallas Goedert",
@@ -2405,7 +2526,7 @@ null
 ],
 "S1": [
 "Amani Hooker",
-37
+22
 ],
 "S2": [
 "Kevin Winston Jr.",
