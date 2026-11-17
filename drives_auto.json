@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-16T19:35Z",
+"updated": "2026-11-17T18:33Z",
 "season": 2026,
 "drives": [
 {
@@ -25,12 +25,12 @@
 "QB": [
 "Jayden Daniels",
 5,
-84
+83
 ],
 "RB": [
 "Rachaad White",
 1,
-78
+77
 ],
 "X": [
 "Stefon Diggs",
@@ -50,7 +50,7 @@
 "TE": [
 "Chig Okonkwo",
 85,
-85
+84
 ],
 "LT": [
 "Brandon Coleman",
@@ -120,7 +120,7 @@
 "coach": "Dan Quinn",
 "tr": {
 "ol": 82,
-"dr": 85
+"dr": 83
 }
 },
 {
@@ -151,7 +151,7 @@
 "RB": [
 "Chuba Hubbard",
 30,
-84
+83
 ],
 "X": [
 "Tetairoa McMillan",
@@ -241,7 +241,7 @@
 "coach": "Dave Canales",
 "tr": {
 "ol": 81,
-"dr": 78
+"dr": 79
 }
 },
 {
@@ -483,7 +483,7 @@
 "coach": "Todd Monken",
 "tr": {
 "ol": 73,
-"dr": 78
+"dr": 79
 }
 },
 {
@@ -650,7 +650,7 @@
 "SL": [
 "Kalif Raymond",
 14,
-87
+86
 ],
 "TE": [
 "Colston Loveland",
@@ -724,8 +724,8 @@
 },
 "coach": "Ben Johnson",
 "tr": {
-"ol": 84,
-"dr": 90
+"ol": 85,
+"dr": 89
 }
 },
 {
@@ -751,7 +751,7 @@
 "QB": [
 "Jacoby Brissett",
 11,
-78
+80
 ],
 "RB": [
 "Jeremiyah Love",
@@ -766,7 +766,7 @@
 "Z": [
 "Kendrick Bourne",
 17,
-85
+84
 ],
 "SL": [
 "Reggie Virgil",
@@ -845,7 +845,7 @@
 },
 "coach": "Mike LaFleur",
 "tr": {
-"ol": 78,
+"ol": 77,
 "dr": 73
 }
 },
@@ -1572,7 +1572,7 @@ null
 "coach": "Todd Bowles",
 "tr": {
 "ol": 79,
-"dr": 83
+"dr": 84
 }
 },
 {
@@ -1598,7 +1598,7 @@ null
 "QB": [
 "Tyler Huntley",
 5,
-83
+84
 ],
 "RB": [
 "Derrick Henry",
@@ -1608,12 +1608,12 @@ null
 "X": [
 "Zay Flowers",
 4,
-93
+94
 ],
 "Z": [
 "Rashod Bateman",
 7,
-87
+88
 ],
 "SL": [
 "Devontez Walker",
@@ -1623,7 +1623,7 @@ null
 "TE": [
 "Mark Andrews",
 89,
-83
+87
 ],
 "LT": [
 "Ronnie Stanley",
@@ -1692,7 +1692,7 @@ null
 },
 "coach": "Jesse Minter",
 "tr": {
-"ol": 77,
+"ol": 78,
 "dr": 79
 }
 },
@@ -2055,8 +2055,8 @@ null
 },
 "coach": "Mike McCarthy",
 "tr": {
-"ol": 83,
-"dr": 84
+"ol": 82,
+"dr": 85
 }
 },
 {
@@ -2587,7 +2587,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-86
+85
 ],
 "LT": [
 "Bernhard Raimann",
@@ -2656,7 +2656,7 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 80,
+"ol": 81,
 "dr": 82
 }
 },
@@ -2829,7 +2829,7 @@ null
 "TE": [
 "Juwan Johnson",
 83,
-88
+87
 ],
 "LT": [
 "Kelvin Banks Jr.",
@@ -2898,7 +2898,7 @@ null
 },
 "coach": "Kellen Moore",
 "tr": {
-"ol": 78,
+"ol": 77,
 "dr": 77
 }
 },
@@ -2945,7 +2945,7 @@ null
 "SL": [
 "Keon Coleman",
 0,
-88
+87
 ],
 "TE": [
 "Dalton Kincaid",
