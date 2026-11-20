@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-17T18:33Z",
+"updated": "2026-11-20T17:47Z",
 "season": 2026,
 "drives": [
 {
@@ -362,7 +362,7 @@
 "coach": "Todd Monken",
 "tr": {
 "ol": 73,
-"dr": 82
+"dr": 86
 }
 },
 {
@@ -1451,7 +1451,7 @@ null
 "coach": "Mike Macdonald",
 "tr": {
 "ol": 76,
-"dr": 83
+"dr": 82
 }
 },
 {
@@ -1814,7 +1814,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 84
+"dr": 83
 }
 },
 {
@@ -2056,7 +2056,7 @@ null
 "coach": "Mike McCarthy",
 "tr": {
 "ol": 82,
-"dr": 85
+"dr": 84
 }
 },
 {
@@ -2294,7 +2294,7 @@ null
 "coach": "Brian Schottenheimer",
 "tr": {
 "ol": 88,
-"dr": 82
+"dr": 86
 }
 },
 {
@@ -2577,7 +2577,7 @@ null
 "Z": [
 "Keenan Allen",
 3,
-90
+91
 ],
 "SL": [
 "Darius Slayton",
@@ -2587,7 +2587,7 @@ null
 "TE": [
 "Tyler Warren",
 84,
-85
+87
 ],
 "LT": [
 "Bernhard Raimann",
@@ -2656,8 +2656,8 @@ null
 },
 "coach": "Shane Steichen",
 "tr": {
-"ol": 81,
-"dr": 82
+"ol": 80,
+"dr": 86
 }
 },
 {
@@ -3020,7 +3020,7 @@ null
 "coach": "Joe Brady",
 "tr": {
 "ol": 86,
-"dr": 82
+"dr": 86
 }
 }
 ]
