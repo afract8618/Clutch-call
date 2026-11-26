@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-24T20:08Z",
+"updated": "2026-11-26T18:59Z",
 "season": 2026,
 "drives": [
 {
@@ -45,7 +45,7 @@
 "SL": [
 "Treylon Burks",
 13,
-86
+85
 ],
 "TE": [
 "Chig Okonkwo",
@@ -166,7 +166,7 @@
 "SL": [
 "Treylon Burks",
 13,
-86
+85
 ],
 "TE": [
 "Chig Okonkwo",
@@ -756,7 +756,7 @@
 "RB": [
 "D'Andre Swift",
 4,
-79
+80
 ],
 "X": [
 "Rome Odunze",
@@ -1008,7 +1008,7 @@
 "Z": [
 "Tee Higgins",
 5,
-95
+94
 ],
 "SL": [
 "Dohnte Meyers",
@@ -1361,7 +1361,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-84
+85
 ],
 "X": [
 "Puka Nacua",
@@ -1497,7 +1497,7 @@ null
 "SL": [
 "Cooper Kupp",
 10,
-85
+84
 ],
 "TE": [
 "AJ Barner",
@@ -1571,7 +1571,7 @@ null
 },
 "coach": "Mike Macdonald",
 "tr": {
-"ol": 76,
+"ol": 75,
 "dr": 82
 }
 },
@@ -1613,7 +1613,7 @@ null
 "Z": [
 "Chris Godwin Jr.",
 14,
-85
+84
 ],
 "SL": [
 "Ted Hurst III",
@@ -1734,7 +1734,7 @@ null
 "Z": [
 "Rashod Bateman",
 7,
-89
+90
 ],
 "SL": [
 "Devontez Walker",
@@ -1845,7 +1845,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-84
+85
 ],
 "X": [
 "Puka Nacua",
@@ -2056,7 +2056,7 @@ null
 "coach": "Nick Sirianni",
 "tr": {
 "ol": 74,
-"dr": 90
+"dr": 89
 }
 },
 {
@@ -2208,7 +2208,7 @@ null
 "RB": [
 "Kyren Williams",
 23,
-84
+85
 ],
 "X": [
 "Puka Nacua",
@@ -2657,7 +2657,7 @@ null
 "coach": "Sean Payton",
 "tr": {
 "ol": 85,
-"dr": 89
+"dr": 90
 }
 },
 {
