@@ -1,7 +1,249 @@
 {
-"updated": "2026-11-26T18:59Z",
+"updated": "2026-11-27T18:57Z",
 "season": 2026,
 "drives": [
+{
+"id": "a202612phidalphi",
+"game": "2026 · Week 12",
+"date": "Nov 26, 2026",
+"team": "Eagles",
+"opp": "Cowboys",
+"my": 30,
+"op": 38,
+"t": 203,
+"yl": 30,
+"to": 3,
+"w": "dome",
+"late": false,
+"week": 12,
+"real": {
+"res": "win",
+"short": "TD with 2:17 left",
+"text": "Down 8 with 3:23 left at their own 30, the Eagles went 4 plays. Joe Milton III hit Makai Lemon for a 24-yard touchdown with 2:17 left. Final: Eagles 39, Cowboys 38."
+},
+"roster": {
+"QB": [
+"Joe Milton III",
+14,
+75
+],
+"RB": [
+"Saquon Barkley",
+26,
+85
+],
+"X": [
+"DeVonta Smith",
+6,
+92
+],
+"Z": [
+"Darius Cooper",
+80,
+85
+],
+"SL": [
+"Makai Lemon",
+9,
+88
+],
+"TE": [
+"Dallas Goedert",
+88,
+88
+],
+"LT": [
+"Jordan Mailata",
+68
+],
+"LG": [
+"Landon Dickerson",
+69
+],
+"C": [
+"Drew Kendall",
+66
+],
+"RG": [
+"Tyler Steen",
+56
+],
+"RT": [
+"Markel Bell",
+72
+],
+"DE1": [
+"Quinnen Williams",
+92
+],
+"DT1": [
+"Otito Ogbonnia",
+91
+],
+"DT2": [
+"Donovan Ezeiruaku",
+6
+],
+"DE2": [
+"Kenny Clark",
+97
+],
+"LB1": [
+"Rashan Gary",
+7
+],
+"LB2": [
+"Shemar James",
+50
+],
+"LB3": [
+"Dee Winters",
+53
+],
+"CB1": [
+"Joey Porter Jr.",
+25
+],
+"CB2": [
+"Cobie Durant",
+2
+],
+"S1": [
+"Jalen Thompson",
+34
+],
+"S2": [
+"Malik Hooker",
+24
+]
+},
+"coach": "Nick Sirianni",
+"tr": {
+"ol": 74,
+"dr": 74
+}
+},
+{
+"id": "a202612chidetchi",
+"game": "2026 · Week 12",
+"date": "Nov 26, 2026",
+"team": "Bears",
+"opp": "Lions",
+"my": 32,
+"op": 35,
+"t": 137,
+"yl": 32,
+"to": 1,
+"w": "dome",
+"late": true,
+"week": 12,
+"real": {
+"res": "win",
+"short": "TD with 0:09 left",
+"text": "Down 3 with 2:17 left at their own 32, the Bears went 14 plays. Caleb Williams hit Rome Odunze for a 6-yard touchdown with 0:09 left. Final: Bears 39, Lions 35."
+},
+"roster": {
+"QB": [
+"Caleb Williams",
+18,
+91
+],
+"RB": [
+"D'Andre Swift",
+4,
+84
+],
+"X": [
+"Luther Burden III",
+10,
+93
+],
+"Z": [
+"Rome Odunze",
+15,
+93
+],
+"SL": [
+"Kalif Raymond",
+14,
+87
+],
+"TE": [
+"Colston Loveland",
+84,
+89
+],
+"LT": [
+"Theo Benedet",
+79
+],
+"LG": [
+"Joe Thuney",
+62
+],
+"C": [
+"Garrett Bradbury",
+67
+],
+"RG": [
+"Jonah Jackson",
+73
+],
+"RT": [
+"Darnell Wright",
+58
+],
+"DE1": [
+"Derrick Moore",
+8
+],
+"DT1": [
+"Alim McNeill",
+54
+],
+"DT2": [
+"Tyleik Williams",
+91
+],
+"DE2": [
+"DJ Wonnum",
+98
+],
+"LB1": [
+"Derrick Barnes",
+55
+],
+"LB2": [
+"Malcolm Rodriguez",
+44
+],
+"LB3": [
+"Trevor Nowaske",
+53
+],
+"CB1": [
+"D.J. Reed",
+4
+],
+"CB2": [
+"Rock Ya-Sin",
+23
+],
+"S1": [
+"Brian Branch",
+32
+],
+"S2": [
+"Chuck Clark",
+36
+]
+},
+"coach": "Ben Johnson",
+"tr": {
+"ol": 84,
+"dr": 76
+}
+},
 {
 "id": "a202611cinwaswas",
 "game": "2026 · Week 11",
@@ -40,12 +282,12 @@
 "Z": [
 "Antonio Williams",
 14,
-91
+90
 ],
 "SL": [
 "Treylon Burks",
 13,
-85
+86
 ],
 "TE": [
 "Chig Okonkwo",
@@ -161,12 +403,12 @@
 "Z": [
 "Antonio Williams",
 14,
-91
+90
 ],
 "SL": [
 "Treylon Burks",
 13,
-85
+86
 ],
 "TE": [
 "Chig Okonkwo",
@@ -635,7 +877,7 @@
 "RB": [
 "Javonte Williams",
 33,
-78
+80
 ],
 "X": [
 "CeeDee Lamb",
@@ -724,7 +966,7 @@
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 88,
+"ol": 87,
 "dr": 78
 }
 },
@@ -751,12 +993,12 @@
 "QB": [
 "Caleb Williams",
 18,
-89
+91
 ],
 "RB": [
 "D'Andre Swift",
 4,
-80
+84
 ],
 "X": [
 "Rome Odunze",
@@ -771,7 +1013,7 @@
 "SL": [
 "Kalif Raymond",
 14,
-86
+87
 ],
 "TE": [
 "Colston Loveland",
@@ -845,7 +1087,7 @@
 },
 "coach": "Ben Johnson",
 "tr": {
-"ol": 83,
+"ol": 84,
 "dr": 88
 }
 },
@@ -1240,12 +1482,12 @@
 "RB": [
 "Jahmyr Gibbs",
 0,
-89
+90
 ],
 "X": [
 "Amon-Ra St. Brown",
 14,
-94
+95
 ],
 "Z": [
 "Jameson Williams",
@@ -1260,7 +1502,7 @@
 "TE": [
 "Sam LaPorta",
 87,
-91
+92
 ],
 "LT": [
 "Penei Sewell",
@@ -1329,7 +1571,7 @@ null
 },
 "coach": "Dan Campbell",
 "tr": {
-"ol": 84,
+"ol": 86,
 "dr": 86
 }
 },
@@ -1356,7 +1598,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+88
 ],
 "RB": [
 "Kyren Williams",
@@ -1598,12 +1840,12 @@ null
 "QB": [
 "Jalon Daniels",
 10,
-73
+72
 ],
 "RB": [
 "Bucky Irving",
 7,
-77
+78
 ],
 "X": [
 "Emeka Egbuka",
@@ -1693,7 +1935,7 @@ null
 "coach": "Todd Bowles",
 "tr": {
 "ol": 78,
-"dr": 84
+"dr": 85
 }
 },
 {
@@ -1724,7 +1966,7 @@ null
 "RB": [
 "Derrick Henry",
 22,
-74
+75
 ],
 "X": [
 "Zay Flowers",
@@ -1734,7 +1976,7 @@ null
 "Z": [
 "Rashod Bateman",
 7,
-90
+89
 ],
 "SL": [
 "Devontez Walker",
@@ -1840,7 +2082,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+88
 ],
 "RB": [
 "Kyren Williams",
@@ -1935,7 +2177,7 @@ null
 "coach": "Sean McVay",
 "tr": {
 "ol": 86,
-"dr": 86
+"dr": 87
 }
 },
 {
@@ -1971,7 +2213,7 @@ null
 "X": [
 "DeVonta Smith",
 6,
-88
+92
 ],
 "Z": [
 "Dontayvion Wicks",
@@ -1981,7 +2223,7 @@ null
 "SL": [
 "Makai Lemon",
 9,
-86
+88
 ],
 "TE": [
 "Dallas Goedert",
@@ -2203,7 +2445,7 @@ null
 "QB": [
 "Matthew Stafford",
 9,
-87
+88
 ],
 "RB": [
 "Kyren Williams",
@@ -2325,7 +2567,7 @@ null
 "RB": [
 "Javonte Williams",
 33,
-78
+80
 ],
 "X": [
 "CeeDee Lamb",
@@ -2414,7 +2656,7 @@ null
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 88,
+"ol": 87,
 "dr": 84
 }
 },
@@ -2446,7 +2688,7 @@ null
 "RB": [
 "Javonte Williams",
 33,
-78
+80
 ],
 "X": [
 "CeeDee Lamb",
@@ -2535,7 +2777,7 @@ null
 },
 "coach": "Brian Schottenheimer",
 "tr": {
-"ol": 88,
+"ol": 87,
 "dr": 80
 }
 },
@@ -2567,7 +2809,7 @@ null
 "RB": [
 "J.K. Dobbins",
 27,
-84
+83
 ],
 "X": [
 "Jaylen Waddle",
@@ -2582,7 +2824,7 @@ null
 "SL": [
 "Marvin Mims Jr.",
 19,
-76
+77
 ],
 "TE": [
 "Evan Engram",
@@ -2814,7 +3056,7 @@ null
 "X": [
 "DeVonta Smith",
 6,
-88
+92
 ],
 "Z": [
 "Dontayvion Wicks",
@@ -2824,7 +3066,7 @@ null
 "SL": [
 "Makai Lemon",
 9,
-86
+88
 ],
 "TE": [
 "Dallas Goedert",
@@ -3020,7 +3262,7 @@ null
 "coach": "Kellen Moore",
 "tr": {
 "ol": 77,
-"dr": 77
+"dr": 76
 }
 },
 {
@@ -3046,12 +3288,12 @@ null
 "QB": [
 "Josh Allen",
 17,
-91
+87
 ],
 "RB": [
 "James Cook",
 4,
-75
+76
 ],
 "X": [
 "DJ Moore",
@@ -3071,7 +3313,7 @@ null
 "TE": [
 "Dalton Kincaid",
 86,
-92
+91
 ],
 "LT": [
 "Dion Dawkins",
